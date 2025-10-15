@@ -14,7 +14,7 @@ fi
 # history
 HISTSIZE=1000000
 SAVEHIST=1000000
-HISTFILE="$XDG_CACHE_HOME/zsh_history" # move histfile to cache
+HISTFILE="$XDG_CONFIG_HOME/zsh/zsh_history" # move histfile to .config/zsh
 setopt APPEND_HISTORY           # append, don't overwrite
 setopt INC_APPEND_HISTORY       # write each command as it's entered
 setopt SHARE_HISTORY            # merge history across sessions
@@ -37,6 +37,7 @@ bindkey '^H' backward-kill-word
 bindkey '^[[5D' backward-word
 bindkey '^[[5C' forward-word
 bindkey '^R' fzf-history-widget
+bindkey '^[[3~' delete-char
 
 # completion
 zmodload zsh/complist

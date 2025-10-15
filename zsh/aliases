@@ -29,9 +29,7 @@ clam-scan-once() {
 alias scanrkhunter='sudo rkhunter --update && sudo rkhunter --propupd && sudo rkhunter --check --sk'
 alias scanaide='sudo aide --check'
 
-alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
-
 # Docker OS161
 alias startos161='sudo systemctl start docker && sudo docker run --network host -dit --mount type=bind,src=/home/hamzah/Documents/classes/cpen331/assignments/OS_BASE,target=/root/os161 --rm --name os161 os161 && sudo docker exec -it os161 /bin/bash'
 alias os161='sudo docker exec -it os161 /bin/bash'
-alias killos161='sudo docker kill $(sudo docker ps -q --filter "name=os161") && sudo systemctl stop docker.service && sudo systemctl stop docker.socket'
+alias killos161='sudo docker kill $(sudo docker ps -q --filter "name=os161") && sudo systemctl stop docker.socket && sudo systemctl stop docker'
