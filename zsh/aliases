@@ -1,20 +1,17 @@
 # Simple ls aliases
-alias ls='lsd'
-alias l='lsd -l'
-alias ll='ls -lah'
-alias la='ls -a'
-alias lt='ls --tree --all'
-
-alias sl='sudo lsd'
-alias sll='sudo lsd -lah'
-alias sla='sudo lsd -a'
-alias slt='lsd --tree --all'
-
-alias grep='grep --color=auto'
+alias ls='sudo lsd'
+alias l='sudo lsd -l'
+alias ll='sudo ls -lah'
+alias la='sudo ls -a'
+alias lt='sudo ls --tree --all'
 
 # SSH
-alias ece='ssh hchaudhr@ssh.ece.ubc.ca'
-alias cpsc='ssh hchaudhr@remote.students.cs.ubc.ca'
+alias ece='ssh ece'
+alias ece1='ssh ece1'
+alias ece2='ssh ece2'
+alias ece3='ssh ece3'
+alias ece4='ssh ece4'
+alias cpsc='ssh cpsc'
 
 # Pacman helpers
 alias removelist='pacman -Qqd | pacman -Rsu --print -'
@@ -33,3 +30,4 @@ alias scanaide='sudo aide --check'
 alias startos161='sudo systemctl start docker && sudo docker run --network host -dit --mount type=bind,src=/home/hamzah/Documents/classes/cpen331/assignments/OS_BASE,target=/root/os161 --rm --name os161 os161 && sudo docker exec -it os161 /bin/bash'
 alias os161='sudo docker exec -it os161 /bin/bash'
 alias killos161='sudo docker kill $(sudo docker ps -q --filter "name=os161") && sudo systemctl stop docker.socket && sudo systemctl stop docker'
+
