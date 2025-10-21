@@ -66,7 +66,6 @@ setopt autocd # type a dir to cd
 setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
 setopt interactive_comments # allow comments in shell
 unsetopt prompt_sp # don't autoclean blanklines
-[[ -t 0 ]] && stty stop undef 2>/dev/null # disable accidental ctrl s
 
 # plugins
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)

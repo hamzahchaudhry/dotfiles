@@ -11,7 +11,8 @@ style = { shape = "Beam", blinking = "On" }
 
 [keyboard]
 bindings = [
-   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+   { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" },
+   { key = "S", mods = "Control", action = "None" }
 ]
 
 # Colors (Terminal.app)
