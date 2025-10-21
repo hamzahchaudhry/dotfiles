@@ -1,9 +1,9 @@
 # Simple ls aliases
 alias ls='sudo lsd'
 alias l='sudo lsd -l'
-alias ll='sudo ls -lah'
-alias la='sudo ls -a'
-alias lt='sudo ls --tree --all'
+alias ll='sudo lsd -lah'
+alias la='sudo lsd -a'
+alias lt='sudo lsd --tree --all'
 
 # SSH
 alias ece='ssh ece'
