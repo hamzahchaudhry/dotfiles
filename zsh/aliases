@@ -1,9 +1,10 @@
 # Simple ls aliases
-alias ls='sudo lsd'
-alias l='sudo lsd -l'
-alias ll='sudo lsd -lah'
-alias la='sudo lsd -a'
-alias lt='sudo lsd --tree --all'
+alias ls='sudo eza --color=always --group-directories-first --icons'
+alias l='sudo eza -l --icons --octal-permissions --group-directories-first'
+alias ll='sudo eza -la --icons --octal-permissions --group-directories-first --git'
+alias la='sudo eza --all --color=always --group-directories-first --icons'
+alias lt='sudo eza --all --tree --level=2 --color=always --group-directories-first --icons'
+alias ltt='sudo eza --all --tree --color=always --group-directories-first --icons'
 
 # SSH
 alias ece='ssh ece'
@@ -14,7 +15,6 @@ alias ece4='ssh ece4'
 alias cpsc='ssh cpsc'
 
 # Pacman helpers
-alias removelist='pacman -Qqd | pacman -Rsu --print -'
 alias remove='pacman -Qqd | sudo pacman -Rsu -'
 
 # Security tools
@@ -27,7 +27,7 @@ alias scanrkhunter='sudo rkhunter --update && sudo rkhunter --propupd && sudo rk
 alias scanaide='sudo aide --check'
 
 # Docker OS161
-alias startos161='sudo systemctl start docker && sudo docker run --network host -dit --mount type=bind,src=/home/hamzah/Documents/classes/cpen331/assignments/OS_BASE,target=/root/os161 --rm --name os161 os161 && sudo docker exec -it os161 /bin/bash'
+alias startos161='sudo systemctl start docker && sudo docker run -dit --mount type=bind,src=/home/hamzah/Documents/classes/cpen331/assignments/OS_BASE,target=/root/os161 --rm --name os161 os161 && sudo docker exec -it os161 /bin/bash'
 alias os161='sudo docker exec -it os161 /bin/bash'
 alias killos161='sudo docker kill $(sudo docker ps -q --filter "name=os161") && sudo systemctl stop docker.socket && sudo systemctl stop docker'
 
