@@ -6,3 +6,12 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # bootstrap .zshrc to ~/.config/zsh/.zshrc, any other zsh config files can also reside here
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# XDG stuff
+export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
+# subversion
+export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
+
