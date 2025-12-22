@@ -15,7 +15,7 @@ Personal configuration for terminal tools and editors.
 Clone the repo into `~/.dotfiles`:
 
 ```sh
-git clone <repo> ~/.dotfiles
+git clone git@github.com:hamzahchaudhry/dotfiles.git ~/.dotfiles
 ```
 
 Then create the symlinks wanted:
