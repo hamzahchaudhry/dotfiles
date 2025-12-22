@@ -2,6 +2,7 @@
     "workbench.productIconTheme": "a-file-icon-vscode-product-icon-theme",
     "workbench.iconTheme": "a-file-icon-vscode",
     "editor.fontFamily": "'JetBrainsMono NF', 'monospace', monospace",
+    "workbench.colorTheme": "Monokai",
     "editor.wordWrap": "on",
     "telemetry.editStats.details.enabled": false,
     "telemetry.editStats.enabled": false,
@@ -10,7 +11,6 @@
     "telemetry.telemetryLevel": "off",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "extensions.ignoreRecommendations": true,
-    "workbench.colorTheme": "Monokai",
     "chat.commandCenter.enabled": false,
     "window.menuBarVisibility": "toggle",
     "window.controlsStyle": "hidden",
@@ -28,8 +28,7 @@
     "diffEditor.ignoreTrimWhitespace": true,
     "editor.tabSize": 2,
     "C_Cpp.clang_format_style": "file:/home/hamzah/.config/clang-format",
-    "cscope-code.auto": false,
     "verilog.linting.linter": "modelsim",
     "verilog.linting.modelsim.work": "work",
-    "verilog.languageServer.veribleVerilogLs.enabled": true
+    "verilog.languageServer.veribleVerilogLs.enabled": true,
 }
