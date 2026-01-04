@@ -11,6 +11,7 @@ alias gs='git status'
 alias gc='git clone'
 alias ga='git add'
 alias gu='git restore --staged'
+alias gd='git diff'
 
 # SSH
 alias ece='ssh ece'

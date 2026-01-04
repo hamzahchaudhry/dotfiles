@@ -8,10 +8,10 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # XDG stuff
-export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
+export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-
-# subversion
-export SUBVERSION_HOME=$XDG_CONFIG_HOME/subversion
+export SUBVERSION_HOME="$XDG_CONFIG_HOME/subversion"
+export CODEX_HOME="$XDG_CONFIG_HOME/codex"
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc":"$XDG_CONFIG_HOME/gtk-2.0/gtkrc.mine"
 

@@ -82,3 +82,4 @@ eval "$(zoxide init --cmd cd zsh)"
 source "$XDG_CONFIG_HOME/zsh/.powerlevel10k/powerlevel10k.zsh-theme"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ${ZDOTDIR:-~}/.p10k.zsh ]] || source ${ZDOTDIR:-~}/.p10k.zsh
+
