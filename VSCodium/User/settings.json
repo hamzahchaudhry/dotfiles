@@ -1,0 +1,29 @@
+{
+  /* appearance */
+  "workbench.colorTheme": "Monokai",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.productIconTheme": "material-product-icons",
+
+  /* workbench layout */
+  "workbench.startupEditor": "none",
+  "workbench.activityBar.location": "top",
+  "workbench.statusBar.visible": false,
+
+  // /* window */
+  "window.menuBarVisibility": "toggle",
+  "window.menuStyle": "custom",
+  "window.controlsStyle": "hidden",
+  "window.titleBarStyle": "native",
+  "window.commandCenter": false,
+  "window.density.editorTabHeight": "compact",
+
+  /* editor */
+  "editor.fontFamily": "'JetBrainsMono NF', 'monospace', monospace",
+  "editor.wordWrap": "on",
+  "editor.tabSize": 2,
+
+  /* telemetry */
+  "telemetry.feedback.enabled": false,
+  "gitlens.telemetry.enabled": false,
+  "window.customTitleBarVisibility": "never",
+}
