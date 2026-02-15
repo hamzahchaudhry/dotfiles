@@ -1,26 +1,22 @@
-# ================================
-# XDG base directories
-# ================================
-
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
+# ==========================================
+# zsh environment
+# ==========================================
+# user-specific environment variables.
+#rRuns for all zsh invocations.
+# XDG base dirs are defined globally via xdg.sh.
 
 
-# ================================
-# XDG compliance overrides
-# ================================
+# ==========================================
+# XDG overrides
+# ==========================================
 
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
 
-# ================================
+# ==========================================
 # editor / pager
-# ================================
+# ==========================================
 
 export EDITOR="nvim"
-export VISUAL="nvim"
 export MANPAGER="bat -plman"
 

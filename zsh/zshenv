@@ -1,0 +1,9 @@
+# ==========================================
+# zsh bootstrap
+# ==========================================
+# sets ZDOTDIR so zsh loads its config from
+# $XDG_CONFIG_HOME/zsh instead of $HOME.
+# applies to all zsh invocations.
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
