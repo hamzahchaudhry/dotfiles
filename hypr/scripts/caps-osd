@@ -1,0 +1,9 @@
+#!/bin/bash
+
+STATE=$(hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .capsLock')
+
+if [ "$STATE" = "true" ]; then
+  notify-send -u low -t 1000 "󰪛 capslock ON"
+else
+  notify-send -u low -t 1000 "󰪛 capslock OFF"
+fi

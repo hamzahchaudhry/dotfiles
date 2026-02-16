@@ -1,0 +1,7 @@
+#!/bin/sh
+p=$(brightnessctl -m|cut -d, -f4|tr -d "%")
+p=$((p+$1))
+[ $p -lt 1 ]&&p=1
+[ $p -gt 100 ]&&p=100
+brightnessctl set ${p}%
+echo $p>/tmp/wobpipe

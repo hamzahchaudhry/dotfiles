@@ -1,222 +1,293 @@
+/* ========= Colors (Catppuccin-ish) ========= */
+@define-color background1 rgba(32, 32, 48, 0.75); /* chip bg */
+@define-color background2 rgba(21, 21, 32, 0.35); /* bar bg */
+@define-color sepepator  #313244;
+
+@define-color warning     #f38ba8;
+@define-color caution     #45475a;
+
+@define-color performance #f5c2e7;
+@define-color audio       #cba6f7;
+@define-color misc        #94e2d5;
+@define-color date        #a6e3a1;
+@define-color window      #b4befe;
+
+@define-color text        #cdd6f4;
+
+/* ========= Reset ========= */
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    /* font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif; */
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 14px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  text-shadow: none;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;        /* small */
+  font-weight: 200;
 }
 
+/* ========= Bar ========= */
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    color: #ffffff;
+  background: @background2;     /* transparent bar */
+  color: @text;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+/* tighter look */
+#workspaces, #window { margin: 0 6px; }
+#workspaces { margin-left: 0; }
+
+/* ========= Keyframes ========= */
+@keyframes blink-critical-text { to { color: @sepepator; } }
+
+@keyframes blink-urgent-workspace { to { color: @warning; } }
+
+@keyframes blink-battery {
+  to {
+    color: @warning;
+  }
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
+/* ========= Common module padding ========= */
+#tray,
+#custom-trayicon,
+#idle_inhibitor,
+#network,
+#cpu,
+#temperature,
+#memory,
+#pulseaudio,
+#backlight,
+#battery,
+#clock,
+#window {
+  padding: 0 10px;
 }
 
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+/* ========= “Chip” module blocks ========= */
+/* perf */
+#cpu, #temperature, #memory.ram, #memory.swap, #network {
+  background: @background1;
+  color: @performance;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+/* audio */
+#pulseaudio {
+  background: rgba(21, 21, 32, 0.55);
+  color: @audio;
 }
 
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
+/* power */
+#idle_inhibitor, #backlight, #battery {
+  background: @background1;
+  color: @misc;
+}
+
+/* date */
+#clock {
+  background: rgba(21, 21, 32, 0.55);
+  color: @date;
+}
+
+/* window title */
+#window {
+  background: transparent;
+  color: @window;
+  font-style: italic;
+}
+
+/* ========= Critical blink for perf modules ========= */
+#cpu.critical,
+#temperature.critical,
+#memory.ram.critical,
+#memory.swap.critical {
+  color: @warning;
+  animation: blink-critical-text 1s steps(15) infinite alternate;
+}
+
+/* Battery warning/critical */
+#battery.warning,
+#battery.critical {
+  color: @warning;
+}
+#battery.critical:not(.charging) {
+  animation: blink-battery 0.8s steps(12) infinite alternate;
+}
+
+/* Pulseaudio muted */
+#pulseaudio.muted {
+  color: @sepepator;
+}
+
+/* ========= Tray ========= */
+#tray {
+  background: transparent;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background: rgba(243, 139, 168, 0.25);
+}
+
+/* ========= Angled spacers (real “his” vibe) ========= */
+#custom-spacer1,
+#custom-spacer2,
+#custom-spacer3,
+#custom-spacer4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: transparent;
+  padding: 0 4px;
+  margin: -3px 0;
+}
+
+/* start -> bg1 */
+#custom-spacer1 {
+  background-image: linear-gradient(
+    63.435deg,
+    transparent 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    @background1 52.5%
+  );
+}
+
+/* bg1 -> bar/bg2 */
+#custom-spacer2 {
+  background-image: linear-gradient(
+    63.435deg,
+    @background1 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    rgba(21, 21, 32, 0.55) 52.5%
+  );
+}
+
+/* bar/bg2 -> bg1 */
+#custom-spacer3 {
+  background-image: linear-gradient(
+    63.435deg,
+    rgba(21, 21, 32, 0.55) 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    @background1 52.5%
+  );
+}
+
+/* bg1 -> bar/bg2 */
+#custom-spacer4 {
+  background-image: linear-gradient(
+    63.435deg,
+    @background1 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    rgba(21, 21, 32, 0.55) 52.5%
+  );
+}
+
+/* ========= Workspaces: angled “chips” like his ========= */
+#workspaces {
+  padding-left: 18px;
+  padding-right: 4px;
+  margin-top: -5px;
+  margin-bottom: -5px;
+
+  background-image: linear-gradient(
+    -243.435deg,
+    rgba(21, 21, 32, 0.35) 17px,
+    @sepepator 17px,
+    @sepepator 21px,
+    transparent 21px,
+    transparent calc(100% -22px),
+    @sepepator calc(100% -22px),
+    @sepepator calc(100% -18px),
+    transparent calc(100% -18px)
+  );
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+  color: @caution;
+  background: transparent;
+  border: 1.5px solid transparent;
+  transition: all 0.25s ease;
+
+  font-style: italic;
+
+  margin-left: -17px;
+  padding: 5px 14px;
+
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 25%,
+    rgba(21, 21, 32, 0.35) 25%,
+    rgba(21, 21, 32, 0.35) 75%,
+    transparent 75%
+  );
 }
 
+/* “visible” workspace (Hyprland uses .visible) */
+#workspaces button.visible {
+  color: @text;
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 25%,
+    @caution 25%,
+    @caution 75%,
+    transparent 75%
+  );
+}
+
+/* “active” workspace */
+#workspaces button.active,
+#workspaces button.focused {
+  color: @window;
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 24%,
+    @sepepator 24%,
+    @sepepator 28%,
+    @background1 28%,
+    @background1 73%,
+    @sepepator 73%,
+    @sepepator 76%,
+    transparent 76%
+  );
+}
+
+/* urgent blink */
+#workspaces button.urgent,
+#workspaces button.special.urgent {
+  animation: blink-urgent-workspace 1s steps(15) infinite alternate;
+}
+
+/* hover */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+  color: @window;
 }
 
-#workspaces button.focused, #workspaces button.active {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+/* ========= Tooltip ========= */
+tooltip {
+  background: rgba(21, 21, 32, 0.92);
+  border: 2px solid @caution;
+  border-radius: 8px;
+  color: @text;
+  font-weight: 600;
 }
 
-#workspaces button.urgent {
-    background-color: #eb4d4b;
+window#waybar {
+  background: @background2;
+  color: @text;
+
+  /* animate show/hide */
+  transition: opacity 220ms ease, margin-top 220ms ease;
+  opacity: 1;
+  margin-top: 0;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#tray,
-#idle_inhibitor {
-    padding: 0 12px;
-    color: #ffffff;
-}
-
-#window,
-#workspaces {
-    margin: 0 4px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}
-
-#clock {
-    background-color: #64727D;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-#memory {
-    background-color: #9b59b6;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+/* optional: also fade the contents a touch more reliably */
+window#waybar.hidden * {
+  transition: opacity 220ms ease;
 }
