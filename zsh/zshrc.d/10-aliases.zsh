@@ -18,6 +18,7 @@ alias gcl='git clone'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gp='git push'
 alias gu='git restore --staged'
 alias gd='git diff'
 
