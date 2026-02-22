@@ -64,13 +64,13 @@ window#waybar {
 #systemd-failed-units,
 #idle_inhibitor,
 #cpu,
+#custom-cpu_pkg,
 #temperature,
 #memory,
 #privacy,
 #pulseaudio,
 #backlight,
 #upower,
-#battery,
 #clock,
 #custom-sep {
   padding: 0 8px;
@@ -84,9 +84,10 @@ window#waybar {
 /* “quiet” modules */
 #idle_inhibitor,
 #cpu,
+#custom-cpu_pkg,
 #temperature,
 #memory.ram,
-#memory.swap,
+#custom-swap,
 #privacy { color: @muted; }
 
 /* alerts */
@@ -94,7 +95,7 @@ window#waybar {
 #pulseaudio.muted { color: @muted; }
 
 /* upower */
-#upower.charging { color: @mute; }
+#upower.charging { color: @muted; }
 #upower.discharging { color: @accent; }
 
 /* health + privacy notifications */

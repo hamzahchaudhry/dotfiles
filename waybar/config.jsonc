@@ -17,9 +17,10 @@
 
     "custom/sep",
     "cpu",
+    "custom/cpu_pkg",
     "temperature",
     "memory#ram",
-    "memory#swap",
+    "custom/swap",
 
     "custom/sep",
     "privacy",
@@ -28,7 +29,6 @@
     "custom/sep",
     "backlight",
     "upower",
-    "battery",
 
     "custom/sep",
     "clock"
@@ -72,6 +72,13 @@
     "states": { "warning": 80, "critical": 90 }
   },
 
+  "custom/cpu_pkg": {
+    "interval": 6,
+    "format": " {}",
+    "exec": "/home/hamzah/.dotfiles/waybar/scripts/cpu_pkg_power.sh",
+    "tooltip": false
+  },
+
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon4/temp5_input",
     "interval": 6,
@@ -82,7 +89,12 @@
 
   "memory#ram": { "interval": 8, "format": " {used}GiB" },
 
-  "memory#swap": { "interval": 30, "format": "󰾵 {swapUsed}GiB" },
+  "custom/swap": {
+    "interval": 30,
+    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u<=0) exit; printf \"󰾵 %.2fGiB\\n\", u/1024/1024}' /proc/meminfo",
+    "return-type": "text",
+    "tooltip": false
+  },
 
   "privacy": {
     "icon-spacing": 6,
@@ -118,8 +130,6 @@
     "tooltip": false,
     "format": "{percentage}"
   },
-
-  "battery": { "interval": 10, "format": " {power}W", "tooltip": false },
 
   "clock": { "format": "{:%a, %m-%d %I:%M %p}", "interval": 60 }
 }
