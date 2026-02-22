@@ -1,293 +1,109 @@
-/* ========= Colors (Catppuccin-ish) ========= */
-@define-color background1 rgba(32, 32, 48, 0.75); /* chip bg */
-@define-color background2 rgba(21, 21, 32, 0.35); /* bar bg */
-@define-color sepepator  #313244;
+@define-color bg_bar  rgba(21, 21, 32, 0.35);
+@define-color bg_pill rgba(32, 32, 48, 0.75);
+@define-color sep     #313244;
 
-@define-color warning     #f38ba8;
-@define-color caution     #45475a;
+@define-color text    #cdd6f4;
+@define-color muted   #7f849c;
+@define-color warn    #f38ba8;
+@define-color accent  #b4befe;
 
-@define-color performance #f5c2e7;
-@define-color audio       #cba6f7;
-@define-color misc        #94e2d5;
-@define-color date        #a6e3a1;
-@define-color window      #b4befe;
-
-@define-color text        #cdd6f4;
-
-/* ========= Reset ========= */
 * {
-  border: none;
-  border-radius: 0;
   min-height: 0;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-  text-shadow: none;
   font-family: "JetBrainsMono Nerd Font";
-  font-size: 14px;        /* small */
+  font-size: 14px;
   font-weight: 200;
+  transition: none;
+  animation: none;
 }
 
-/* ========= Bar ========= */
 window#waybar {
-  background: @background2;     /* transparent bar */
+  background: @bg_bar;
   color: @text;
+  padding: 0 6px;
 }
 
-/* tighter look */
-#workspaces, #window { margin: 0 6px; }
-#workspaces { margin-left: 0; }
+/* left */
+#group-traym, #workspaces { background: transparent; }
+#group-traym, #group-traym .drawer-child { padding: 0; }
 
-/* ========= Keyframes ========= */
-@keyframes blink-critical-text { to { color: @sepepator; } }
+#custom-trayicon, #tray { padding: 0 6px; }
+#custom-trayicon {
+  color: @muted;
+  font-size: 18px;
+  padding: 0 4px;
+}
+#custom-trayicon:hover { color: @accent; }
+#tray > .passive { opacity: 0.65; }
 
-@keyframes blink-urgent-workspace { to { color: @warning; } }
+#workspaces { padding: 0 6px; }
+#workspaces button {
+  color: @muted;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  margin: 0 2px;
+  padding: 2px 8px;
+}
+#workspaces button.active {
+  color: @text;
+  border-color: @sep;
+  background: rgba(32, 32, 48, 0.25);
+}
+#workspaces button:hover { color: @accent; }
 
-@keyframes blink-battery {
-  to {
-    color: @warning;
-  }
+/* right capsule */
+.modules-right {
+  background: @bg_pill;
+  border: 1px solid @sep;
+  border-radius: 10px;
+  padding: 0 6px;
+  margin: 2px 0;
 }
 
-/* ========= Common module padding ========= */
-#tray,
-#custom-trayicon,
+/* capsule children */
+#systemd-failed-units,
 #idle_inhibitor,
-#network,
 #cpu,
 #temperature,
 #memory,
+#privacy,
 #pulseaudio,
 #backlight,
+#upower,
 #battery,
 #clock,
-#window {
-  padding: 0 10px;
-}
-
-/* ========= “Chip” module blocks ========= */
-/* perf */
-#cpu, #temperature, #memory.ram, #memory.swap, #network {
-  background: @background1;
-  color: @performance;
-}
-
-/* audio */
-#pulseaudio {
-  background: rgba(21, 21, 32, 0.55);
-  color: @audio;
-}
-
-/* power */
-#idle_inhibitor, #backlight, #battery {
-  background: @background1;
-  color: @misc;
-}
-
-/* date */
-#clock {
-  background: rgba(21, 21, 32, 0.55);
-  color: @date;
-}
-
-/* window title */
-#window {
+#custom-sep {
+  padding: 0 8px;
   background: transparent;
-  color: @window;
-  font-style: italic;
-}
-
-/* ========= Critical blink for perf modules ========= */
-#cpu.critical,
-#temperature.critical,
-#memory.ram.critical,
-#memory.swap.critical {
-  color: @warning;
-  animation: blink-critical-text 1s steps(15) infinite alternate;
-}
-
-/* Battery warning/critical */
-#battery.warning,
-#battery.critical {
-  color: @warning;
-}
-#battery.critical:not(.charging) {
-  animation: blink-battery 0.8s steps(12) infinite alternate;
-}
-
-/* Pulseaudio muted */
-#pulseaudio.muted {
-  color: @sepepator;
-}
-
-/* ========= Tray ========= */
-#tray {
-  background: transparent;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-#tray > .passive { -gtk-icon-effect: dim; }
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-  background: rgba(243, 139, 168, 0.25);
-}
-
-/* ========= Angled spacers (real “his” vibe) ========= */
-#custom-spacer1,
-#custom-spacer2,
-#custom-spacer3,
-#custom-spacer4 {
-  font-size: 16px;
-  font-weight: 800;
-  color: transparent;
-  padding: 0 4px;
-  margin: -3px 0;
-}
-
-/* start -> bg1 */
-#custom-spacer1 {
-  background-image: linear-gradient(
-    63.435deg,
-    transparent 47.5%,
-    @sepepator 47.6%,
-    @sepepator 52.4%,
-    @background1 52.5%
-  );
-}
-
-/* bg1 -> bar/bg2 */
-#custom-spacer2 {
-  background-image: linear-gradient(
-    63.435deg,
-    @background1 47.5%,
-    @sepepator 47.6%,
-    @sepepator 52.4%,
-    rgba(21, 21, 32, 0.55) 52.5%
-  );
-}
-
-/* bar/bg2 -> bg1 */
-#custom-spacer3 {
-  background-image: linear-gradient(
-    63.435deg,
-    rgba(21, 21, 32, 0.55) 47.5%,
-    @sepepator 47.6%,
-    @sepepator 52.4%,
-    @background1 52.5%
-  );
-}
-
-/* bg1 -> bar/bg2 */
-#custom-spacer4 {
-  background-image: linear-gradient(
-    63.435deg,
-    @background1 47.5%,
-    @sepepator 47.6%,
-    @sepepator 52.4%,
-    rgba(21, 21, 32, 0.55) 52.5%
-  );
-}
-
-/* ========= Workspaces: angled “chips” like his ========= */
-#workspaces {
-  padding-left: 18px;
-  padding-right: 4px;
-  margin-top: -5px;
-  margin-bottom: -5px;
-
-  background-image: linear-gradient(
-    -243.435deg,
-    rgba(21, 21, 32, 0.35) 17px,
-    @sepepator 17px,
-    @sepepator 21px,
-    transparent 21px,
-    transparent calc(100% -22px),
-    @sepepator calc(100% -22px),
-    @sepepator calc(100% -18px),
-    transparent calc(100% -18px)
-  );
-}
-
-#workspaces button {
-  color: @caution;
-  background: transparent;
-  border: 1.5px solid transparent;
-  transition: all 0.25s ease;
-
-  font-style: italic;
-
-  margin-left: -17px;
-  padding: 5px 14px;
-
-  background-image: linear-gradient(
-    -63.435deg,
-    transparent 25%,
-    rgba(21, 21, 32, 0.35) 25%,
-    rgba(21, 21, 32, 0.35) 75%,
-    transparent 75%
-  );
-}
-
-/* “visible” workspace (Hyprland uses .visible) */
-#workspaces button.visible {
   color: @text;
-  background-image: linear-gradient(
-    -63.435deg,
-    transparent 25%,
-    @caution 25%,
-    @caution 75%,
-    transparent 75%
-  );
 }
 
-/* “active” workspace */
-#workspaces button.active,
-#workspaces button.focused {
-  color: @window;
-  background-image: linear-gradient(
-    -63.435deg,
-    transparent 24%,
-    @sepepator 24%,
-    @sepepator 28%,
-    @background1 28%,
-    @background1 73%,
-    @sepepator 73%,
-    @sepepator 76%,
-    transparent 76%
-  );
-}
+/* separators */
+#custom-sep { padding: 0 4px; color: @sep; }
 
-/* urgent blink */
-#workspaces button.urgent,
-#workspaces button.special.urgent {
-  animation: blink-urgent-workspace 1s steps(15) infinite alternate;
-}
+/* “quiet” modules */
+#idle_inhibitor,
+#cpu,
+#temperature,
+#memory.ram,
+#memory.swap,
+#privacy { color: @muted; }
 
-/* hover */
-#workspaces button:hover {
-  color: @window;
-}
+/* alerts */
+#temperature.critical { color: @warn; font-weight: 600; }
+#pulseaudio.muted { color: @muted; }
 
-/* ========= Tooltip ========= */
-tooltip {
-  background: rgba(21, 21, 32, 0.92);
-  border: 2px solid @caution;
-  border-radius: 8px;
-  color: @text;
-  font-weight: 600;
-}
+/* upower */
+#upower.charging { color: @mute; }
+#upower.discharging { color: @accent; }
 
-window#waybar {
-  background: @background2;
-  color: @text;
+/* health + privacy notifications */
+#systemd-failed-units { color: @warn; font-weight: 600; }
 
-  /* animate show/hide */
-  transition: opacity 220ms ease, margin-top 220ms ease;
-  opacity: 1;
-  margin-top: 0;
-}
+/* active inhibitor as accent */
+#idle_inhibitor.activated { color: @accent; font-weight: 600; }
 
-/* optional: also fade the contents a touch more reliably */
-window#waybar.hidden * {
-  transition: opacity 220ms ease;
-}
+/* mic/screen share = red */
+#privacy-item.audio-in,
+#privacy-item.screenshare { color: @warn; font-weight: 700; }
+#privacy-item.audio-out { color: @accent; }
