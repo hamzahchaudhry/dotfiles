@@ -4,7 +4,7 @@
   "position": "bottom",
   "spacing": 0,
   "on-sigusr1": "toggle",
-  "reload_style_on_change": true,
+  "reload_style_on_change": false,
 
   "modules-left": [
     "group/traym",
