@@ -15,6 +15,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
 export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME/platformio"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 
 # ==========================================

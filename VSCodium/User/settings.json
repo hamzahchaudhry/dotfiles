@@ -26,4 +26,6 @@
   "telemetry.feedback.enabled": false,
   "gitlens.telemetry.enabled": false,
   "window.customTitleBarVisibility": "never",
+  "explorer.confirmDelete": false,
+  "diffEditor.ignoreTrimWhitespace": false,
 }

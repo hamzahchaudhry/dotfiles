@@ -30,6 +30,7 @@ alias gd='git diff'
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias c='clear'
+alias cdot='codium .'
 
 
 # ================================
