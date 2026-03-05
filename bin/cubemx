@@ -1,0 +1,18 @@
+#!/bin/sh
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+
+MX_DATA="$XDG_DATA_HOME/stm32cubemx"
+MX_CACHE="$XDG_CACHE_HOME/stm32cubemx"
+MX_CONFIG="$XDG_CONFIG_HOME/stm32cubemx"
+
+mkdir -p "$MX_DATA/home" "$MX_CACHE/tmp" "$MX_CONFIG/java-prefs"
+
+exec archlinux-java-run --min 21 -- \
+  -Duser.home="$MX_DATA/home" \
+  -Djava.io.tmpdir="$MX_CACHE/tmp" \
+  -Djava.util.prefs.userRoot="$MX_CONFIG/java-prefs" \
+  -Dawt.useSystemAAFontSettings=on \
+  -Dswing.aatext=true \
+  -jar /opt/stm32cubemx/STM32CubeMX "$@"

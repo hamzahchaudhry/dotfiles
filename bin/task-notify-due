@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WINDOW="now+24hours"
+FORCE="${1:-}" # run: task-notify-due --force
+
+OVERDUE=$(task rc.verbose=nothing status:pending due.before:now count)
+UPCOMING=$(task rc.verbose=nothing status:pending due.before:"$WINDOW" due.after:now count)
+
+if [ "$FORCE" != "--force" ] && [ "$OVERDUE" -eq 0 ] && [ "$UPCOMING" -eq 0 ]; then
+  exit 0
+fi
+
+LIST=$(task status:pending \( due.before:"$WINDOW" \) \
+  rc.verbose=nothing \
+  rc.report.n.columns=course,description,due.remaining \
+  rc.report.n.labels=course,task,remaining \
+  rc.report.n.sort=due+,urgency- \
+  n 2>/dev/null | head -n 20 || true)
+
+TITLE="⏰ Tasks due in 24h: $UPCOMING upcoming, $OVERDUE overdue"
+
+notify-send -u critical "$TITLE" "${LIST:-No tasks due in the next 24h.}"
