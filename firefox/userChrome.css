@@ -1,0 +1,9 @@
+/* Remove close button at the top right corner. */
+.titlebar-buttonbox-container {
+    display: none;
+}
+
+/* Remove close button spacing. */
+.titlebar-spacer {
+    display: none;
+}

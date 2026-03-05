@@ -236,14 +236,12 @@ user_pref("media.getusermedia.audio.processing.agc.enabled", false);
 user_pref("media.getusermedia.audio.processing.noise.enabled", false);
 user_pref("media.getusermedia.audio.processing.hpf.enabled", false);
 
-// unload tabs after 10 mins inactive
+// unload tabs after 20 mins inactive
 user_pref("browser.tabs.unloadOnLowMemory", true);
 user_pref("browser.low_commit_space_threshold_percent", 100);
-user_pref("browser.tabs.min_inactive_duration_before_unload", 600000);
-
-// remove x button
-user_pref("browser.tabs.closeButtons", 2);
+user_pref("browser.tabs.min_inactive_duration_before_unload", 1200000);
 
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/
+
