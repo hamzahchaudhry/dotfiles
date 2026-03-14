@@ -4,16 +4,16 @@ news.version=3.4.2
 data.location=~/.local/share/task
 hooks.location=~/.config/task/hooks
 
-color.project.CPEN391=bold magenta
-color.project.CPSC340=bold yellow
-color.project.CPSC320=bold white on red
-color.project.CPEN320=bold cyan
-color.project.life=bold green
+color.project.CPEN391=magenta
+color.project.CPSC340=yellow
+color.project.CPSC320=red
+color.project.CPEN320=cyan
+color.project.life=green
 
-color.due.today=bold white on red
-color.overdue=bold white on color52
+color.due.today=underline bold
+color.overdue=underline bold on white
 
-report.next.columns=id,project,description,due,due.remaining
+report.next.columns=id,project,description,due,due.relative
 report.next.labels=id,project,task,due,countdown
-report.next.dateformat=a, b D H:N
+report.next.dateformat=a, M-D H:N
 report.next.sort=due+
