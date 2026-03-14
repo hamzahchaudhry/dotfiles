@@ -23,5 +23,8 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # ==========================================
 
 export EDITOR="nvim"
+export BAT_THEME="Monokai Extended Light"
 export MANPAGER="bat -plman"
+
+export EZA_ICONS_AUTO=1
 

@@ -7,6 +7,6 @@
 # prevents accidental nested sessions.
 
 if [[ -z "$WAYLAND_DISPLAY" && -n "$XDG_VTNR" && "$XDG_VTNR" -eq 1 ]]; then
-  exec start-hyprland
+  exec start-hyprland >/dev/null 2>&1
 fi
 
