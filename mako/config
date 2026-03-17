@@ -1,43 +1,16 @@
-sort=-time
-layer=overlay
-anchor=top-right
-outer-margin=12
+width=400
+border-radius=12
 
-width=420
-height=150
-margin=0,0,12
-padding=14
-
-border-size=2
-border-radius=16
-border-color=#b4befe
-
-background-color=#11111be6
-text-color=#cdd6f4
-progress-color=over #89b4fa
-
+background-color=#000000
 font=JetBrainsMono Nerd Font 12
-markup=1
-actions=1
 format=<span size="large"><b>%s</b></span>\n<span foreground="#bac2de">%b</span>
-text-alignment=left
 
 icons=1
-icon-location=left
-max-icon-size=36
-icon-border-radius=10
 icon-path=/usr/share/icons/Papirus-Dark:/usr/share/icons/Papirus:/usr/share/pixmaps
 
-max-visible=4
 history=1
-max-history=50
-
 default-timeout=5000
 ignore-timeout=1
-
-on-button-left=invoke-default-action
-on-button-middle=dismiss-group
-on-button-right=dismiss
 
 [grouped]
 format=<span size="large"><b>%s</b></span> <span foreground="#9399b2">(%g)</span>\n<span foreground="#bac2de">%b</span>
@@ -46,32 +19,21 @@ invisible=1
 [group-index=0]
 invisible=0
 
-[hidden]
-border-color=#6c7086
-background-color=#11111be6
-text-color=#9399b2
-
-[urgency=low]
-border-color=#a6e3a1
-default-timeout=3000
-
-[urgency=normal]
-border-color=#fab387
-
 [urgency=critical]
-border-color=#f38ba8
-background-color=#1e1e2ef2
-default-timeout=0
+border-color=#ff0000
+background-color=#000000
+default-timeout=20000
 
 [category=on]
-default-timeout=1200
 group-by=category
-border-color=#a6e3a1
+border-color=#77dd77
+default-timeout=1200
 
 [category=off]
-default-timeout=1200
 group-by=category
-border-color=#f38ba8
+border-color=#ff6961
+default-timeout=1200
 
-[mode=do-not-disturb]
-invisible=1
+[category=tasks]
+group-by=category
+border-color=#91ddf2
