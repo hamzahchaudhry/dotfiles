@@ -13,4 +13,3 @@ bindkey '^[[3~' delete-char
 
 # fzf history search
 bindkey '^R' fzf-history-widget
-

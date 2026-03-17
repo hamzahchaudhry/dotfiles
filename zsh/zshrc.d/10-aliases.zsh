@@ -42,34 +42,6 @@ alias s='speedtest'
 alias p='paru'
 alias usb='pio device monitor'
 alias upload='pio run -t upload'
-bt() {
-  case "$1" in
-    on)
-      sudo rfkill unblock bluetooth
-      sudo systemctl start bluetooth
-      bluetoothctl power on
-      ;;
-    off)
-      bluetoothctl power off
-      sudo systemctl stop bluetooth
-      sudo rfkill block bluetooth
-      ;;
-    airpods)
-      sudo rfkill unblock bluetooth
-      sudo systemctl start bluetooth
-      bluetoothctl power on
-      bluetoothctl connect 38:C4:3A:E2:E2:D8
-      ;;
-    status)
-      b=$(rfkill list bluetooth | awk -F": " '/Soft blocked/ {print $2}')
-      s=$(systemctl is-active bluetooth 2>/dev/null)
-      [[ "$b" == yes ]] && echo "BT: OFF (rfkill blocked)" || [[ "$s" != active ]] && echo "BT: OFF (service $s)" || echo "BT: ON ($(timeout 1 bluetoothctl show 2>/dev/null | awk -F': ' '/Powered/ {print "Powered: "$2}'))"
-      ;;
-    *)
-      echo "Usage: bt {on|off|airpods|status}"
-      ;;
-  esac
-}
 
 
 # ================================
@@ -89,6 +61,3 @@ alias tl='task add proj:"life 🏠"'
 # ================================
 # pacman
 # ================================
-
-alias remove='sudo pacman -Rnsc $(pacman -Qtdq)'
-

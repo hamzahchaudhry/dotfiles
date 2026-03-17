@@ -7,7 +7,11 @@
 
 autoload -Uz compinit
 
-mkdir -p "$XDG_CACHE_HOME/zsh"
+: "${XDG_CACHE_HOME:=$HOME/.cache}"
+zsh_cache_dir="$XDG_CACHE_HOME/zsh"
+zcompdump="$zsh_cache_dir/zcompdump"
+
+[[ -d "$zsh_cache_dir" ]] || mkdir -p "$zsh_cache_dir"
 
 # cache expensive completion results
 zstyle ':completion:*' use-cache on
@@ -30,6 +34,9 @@ zstyle ':completion:*' matcher-list \
 zstyle ':fzf-tab:complete:cd:*' \
   fzf-preview 'eza -1 --color=always --icons $realpath'
 
-# initialize completion
-compinit -C -d "$XDG_CACHE_HOME/zsh/zcompdump"
-
+# reuse the cached dump most of the time and refresh it periodically
+if [[ ! -f "$zcompdump" || -n "$zcompdump"(N.mh+24) ]]; then
+  compinit -d "$zcompdump"
+else
+  compinit -C -d "$zcompdump"
+fi

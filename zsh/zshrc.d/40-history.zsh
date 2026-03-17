@@ -13,4 +13,3 @@ setopt INC_APPEND_HISTORY # write immediately
 setopt SHARE_HISTORY      # merge history between shells
 setopt HIST_IGNORE_DUPS   # ignore consecutive duplicates
 setopt HIST_REDUCE_BLANKS # remove superfluous whitespace
-

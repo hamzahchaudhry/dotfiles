@@ -5,6 +5,8 @@
 # loads instant prompt early then sources
 # all config snippets from zshrc.d/
 
+[[ -o interactive ]] || return
+
 
 # ==========================================
 # powerlevel10k instant prompt
@@ -30,4 +32,3 @@ if [[ -d "$zshrcd" ]]; then
     [[ -r "$f" ]] && source "$f"
   done
 fi
-

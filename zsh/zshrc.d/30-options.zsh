@@ -10,4 +10,3 @@ setopt interactive_comments
 
 unsetopt prompt_sp      # don't auto-remove blank lines before prompt
 setopt complete_aliases
-
