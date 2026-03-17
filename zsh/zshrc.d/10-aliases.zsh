@@ -39,6 +39,9 @@ alias grep='grep --color=auto'
 alias c='clear'
 alias cdot='codium .'
 alias s='speedtest'
+alias p='paru'
+alias usb='pio device monitor'
+alias upload='pio run -t upload'
 bt() {
   case "$1" in
     on)
