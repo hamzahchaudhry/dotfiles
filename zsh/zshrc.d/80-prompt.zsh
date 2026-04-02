@@ -8,9 +8,3 @@
 
 # load personal p10k config if present
 [[ -r ${ZDOTDIR:-$HOME}/.p10k.zsh ]] && source ${ZDOTDIR:-$HOME}/.p10k.zsh
-
-# make cursor blinking bar
-_fix_cursor() {
-   echo -ne '\e[5 q'
-}
-precmd_functions+=(_fix_cursor)
