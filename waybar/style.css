@@ -65,12 +65,13 @@ window#waybar {
 #idle_inhibitor,
 #cpu,
 #custom-cpu_pkg,
-#temperature,
+#custom-system_draw,
+#custom-cpu_temp,
 #memory,
 #privacy,
 #pulseaudio,
 #backlight,
-#upower,
+#custom-battery,
 #clock,
 #custom-sep {
   padding: 0 8px;
@@ -85,18 +86,20 @@ window#waybar {
 #idle_inhibitor,
 #cpu,
 #custom-cpu_pkg,
-#temperature,
+#custom-system_draw,
+#custom-cpu_temp,
 #memory.ram,
 #custom-swap,
 #privacy { color: @muted; }
 
 /* alerts */
-#temperature.critical { color: @warn; font-weight: 600; }
+#custom-cpu_temp.warning,
+#custom-cpu_temp.critical { color: @warn; font-weight: 600; }
 #pulseaudio.muted { color: @muted; }
 
-/* upower */
-#upower.charging { color: @muted; }
-#upower.discharging { color: @accent; }
+/* battery */
+#custom-battery.charging { color: @muted; }
+#custom-battery.discharging { color: @accent; }
 
 /* health + privacy notifications */
 #systemd-failed-units { color: @warn; font-weight: 600; }

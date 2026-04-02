@@ -1,30 +1,40 @@
 #!/bin/sh
-R="/sys/class/powercap/intel-rapl:0/energy_uj"
-M="/sys/class/powercap/intel-rapl:0/max_energy_range_uj"
-S="/tmp/pkg.state"
 
-[ -r "$R" ] || { echo "..."; exit 0; }
+set -eu
 
-t=$(date +%s%N)
-e=$(cat "$R")
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+. "$SCRIPT_DIR/power_common.sh"
 
-if [ -r "$S" ]; then
-  read -r pt pe < "$S"
-  dt=$((t-pt))
-  de=$((e-pe))
+STATE_FILE="/tmp/waybar-cpu-pkg.state"
 
-  # handle wraparound if max range is available
-  if [ "$de" -lt 0 ] && [ -r "$M" ]; then
-    max=$(cat "$M")
-    de=$(( (max - pe) + e ))
+cpu_text=$(read_cpu_pkg_power "$STATE_FILE")
+tooltip="CPU package power: ${cpu_text}"
+
+if load_battery_info && [ -n "${BAT_POWER_NOW_UW:-}" ] && [ "${BAT_POWER_NOW_UW:-0}" -gt 0 ] 2>/dev/null; then
+  total_w=$(format_power_w "$BAT_POWER_NOW_UW")
+
+  case "$BAT_STATUS" in
+    Discharging)
+      tooltip="$tooltip
+System draw: ${total_w} W"
+      ;;
+    Charging)
+      tooltip="$tooltip
+Charge rate: ${total_w} W"
+      ;;
+  esac
+
+  if [ "$BAT_STATUS" = "Discharging" ] && [ "$cpu_text" != "..." ]; then
+    cpu_share=$(awk -v cpu="${cpu_text%W}" -v total="$total_w" 'BEGIN {
+      if (total <= 0) exit 1
+      printf "%.0f%%", (cpu / total) * 100
+    }' 2>/dev/null || printf '')
+    if [ -n "$cpu_share" ]; then
+      tooltip="$tooltip
+CPU share of system draw: ${cpu_share}"
+    fi
   fi
-
-  awk -v de="$de" -v dt="$dt" 'BEGIN{
-    if (dt <= 0) { printf "..."; exit }
-    printf "%.1fW", (de*1000)/dt
-  }'
-else
-  echo "..."
 fi
 
-printf "%s %s\n" "$t" "$e" > "$S"
+tooltip_escaped=$(json_escape "$tooltip")
+printf '{"text":"%s","tooltip":"%s"}\n' "$cpu_text" "$tooltip_escaped"

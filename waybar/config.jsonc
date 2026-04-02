@@ -18,7 +18,8 @@
     "custom/sep",
     "cpu",
     "custom/cpu_pkg",
-    "temperature",
+    "custom/system_draw",
+    "custom/cpu_temp",
     "memory#ram",
     "custom/swap",
 
@@ -28,7 +29,7 @@
 
     "custom/sep",
     "backlight",
-    "upower",
+    "custom/battery",
 
     "custom/sep",
     "clock"
@@ -67,24 +68,33 @@
   },
 
   "cpu": {
-    "interval": 6,
+    "interval": 10,
     "format": " {usage}%   {avg_frequency}GHz",
     "states": { "warning": 80, "critical": 90 }
   },
 
   "custom/cpu_pkg": {
-    "interval": 6,
-    "format": " {}",
+    "interval": 10,
+    "format": " {text}",
     "exec": "/home/hamzah/.dotfiles/waybar/scripts/cpu_pkg_power.sh",
-    "tooltip": false
+    "return-type": "json",
+    "tooltip": true
   },
 
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp5_input",
-    "interval": 6,
-    "critical-threshold": 90,
-    "format": "{icon} {temperatureC}°",
-    "format-icons": ["", "", "", "", ""]
+  "custom/system_draw": {
+    "interval": 10,
+    "format": "{text}",
+    "exec": "/home/hamzah/.dotfiles/waybar/scripts/system_draw.sh",
+    "return-type": "json",
+    "tooltip": true
+  },
+
+  "custom/cpu_temp": {
+    "interval": 10,
+    "format": "{text}",
+    "exec": "/home/hamzah/.dotfiles/waybar/scripts/cpu_temp.sh",
+    "return-type": "json",
+    "tooltip": true
   },
 
   "memory#ram": { "interval": 8, "format": " {used}GiB" },
@@ -125,10 +135,11 @@
     "format-icons": ["󱩎", "󱩑", "󱩓", "󱩕", "󰛨"]
   },
 
-  "upower": {
-    "icon-size": 15,
-    "tooltip": false,
-    "format": "{percentage}"
+  "custom/battery": {
+    "interval": 15,
+    "exec": "/home/hamzah/.dotfiles/waybar/scripts/battery_status.sh",
+    "return-type": "json",
+    "tooltip": true
   },
 
   "clock": { "format": "{:%a, %m-%d %I:%M %p}", "interval": 60 }
