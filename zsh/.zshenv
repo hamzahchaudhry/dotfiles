@@ -22,7 +22,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 # editor / pager
 # ==========================================
 
-export EDITOR="nvim"
+export EDITOR="vim"
 export BAT_THEME="Monokai Extended Light"
 export MANPAGER="bat -plman"
 
