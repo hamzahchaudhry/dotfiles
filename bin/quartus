@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+
+REAL_HOME="/home/hamzah"
+
+REAL_XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$REAL_HOME/.config}"
+REAL_XDG_CACHE_HOME="${XDG_CACHE_HOME:-$REAL_HOME/.cache}"
+REAL_XDG_STATE_HOME="${XDG_STATE_HOME:-$REAL_HOME/.local/state}"
+
+QUARTUS_CONFIG="$REAL_XDG_CONFIG_HOME/quartus"
+QUARTUS_CACHE="$REAL_XDG_CACHE_HOME/quartus"
+QUARTUS_STATE="$REAL_XDG_STATE_HOME/quartus"
+FAKE_HOME="$QUARTUS_STATE/home"
+
+mkdir -p \
+  "$QUARTUS_CONFIG" \
+  "$QUARTUS_CACHE/tmp" \
+  "$QUARTUS_STATE" \
+  "$FAKE_HOME"
+
+# legacy dotdirs exist only inside fake HOME
+ln -sfn "$QUARTUS_CONFIG" "$FAKE_HOME/.quartus"
+ln -sfn "$QUARTUS_STATE" "$FAKE_HOME/.altera"
+
+export HOME="$FAKE_HOME"
+export XDG_CONFIG_HOME="$QUARTUS_CONFIG"
+export XDG_CACHE_HOME="$QUARTUS_CACHE"
+export XDG_STATE_HOME="$QUARTUS_STATE"
+export TMPDIR="$QUARTUS_CACHE/tmp"
+
+exec /opt/intelFPGA/25.1/quartus/bin/quartus "$@"

@@ -1,0 +1,31 @@
+#!/bin/sh
+set -eu
+
+REAL_HOME="/home/hamzah"
+
+REAL_XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$REAL_HOME/.config}"
+REAL_XDG_CACHE_HOME="${XDG_CACHE_HOME:-$REAL_HOME/.cache}"
+REAL_XDG_STATE_HOME="${XDG_STATE_HOME:-$REAL_HOME/.local/state}"
+
+MSIM_CONFIG="$REAL_XDG_CONFIG_HOME/modelsim"
+MSIM_CACHE="$REAL_XDG_CACHE_HOME/modelsim"
+MSIM_STATE="$REAL_XDG_STATE_HOME/modelsim"
+FAKE_HOME="$MSIM_STATE/home"
+
+mkdir -p \
+  "$MSIM_CONFIG" \
+  "$MSIM_CACHE/tmp" \
+  "$MSIM_STATE" \
+  "$FAKE_HOME"
+
+export HOME="$FAKE_HOME"
+export XDG_CONFIG_HOME="$MSIM_CONFIG"
+export XDG_CACHE_HOME="$MSIM_CACHE"
+export XDG_STATE_HOME="$MSIM_STATE"
+export TMPDIR="$MSIM_CACHE/tmp"
+
+# optional legacy dirs inside fake HOME only
+ln -sfn "$MSIM_CONFIG" "$FAKE_HOME/.modelsim"
+ln -sfn "$MSIM_STATE"  "$FAKE_HOME/.altera"
+
+exec /opt/intelFPGA/20.1/modelsim_ase/bin/vsim "$@"

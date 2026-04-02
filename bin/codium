@@ -1,0 +1,33 @@
+#!/bin/sh
+set -eu
+
+REAL_HOME="/home/hamzah"
+
+REAL_XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$REAL_HOME/.config}"
+REAL_XDG_CACHE_HOME="${XDG_CACHE_HOME:-$REAL_HOME/.cache}"
+REAL_XDG_DATA_HOME="${XDG_DATA_HOME:-$REAL_HOME/.local/share}"
+REAL_XDG_STATE_HOME="${XDG_STATE_HOME:-$REAL_HOME/.local/state}"
+
+CODIUM_CONFIG="$REAL_XDG_CONFIG_HOME/codium"
+CODIUM_CACHE="$REAL_XDG_CACHE_HOME/codium"
+CODIUM_DATA="$REAL_XDG_DATA_HOME/codium"
+CODIUM_STATE="$REAL_XDG_STATE_HOME/codium"
+FAKE_HOME="$CODIUM_STATE/home"
+
+mkdir -p \
+  "$CODIUM_CONFIG/user-data" \
+  "$CODIUM_CACHE/tmp" \
+  "$CODIUM_DATA/extensions" \
+  "$FAKE_HOME"
+
+export HOME="$FAKE_HOME"
+export XDG_CONFIG_HOME="$CODIUM_CONFIG"
+export XDG_CACHE_HOME="$CODIUM_CACHE"
+export XDG_DATA_HOME="$CODIUM_DATA"
+export XDG_STATE_HOME="$CODIUM_STATE"
+export TMPDIR="$CODIUM_CACHE/tmp"
+
+exec /usr/bin/codium \
+  --user-data-dir "$CODIUM_CONFIG/user-data" \
+  --extensions-dir "$CODIUM_DATA/extensions" \
+  "$@"
