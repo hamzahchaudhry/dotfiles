@@ -38,7 +38,7 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias c='clear'
 alias cdot='codium .'
-alias s='speedtest'
+alias s='speedtest-go'
 alias p='paru'
 
 
