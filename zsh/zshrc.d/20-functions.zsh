@@ -61,3 +61,9 @@ remove() {
 
   sudo pacman -Rnsc "${orphans[@]}"
 }
+
+function s() {
+  trap 'tput cnorm; stty sane' EXIT INT
+  speedtest-go
+}
+
