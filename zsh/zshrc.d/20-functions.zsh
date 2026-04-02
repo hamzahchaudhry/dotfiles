@@ -3,7 +3,7 @@
 # ================================
 
 zshrecompile() {
-  local zsh_dir="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+local zsh_dir="$ZDOTDIR"
   local f
 
   for f in "$zsh_dir"/.zshrc "$zsh_dir"/.p10k.zsh "$zsh_dir"/zshrc.d/*.zsh(N); do

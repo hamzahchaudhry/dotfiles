@@ -5,5 +5,5 @@
 # $HOME/.config/zsh instead of $HOME.
 # applies to all zsh invocations.
 
-export ZDOTDIR="$HOME/.config/zsh"
+export ZDOTDIR="${ZDOTDIR:-/home/hamzah/.config/zsh}"
 

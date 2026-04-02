@@ -11,7 +11,7 @@ alias ll='eza -lab --smart-group --time-style=relative --color-scale=size,age --
 alias lt="eza -aTL2 --git-ignore --group-directories-first -I \"$EZA_IGNORE\""
 alias ltt="eza -aTL3 --git-ignore --group-directories-first -I \"$EZA_IGNORE\""
 alias lttt="eza -aTL4 --git-ignore --group-directories-first -I \"$EZA_IGNORE\""
-alias tree="eza -aT --git-ignore -I \"$EZA_IGNORE\""
+alias tree="eza -aT"
 alias lsize='eza -labr --sort=size --color-scale=size --group-directories-first --total-size'
 
 
@@ -40,8 +40,6 @@ alias c='clear'
 alias cdot='codium .'
 alias s='speedtest'
 alias p='paru'
-alias usb='pio device monitor'
-alias upload='pio run -t upload'
 
 
 # ================================
@@ -55,9 +53,7 @@ alias t391='task add proj:"CPEN391 🤖"'
 alias t340='task add proj:"CPSC340 🧠"'
 alias t320='task add proj:"CPSC320 🧮"'
 alias t320p='task add proj:"CPEN320 🌐"'
-alias tl='task add proj:"life 🏠"'
+alias tl='task add proj:"life 🏡"'
+alias tr='task add proj:"riipen 💼"'
 
 
-# ================================
-# pacman
-# ================================

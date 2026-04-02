@@ -25,7 +25,7 @@ fi
 # loads all .zsh files in zshrc.d/ in sorted order.
 # file names control load order (00-, 10-, 20-, etc).
 
-zshrcd="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/zshrc.d"
+zshrcd="$ZDOTDIR/zshrc.d"
 
 if [[ -d "$zshrcd" ]]; then
   for f in "$zshrcd"/*.zsh(N); do
