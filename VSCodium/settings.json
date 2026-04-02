@@ -31,10 +31,9 @@
   "clangd.arguments": [
     "--compile-commands-dir=build/Debug"
   ],
+
   "python.autoComplete.extraPaths": [
     "/home/hamzah/.local/share/distrobox/cpen391-home/.local/lib/python3.8/site-packages"
   ],
-  "workbench.layoutControl.enabled": false,
-  "window.customTitleBarVisibility": "never",
-  "workbench.panel.showLabels": false
+  "workbench.panel.showLabels": false,
 }
