@@ -16,6 +16,7 @@
   "window.titleBarStyle": "native",
   "window.commandCenter": false,
   "window.density.editorTabHeight": "compact",
+  "window.customTitleBarVisibility": "never",
 
   /* editor */
   "editor.fontFamily": "'JetBrainsMono NF', 'monospace', monospace",
