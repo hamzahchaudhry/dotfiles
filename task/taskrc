@@ -1,14 +1,15 @@
 # [Created by task 3.4.2 1/7/2026 18:09:11]
 news.version=3.4.2
 
-data.location=~/.local/share/task
-hooks.location=~/.config/task/hooks
+data.location=/home/hamzah/.local/share/task
+hooks.location=/home/hamzah/.config/task/hooks
 
 color.project.CPEN391=magenta
 color.project.CPSC340=yellow
 color.project.CPSC320=red
 color.project.CPEN320=cyan
 color.project.life=green
+color.project.riipen=rgb510
 
 color.due.today=underline bold
 color.overdue=underline bold on white
