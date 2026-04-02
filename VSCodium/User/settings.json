@@ -9,7 +9,7 @@
   "workbench.activityBar.location": "top",
   "workbench.statusBar.visible": false,
 
-  // /* window */
+  /* window */
   "window.menuBarVisibility": "toggle",
   "window.menuStyle": "custom",
   "window.controlsStyle": "hidden",
@@ -25,7 +25,16 @@
   /* telemetry */
   "telemetry.feedback.enabled": false,
   "gitlens.telemetry.enabled": false,
-  "window.customTitleBarVisibility": "never",
   "explorer.confirmDelete": false,
   "diffEditor.ignoreTrimWhitespace": false,
+
+  "clangd.arguments": [
+    "--compile-commands-dir=build/Debug"
+  ],
+  "python.autoComplete.extraPaths": [
+    "/home/hamzah/.local/share/distrobox/cpen391-home/.local/lib/python3.8/site-packages"
+  ],
+  "workbench.layoutControl.enabled": false,
+  "window.customTitleBarVisibility": "never",
+  "workbench.panel.showLabels": false
 }
