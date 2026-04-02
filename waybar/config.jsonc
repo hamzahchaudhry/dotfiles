@@ -101,7 +101,7 @@
 
   "custom/swap": {
     "interval": 30,
-    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u<=0) exit; printf \"󰾵 %.2fGiB\\n\", u/1024/1024}' /proc/meminfo",
+    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u<10486) exit; printf \"󰾵 %.2fGiB\\n\", u/1024/1024}' /proc/meminfo",
     "return-type": "text",
     "tooltip": false
   },
