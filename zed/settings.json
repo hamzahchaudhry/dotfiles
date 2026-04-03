@@ -7,6 +7,109 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "inlay_hints": {
+    "show_background": false,
+    "enabled": true
+  },
+  "indent_guides": {
+    "background_coloring": "disabled",
+    "enabled": true
+  },
+  "git": {
+    "inline_blame": {
+      "show_commit_summary": true
+    }
+  },
+  "completions": {
+    
+  },
+  "window_decorations": "client",
+  "use_system_window_tabs": false,
+  "tabs": {
+    "show_diagnostics": "all",
+    "file_icons": true,
+    "git_status": true
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false,
+    "show": true
+  },
+  "title_bar": {
+    "button_layout": "platform_default",
+    "show_user_picture": false,
+    "show_user_menu": false,
+    "show_sign_in": false,
+    "show_onboarding_banner": false,
+    "show_project_items": true,
+    "show_branch_name": true,
+    "show_branch_icon": true
+  },
+  "debugger": {
+    "button": false
+  },
+  "search": {
+    "button": false
+  },
+  "diagnostics": {
+    "button": true
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_encoding_button": "disabled",
+    "active_language_button": true
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "agent": {
+    "button": false,
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "button": false,
+    "show_count_badge": false,
+    "sort_by_path": false
+  },
+  "outline_panel": {
+    "git_status": true,
+    "folder_icons": true,
+    "file_icons": true,
+    "indent_guides": {
+      "show": "never"
+    }
+  },
+  "terminal": {
+    "button": false,
+    "show_count_badge": true
+  },
+  "project_panel": {
+    "button": true,
+    "hide_root": false,
+    "indent_guides": {
+      "show": "never"
+    },
+    "diagnostic_badges": true,
+    "git_status_indicator": true,
+    "bold_folder_labels": false,
+    "indent_size": 12.0,
+    "folder_icons": true,
+    "file_icons": true,
+    "entry_spacing": "standard"
+  },
+  "disable_ai": true,
+  "rounded_selection": true,
+  "hide_mouse": "never",
+  "ui_font_weight": 400.0,
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "buffer_line_height": "standard",
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "auto_update": false,
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -14,16 +117,8 @@
   "session": {
     "trust_all_worktrees": true
   },
-  "icon_theme": {
-    "mode": "system",
-    "light": "Zed (Default)",
-    "dark": "Material Icon Theme"
-  },
-  "ui_font_size": 16,
-  "buffer_font_size": 15,
-  "theme": {
-    "mode": "system",
-    "light": "Ayu Light",
-    "dark": "macOS Classic Dark",
-  },
+  "icon_theme": "Material Icon Theme",
+  "ui_font_size": 14.0,
+  "buffer_font_size": 12.0,
+  "theme": "Zedokai Darker",
 }
