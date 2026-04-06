@@ -37,7 +37,7 @@ alias sudo='sudo '
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias c='clear'
-alias cdot='codium .'
+alias z='zeditor .'
 alias p='paru'
 
 
