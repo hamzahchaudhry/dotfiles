@@ -1,26 +1,21 @@
 // -*- mode: jsonc -*-
 {
-  "layer": "top",
   "position": "bottom",
-  "spacing": 0,
-  "on-sigusr1": "toggle",
-  "reload_style_on_change": false,
 
   "modules-left": [
     "group/traym",
     "hyprland/workspaces"
   ],
-  "modules-center": [],
+
   "modules-right": [
     "systemd-failed-units",
     "idle_inhibitor",
 
     "custom/sep",
     "cpu",
-    "custom/cpu_pkg",
-    "custom/system_draw",
-    "custom/cpu_temp",
-    "memory#ram",
+    "custom/power",
+    "temperature",
+    "memory",
     "custom/swap",
 
     "custom/sep",
@@ -35,6 +30,7 @@
     "clock"
   ],
 
+  // left
   "group/traym": {
     "orientation": "horizontal",
     "drawer": {
@@ -42,78 +38,92 @@
       "transition-left-to-right": true,
       "children-class": "drawer-child"
     },
-    "modules": ["custom/trayicon", "tray"]
+    "modules": [
+      "custom/trayicon",
+      "tray"
+    ]
   },
 
-  "custom/trayicon": { "format": "󰣇", "tooltip": false },
-
-  "tray": { "icon-size": 16, "spacing": 8 },
-
-  "hyprland/workspaces": {
-    "all-outputs": true,
-    "disable-scroll": true,
-    "warp-on-scroll": false,
-    "format": "{name}"
+  "custom/trayicon": {
+    "format": "󰣇",
+    "tooltip": false
   },
 
-  "custom/sep": { "format": "│", "tooltip": false },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8
+  },
 
+  // shared
+  "custom/sep": {
+    "format": "│",
+    "tooltip": false
+  },
+
+  // right: system
   "systemd-failed-units": {
     "format": "✗ {nr_failed}"
   },
 
   "idle_inhibitor": {
     "format": "{icon}",
-    "format-icons": { "activated": " ", "deactivated": " " }
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
   },
 
   "cpu": {
-    "interval": 10,
     "format": " {usage}%   {avg_frequency}GHz",
-    "states": { "warning": 80, "critical": 90 }
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "on-click": "footclient sh -c 'btop'"
   },
 
-  "custom/cpu_pkg": {
+  "custom/power": {
     "interval": 10,
-    "format": " {text}",
-    "exec": "/home/hamzah/.dotfiles/waybar/scripts/cpu_pkg_power.sh",
+    "exec": "~/.config/waybar/scripts/power.sh",
     "return-type": "json",
-    "tooltip": true
+    "on-click": "footclient sh -c 'btop'"
   },
 
-  "custom/system_draw": {
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
+    "warning-threshold": 80,
+    "critical-threshold": 90,
+    "format": "{icon} {temperatureC}°",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "CPU package: {temperatureC}°C",
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  "memory": {
     "interval": 10,
-    "format": "{text}",
-    "exec": "/home/hamzah/.dotfiles/waybar/scripts/system_draw.sh",
-    "return-type": "json",
-    "tooltip": true
+    "format": " {used}GiB",
+    "tooltip": false,
+    "on-click": "footclient sh -c 'btop'"
   },
-
-  "custom/cpu_temp": {
-    "interval": 10,
-    "format": "{text}",
-    "exec": "/home/hamzah/.dotfiles/waybar/scripts/cpu_temp.sh",
-    "return-type": "json",
-    "tooltip": true
-  },
-
-  "memory#ram": { "interval": 8, "format": " {used}GiB" },
 
   "custom/swap": {
     "interval": 30,
-    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u<10486) exit; printf \"󰾵 %.2fGiB\\n\", u/1024/1024}' /proc/meminfo",
+    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u < 1024) exit; printf \"󰾵 %.1fGiB\\n\", u / 1024 / 1024}' /proc/meminfo",
     "return-type": "text",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "footclient sh -c 'btop'"
   },
 
+  // right: media and controls
   "privacy": {
-    "icon-spacing": 6,
-    "icon-size": 16,
-    "ignore-monitor": true,
-    "modules": [
-      { "type": "screenshare", "tooltip": true, "tooltip-icon-size": 24 },
-      { "type": "audio-in", "tooltip": true, "tooltip-icon-size": 24 }
-    ]
+    "icon-size": 14
   },
 
   "pulseaudio": {
@@ -124,23 +134,44 @@
     "format-source-muted": " ",
     "format-icons": {
       "headphone": " ",
-      "default": [" ", " ", " "]
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
     },
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "on-click-right": "pavucontrol"
+    "on-click": "~/.config/waybar/scripts/toggle-easyeffects.sh",
+    "on-click-right": "pavucontrol",
+    "tooltip": false,
+    "max-volume": 150
   },
 
   "backlight": {
+    "interval": 300,
     "format": "{icon} {percent}%",
-    "format-icons": ["󱩎", "󱩑", "󱩓", "󱩕", "󰛨"]
+    "format-icons": [
+      "󱩎",
+      "󱩑",
+      "󱩓",
+      "󱩕",
+      "󰛨"
+    ]
   },
 
   "custom/battery": {
     "interval": 15,
-    "exec": "/home/hamzah/.dotfiles/waybar/scripts/battery_status.sh",
-    "return-type": "json",
-    "tooltip": true
+    "exec": "~/.config/waybar/scripts/battery.sh",
+    "return-type": "json"
   },
 
-  "clock": { "format": "{:%a, %m-%d %I:%M %p}", "interval": 60 }
+  "clock": {
+    "format": "{:%a, %m-%d %I:%M %p}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "format": {
+        "months": "<b>{}</b>",
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+      }
+    }
+  }
 }

@@ -23,19 +23,39 @@ window#waybar {
 }
 
 /* left */
-#group-traym, #workspaces { background: transparent; }
-#group-traym, #group-traym .drawer-child { padding: 0; }
+#group-traym,
+#workspaces {
+  background: transparent;
+}
 
-#custom-trayicon, #tray { padding: 0 6px; }
+#group-traym,
+#group-traym .drawer-child {
+  padding: 0;
+}
+
+#custom-trayicon,
+#tray {
+  padding: 0 6px;
+}
+
 #custom-trayicon {
   color: @muted;
   font-size: 18px;
   padding: 0 4px;
 }
-#custom-trayicon:hover { color: @accent; }
-#tray > .passive { opacity: 0.65; }
 
-#workspaces { padding: 0 6px; }
+#custom-trayicon:hover {
+  color: @accent;
+}
+
+#tray > .passive {
+  opacity: 0.65;
+}
+
+#workspaces {
+  padding: 0 6px;
+}
+
 #workspaces button {
   color: @muted;
   background: transparent;
@@ -44,12 +64,16 @@ window#waybar {
   margin: 0 2px;
   padding: 2px 8px;
 }
+
 #workspaces button.active {
   color: @text;
   border-color: @sep;
   background: rgba(32, 32, 48, 0.25);
 }
-#workspaces button:hover { color: @accent; }
+
+#workspaces button:hover {
+  color: @accent;
+}
 
 /* right capsule */
 .modules-right {
@@ -60,14 +84,14 @@ window#waybar {
   margin: 2px 0;
 }
 
-/* capsule children */
+/* right modules */
 #systemd-failed-units,
 #idle_inhibitor,
 #cpu,
-#custom-cpu_pkg,
-#custom-system_draw,
-#custom-cpu_temp,
+#custom-power,
+#temperature,
 #memory,
+#custom-swap,
 #privacy,
 #pulseaudio,
 #backlight,
@@ -79,35 +103,40 @@ window#waybar {
   color: @text;
 }
 
-/* separators */
-#custom-sep { padding: 0 4px; color: @sep; }
+#custom-sep {
+  padding: 0 4px;
+  color: @sep;
+}
 
-/* “quiet” modules */
+/* quiet modules */
 #idle_inhibitor,
 #cpu,
-#custom-cpu_pkg,
-#custom-system_draw,
-#custom-cpu_temp,
-#memory.ram,
+#custom-power,
+#temperature,
+#memory,
 #custom-swap,
-#privacy { color: @muted; }
+#privacy {
+  color: @muted;
+}
 
-/* alerts */
-#custom-cpu_temp.warning,
-#custom-cpu_temp.critical { color: @warn; font-weight: 600; }
-#pulseaudio.muted { color: @muted; }
-
-/* battery */
-#custom-battery.charging { color: @muted; }
-#custom-battery.discharging { color: @accent; }
-
-/* health + privacy notifications */
-#systemd-failed-units { color: @warn; font-weight: 600; }
-
-/* active inhibitor as accent */
-#idle_inhibitor.activated { color: @accent; font-weight: 600; }
-
-/* mic/screen share = red */
+/* state styling */
+#temperature.warning,
+#temperature.critical,
+#custom-battery.low,
+#systemd-failed-units,
 #privacy-item.audio-in,
-#privacy-item.screenshare { color: @warn; font-weight: 700; }
-#privacy-item.audio-out { color: @accent; }
+#privacy-item.screenshare {
+  color: @warn;
+  font-weight: 600;
+}
+
+#pulseaudio.muted,
+#custom-battery.plugged {
+  color: @muted;
+}
+
+#idle_inhibitor.activated,
+#privacy-item.audio-out {
+  color: @accent;
+  font-weight: 600;
+}
