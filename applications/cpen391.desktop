@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=Cpen391
+GenericName=Terminal entering Cpen391
+Comment=Terminal entering Cpen391
+Categories=Distrobox;System;Utility
+Exec=/usr/bin/distrobox enter  cpen391
+Icon=/home/hamzah/.local/share/icons/distrobox/ubuntu.png
+Keywords=distrobox;
+NoDisplay=false
+Terminal=true
+TryExec=/usr/bin/distrobox
+Type=Application
+Actions=Remove;
+
+[Desktop Action Remove]
+Name=Remove Cpen391 from system
+Exec=/usr/bin/distrobox rm  cpen391

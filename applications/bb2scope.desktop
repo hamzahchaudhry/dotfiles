@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=BB2Scope
+Comment=BB2Scope oscilloscope
+Exec=python /home/hamzah/.local/opt/bb2scope/BB2Scope.pyw
+Icon=/home/hamzah/.local/share/icons/bb2scope.png
+Terminal=false
+Categories=Utility;Electronics;
+StartupNotify=true

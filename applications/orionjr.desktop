@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Orion Jr 2 Utility
+Comment=Orion Jr BMS configuration utility
+Exec=/home/hamzah/.local/bin/orionjr
+Icon=/home/hamzah/.local/share/icons/orionjr.jpg
+Terminal=false
+Categories=Utility;Electronics;
+StartupNotify=true
