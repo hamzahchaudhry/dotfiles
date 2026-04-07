@@ -10,7 +10,6 @@ icon-path=/usr/share/icons/Papirus-Dark:/usr/share/icons/Papirus:/usr/share/pixm
 
 history=1
 default-timeout=5000
-ignore-timeout=1
 
 [grouped]
 format=<span size="large"><b>%s</b></span> <span foreground="#9399b2">(%g)</span>\n<span foreground="#bac2de">%b</span>

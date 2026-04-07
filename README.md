@@ -133,3 +133,20 @@ systemctl --user enable --now battery-threshold.timer
 systemctl --user enable --now syncthing.timer
 systemctl --user enable --now task-notify-due.timer
 ```
+
+## networkmanager dispatcher
+
+`wireguard-toggle.sh` is a NetworkManager dispatcher script that toggles the `wg0` connection based on the active wifi ssid.
+
+it expects:
+
+- home ssid set in the script
+- a WireGuard logo at `~/.local/share/icons/wireguard.png`
+- mako categories `on` and `off` for notification styling
+
+install it as a root-owned dispatcher script:
+
+```sh
+sudo install -m 755 -o root -g root ~/.dotfiles/wireguard-toggle.sh /etc/NetworkManager/dispatcher.d/wireguard-toggle.sh
+```
+
