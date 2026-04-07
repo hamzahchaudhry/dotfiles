@@ -1,129 +1,135 @@
 # dotfiles
 
-Personal configuration for my Linux setup.
+my dotfiles for my arch linux + hyprland setup.
 
-## Structure
+## layout
 
 ```text
 .
-├── alacritty/        # alacritty config
-├── firefox/          # firefox user.js
-├── git/              # git config
-├── hypr/             # hyprland ecosystem configs
-├── systemd/          # user-level systemd units
-├── tmux/             # tmux config
-├── vim/              # vim config
-├── VSCodium/         # VSCodium user settings
-├── waybar/           # waybar config
-├── zsh/              # zsh config
-└── xdg.sh            # global XDG environment bootstrap
+├── applications/   # desktop entries
+├── bin/
+│   ├── launch/     # app launch wrappers
+│   └── systemd/    # scripts used by user services/timers
+├── firefox/        # firefox user.js and chrome tweaks
+├── foot/           # foot config
+├── fuzzel/         # fuzzel config
+├── git/            # git config
+├── hypr/           # hyprland, hyprlock, hypridle
+├── mako/           # notification daemon config
+├── npm/            # npm config
+├── systemd/        # user units/timers
+├── task/           # taskwarrior config
+├── vim/            # vim config
+├── waybar/         # waybar config + scripts
+├── zed/            # zed settings/themes
+├── zsh/            # zsh config
+└── xdg.sh          # global xdg bootstrap
 ```
 
----
+## assumptions
 
-## Installation
+- the repo lives at `~/.dotfiles`
+- `~/.local/bin` symlinks to `~/.dotfiles/bin`
+- zsh loads from `~/.config/zsh`
+- xdg base dirs are set globally through `xdg.sh`
 
-Clone into `~/.dotfiles`:
+## install
+
+clone it:
 
 ```sh
 git clone git@github.com:hamzahchaudhry/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
----
+## symlinks
 
-## XDG Environment Setup
+config dirs:
 
-XDG base directories are defined globally via `xdg.sh`.
+```sh
+ln -s ~/.dotfiles/foot ~/.config/foot
+ln -s ~/.dotfiles/fuzzel ~/.config/fuzzel
+ln -s ~/.dotfiles/git ~/.config/git
+ln -s ~/.dotfiles/hypr ~/.config/hypr
+ln -s ~/.dotfiles/mako ~/.config/mako
+ln -s ~/.dotfiles/npm ~/.config/npm
+ln -s ~/.dotfiles/task ~/.config/task
+ln -s ~/.dotfiles/waybar ~/.config/waybar
+ln -s ~/.dotfiles/zed ~/.config/zed
+ln -s ~/.dotfiles/systemd/user ~/.config/systemd/user
+```
 
-Symlink into `/etc/profile.d`:
+user bin:
+
+```sh
+ln -s ~/.dotfiles/bin ~/.local/bin
+```
+
+zsh:
+
+```sh
+ln -s ~/.dotfiles/zsh ~/.config/zsh
+ln -s ~/.dotfiles/zsh/zshenv ~/.zshenv
+```
+
+reload user units after linking:
+
+```sh
+systemctl --user daemon-reload
+```
+
+## xdg
+
+`xdg.sh` is meant to be sourced globally so gui apps, shells, and user services all agree on the same xdg paths.
+
+example:
 
 ```sh
 sudo ln -s ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
 ```
 
-This ensures:
+## firefox
 
-* GUI apps
-* Hyprland
-* systemd user services
-* shells
+firefox still needs manual profile wiring.
 
-all share the same XDG directory layout.
-
----
-
-## Zsh Setup (XDG-based)
-
-Zsh is configured to load from:
-
-```
-$XDG_CONFIG_HOME/zsh
-```
-
-### 1. Symlink zsh config
+copy `user.js` into the active profile:
 
 ```sh
-ln -s ~/.dotfiles/zsh ~/.config/zsh
+cp ~/.dotfiles/firefox/user.js ~/.config/mozilla/firefox/<profile>/user.js
 ```
 
-### 2. Bootstrap ZDOTDIR
+## desktop entries
 
-Symlink the bootstrap file:
+desktop entries live in `applications/`.
+
+the app launchers use wrappers from:
+
+```text
+~/.local/bin/launch
+```
+
+that path is added in `zsh/.zshenv`.
+
+## systemd jobs
+
+user units live in `systemd/user/`.
+
+their scripts live in:
+
+```text
+~/.local/bin/systemd
+```
+
+current jobs:
+
+- battery threshold actions
+- syncthing on-demand
+- task due notifications
+
+enable timers/services as needed:
 
 ```sh
-ln -s ~/.dotfiles/zsh/zshenv ~/.zshenv
-```
-
-This ensures zsh loads config from `~/.config/zsh`.
-
----
-
-## Symlink Configs into `~/.config`
-
-```sh
-ln -s ~/.dotfiles/alacritty ~/.config/alacritty
-ln -s ~/.dotfiles/git ~/.config/git
-ln -s ~/.dotfiles/hypr ~/.config/hypr
-ln -s ~/.dotfiles/tmux ~/.config/tmux
-ln -s ~/.dotfiles/vim ~/.config/vim
-ln -s ~/.dotfiles/waybar ~/.config/waybar
-```
-
----
-
-## Exceptions
-
-### Firefox
-
-`user.js` must be copied into your Firefox profile:
-
-```sh
-ls ~/.mozilla/firefox
-cp ~/.dotfiles/firefox/user.js ~/.mozilla/firefox/<profile>/user.js
-```
-
----
-
-### VSCodium
-
-VSCodium expects settings in:
-
-```
-~/.config/VSCodium/User/
-```
-
-```sh
-mkdir -p ~/.config/VSCodium
-ln -s ~/.dotfiles/VSCodium/User ~/.config/VSCodium/User
-```
-
----
-
-### systemd (user)
-
-```sh
-mkdir -p ~/.config/systemd
-ln -s ~/.dotfiles/systemd/user ~/.config/systemd/user
-systemctl --user daemon-reload
+systemctl --user enable --now battery-threshold.timer
+systemctl --user enable --now syncthing.timer
+systemctl --user enable --now task-notify-due.timer
 ```
