@@ -10,7 +10,7 @@
 /****************************************************************************
  * Betterfox                                                                *
  * "Ad meliora"                                                             *
- * version: 148                                                             *
+ * version: 149                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
 ****************************************************************************/
 
@@ -18,7 +18,6 @@
  * SECTION: FASTFOX                                                         *
 ****************************************************************************/
 user_pref("gfx.canvas.accelerated.cache-size", 256); // reset pref
-user_pref("gfx.webrender.layer-compositor", true);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
@@ -198,6 +197,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
 
+
 // PREF: disable unified search button
 user_pref("browser.urlbar.scotchBonnet.enableOverride", false);
 
@@ -210,12 +210,6 @@ user_pref("extensions.formautofill.creditCards.enabled", false);
 
 // PREF: ask where to save every file
 user_pref("browser.download.useDownloadDir", false);
-
-// PREF: enforce certificate pinning
-// [ERROR] MOZILLA_PKIX_ERROR_KEY_PINNING_FAILURE
-// 1 = allow user MiTM (such as your antivirus) (default)
-// 2 = strict
-user_pref("security.cert_pinning.enforcement_level", 2);
 
 // PREF: delete cookies, cache, and site data on shutdown
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
@@ -244,4 +238,6 @@ user_pref("browser.tabs.min_inactive_duration_before_unload", 1200000);
 /****************************************************************************
  * END: BETTERFOX                                                           *
 ****************************************************************************/
+
+
 

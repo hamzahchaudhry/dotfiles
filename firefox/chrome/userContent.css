@@ -1,6 +1,5 @@
 @-moz-document domain("chatgpt.com") {
 
-  /* 1) Kill the "container" / max-width constraints anywhere */
   :is(main, section, article, div, nav)[class*="max-w"],
   :is(main, section, article, div, nav)[class~="container"],
   :is(main, section, article, div, nav)[class*="container"],
@@ -8,26 +7,20 @@
     max-width: none !important;
   }
 
-  /* 2) Force the central column wrappers to actually expand */
-  /* ChatGPT often uses "mx-auto" + "w-full" + max-w-* wrappers */
   :is(main, section, article, div)[class*="mx-auto"] {
     margin-left: 0 !important;
     margin-right: 0 !important;
     width: 100% !important;
   }
 
-  /* 3) Make the primary app shell fill the viewport width */
   body, #__next, main {
     width: 100% !important;
     max-width: none !important;
   }
 
-  /* 4) Conversation/message area: allow long lines to actually use width */
-  /* This hits the typical message text container classes */
   :is(div, article, section)[class*="prose"],
   :is(div, article, section)[class*="markdown"],
   :is(div, article, section)[class*="text-base"] {
     max-width: none !important;
   }
 }
-

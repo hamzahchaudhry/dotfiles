@@ -1,0 +1,4 @@
+/* remove x at top right corner */
+.titlebar-buttonbox-container {
+    display: none;
+}
