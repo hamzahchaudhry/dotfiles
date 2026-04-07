@@ -5,7 +5,7 @@
 # runs for all zsh invocations.
 # XDG base dirs are defined globally via xdg.sh.
 
-export PATH="$HOME/.local/bin:$PATH:/opt/intelFPGA/20.1/modelsim_ase/bin"
+export PATH="$HOME/.local/bin:$HOME/.local/bin/launch:$PATH:/opt/intelFPGA/20.1/modelsim_ase/bin"
 
 
 # ==========================================
@@ -29,4 +29,3 @@ export MANPAGER="bat -plman"
 export EZA_ICONS_AUTO=1
 
 export QSYS_ROOTDIR="/home/hamzah/.cache/paru/clone/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/25.1/quartus/sopc_builder/bin"
-

@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-REAL_HOME="/home/hamzah"
+REAL_HOME="${HOME}"
 
 REAL_XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$REAL_HOME/.config}"
 REAL_XDG_CACHE_HOME="${XDG_CACHE_HOME:-$REAL_HOME/.cache}"
@@ -18,7 +18,6 @@ mkdir -p \
   "$QUARTUS_STATE" \
   "$FAKE_HOME"
 
-# legacy dotdirs exist only inside fake HOME
 ln -sfn "$QUARTUS_CONFIG" "$FAKE_HOME/.quartus"
 ln -sfn "$QUARTUS_STATE" "$FAKE_HOME/.altera"
 

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec python "$HOME/.local/opt/bb2scope/BB2Scope.pyw" "$@"

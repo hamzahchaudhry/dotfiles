@@ -5,4 +5,4 @@ PartOf=graphical-session.target
 
 [Service]
 Type=oneshot
-ExecStart=%h/.local/bin/task-notify-due
+ExecStart=%h/.local/bin/systemd/task-notify-due.sh
