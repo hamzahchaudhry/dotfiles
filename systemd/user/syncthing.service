@@ -1,0 +1,7 @@
+[Unit]
+Description=Syncthing
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/env bash /home/hamzah/.local/bin/syncthing-on-demand.sh
+TimeoutStartSec=2h

@@ -1,0 +1,11 @@
+[Unit]
+Description=Check battery threshold periodically
+
+[Timer]
+OnBootSec=2m
+OnUnitActiveSec=1m
+AccuracySec=30s
+Unit=battery-threshold.service
+
+[Install]
+WantedBy=timers.target

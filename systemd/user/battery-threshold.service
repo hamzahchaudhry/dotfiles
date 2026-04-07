@@ -1,0 +1,6 @@
+[Unit]
+Description=Apply low-battery actions
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/battery-threshold.sh
