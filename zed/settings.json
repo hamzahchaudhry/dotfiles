@@ -7,34 +7,46 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ensure_final_newline_on_save": false,
+  "remove_trailing_whitespace_on_save": true,
+  "format_on_save": "off",
+  "languages": {
+    "Python": {
+      "language_servers": [
+        // Enable ty, disable basedpyright, and enable all
+        // other registered language servers (ruff, pylsp, pyright).
+        "ty",
+        "!basedpyright",
+        "...",
+      ],
+    },
+  },
   "inlay_hints": {
     "show_background": false,
-    "enabled": true
+    "enabled": true,
   },
   "indent_guides": {
     "background_coloring": "disabled",
-    "enabled": true
+    "enabled": true,
   },
   "git": {
     "inline_blame": {
-      "show_commit_summary": true
-    }
+      "show_commit_summary": true,
+    },
   },
-  "completions": {
-    
-  },
+  "completions": {},
   "window_decorations": "client",
   "use_system_window_tabs": false,
   "tabs": {
     "show_diagnostics": "all",
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
   },
   "tab_bar": {
     "show_pinned_tabs_in_separate_row": false,
     "show_tab_bar_buttons": false,
     "show_nav_history_buttons": false,
-    "show": true
+    "show": true,
   },
   "title_bar": {
     "button_layout": "platform_default",
@@ -44,55 +56,55 @@
     "show_onboarding_banner": false,
     "show_project_items": true,
     "show_branch_name": true,
-    "show_branch_icon": true
+    "show_branch_icon": true,
   },
   "debugger": {
-    "button": false
+    "button": false,
   },
   "search": {
-    "button": false
+    "button": false,
   },
   "diagnostics": {
-    "button": true
+    "button": true,
   },
   "status_bar": {
     "cursor_position_button": false,
     "active_encoding_button": "disabled",
-    "active_language_button": true
+    "active_language_button": true,
   },
   "notification_panel": {
-    "button": false
+    "button": false,
   },
   "collaboration_panel": {
-    "button": false
+    "button": false,
   },
   "agent": {
     "button": false,
     "favorite_models": [],
-    "model_parameters": []
+    "model_parameters": [],
   },
   "git_panel": {
     "button": false,
     "show_count_badge": false,
-    "sort_by_path": false
+    "sort_by_path": false,
   },
   "outline_panel": {
     "git_status": true,
     "folder_icons": true,
     "file_icons": true,
     "indent_guides": {
-      "show": "never"
-    }
+      "show": "never",
+    },
   },
   "terminal": {
     "button": false,
-    "show_count_badge": true
+    "show_count_badge": true,
   },
   "project_panel": {
     "button": true,
     "hide_root": false,
     "indent_guides": {
-      "show": "never"
+      "show": "never",
     },
     "diagnostic_badges": true,
     "git_status_indicator": true,
@@ -100,7 +112,7 @@
     "indent_size": 12.0,
     "folder_icons": true,
     "file_icons": true,
-    "entry_spacing": "standard"
+    "entry_spacing": "standard",
   },
   "disable_ai": true,
   "rounded_selection": true,
@@ -108,14 +120,14 @@
   "ui_font_weight": 400.0,
   "ui_font_family": "JetBrainsMono Nerd Font",
   "buffer_line_height": "standard",
-  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "buffer_font_family": ".ZedMono",
   "auto_update": false,
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "session": {
-    "trust_all_worktrees": true
+    "trust_all_worktrees": true,
   },
   "icon_theme": "Material Icon Theme",
   "ui_font_size": 14.0,

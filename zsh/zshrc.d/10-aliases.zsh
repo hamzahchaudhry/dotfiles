@@ -38,6 +38,7 @@ alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias c='clear'
 alias z='zeditor .'
+alias zdot='zeditor ~/.dotfiles && exit'
 alias p='paru'
 
 
