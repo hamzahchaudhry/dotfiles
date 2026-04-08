@@ -5,7 +5,7 @@
 # runs for all zsh invocations.
 # XDG base dirs are defined globally via xdg.sh.
 
-export PATH="$HOME/.local/bin:$HOME/.local/bin/launch:$PATH:/opt/intelFPGA/20.1/modelsim_ase/bin"
+export PATH="$HOME/.local/bin:$HOME/.local/bin/launch:$PATH"
 
 
 # ==========================================
