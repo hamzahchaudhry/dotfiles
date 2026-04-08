@@ -44,7 +44,7 @@
 
 [delta]
 	navigate = true
-	pager = less --mouse -R
+	pager = env LESSHISTFILE=- less --mouse -R
 	side-by-side = true
 
 [help]
