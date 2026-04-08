@@ -2,29 +2,30 @@
 set -eu
 
 REAL_HOME="${HOME}"
-
-REAL_XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$REAL_HOME/.config}"
-REAL_XDG_CACHE_HOME="${XDG_CACHE_HOME:-$REAL_HOME/.cache}"
 REAL_XDG_STATE_HOME="${XDG_STATE_HOME:-$REAL_HOME/.local/state}"
 
-QUARTUS_CONFIG="$REAL_XDG_CONFIG_HOME/quartus"
-QUARTUS_CACHE="$REAL_XDG_CACHE_HOME/quartus"
-QUARTUS_STATE="$REAL_XDG_STATE_HOME/quartus"
-FAKE_HOME="$QUARTUS_STATE/home"
+APP_ROOT="$REAL_XDG_STATE_HOME/quartus"
+FAKE_HOME="$APP_ROOT/home"
+APP_CACHE="$FAKE_HOME/.cache"
+APP_CONFIG="$FAKE_HOME/.config"
+APP_DATA="$FAKE_HOME/.local/share"
+APP_STATE="$FAKE_HOME/.local/state"
 
 mkdir -p \
-  "$QUARTUS_CONFIG" \
-  "$QUARTUS_CACHE/tmp" \
-  "$QUARTUS_STATE" \
-  "$FAKE_HOME"
+  "$APP_ROOT" \
+  "$APP_CACHE/tmp" \
+  "$APP_CONFIG" \
+  "$APP_DATA" \
+  "$APP_STATE"
 
-ln -sfn "$QUARTUS_CONFIG" "$FAKE_HOME/.quartus"
-ln -sfn "$QUARTUS_STATE" "$FAKE_HOME/.altera"
+ln -sfn "$APP_CONFIG" "$FAKE_HOME/.quartus"
+ln -sfn "$APP_STATE" "$FAKE_HOME/.altera"
 
 export HOME="$FAKE_HOME"
-export XDG_CONFIG_HOME="$QUARTUS_CONFIG"
-export XDG_CACHE_HOME="$QUARTUS_CACHE"
-export XDG_STATE_HOME="$QUARTUS_STATE"
-export TMPDIR="$QUARTUS_CACHE/tmp"
+export XDG_CONFIG_HOME="$APP_CONFIG"
+export XDG_CACHE_HOME="$APP_CACHE"
+export XDG_DATA_HOME="$APP_DATA"
+export XDG_STATE_HOME="$APP_STATE"
+export TMPDIR="$APP_CACHE/tmp"
 
 exec /opt/intelFPGA/25.1/quartus/bin/quartus "$@"
