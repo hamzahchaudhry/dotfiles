@@ -1,7 +1,7 @@
 [user]
 	email = hamzah.chaudhry@proton.me
 	name = hamzah
-	signingkey = ~/.ssh/id_ed25519.pub
+	signingkey = ~/.ssh/id_ed25519
 
 [core]
 	editor = nvim
@@ -44,6 +44,7 @@
 
 [delta]
 	navigate = true
+	pager = less --mouse -R
 	side-by-side = true
 
 [help]
