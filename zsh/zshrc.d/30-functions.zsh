@@ -3,11 +3,11 @@
 # ================================
 
 zshrecompile() {
-local zsh_dir="$ZDOTDIR"
+  local zsh_dir="$ZDOTDIR"
   local f
 
-  for f in "$zsh_dir"/.zshrc "$zsh_dir"/.p10k.zsh "$zsh_dir"/zshrc.d/*.zsh(N); do
-    zcompile "$f"
+  for f in "$zsh_dir"/.zshenv "$zsh_dir"/.zshrc "$zsh_dir"/.p10k.zsh "$zsh_dir"/zshrc.d/*.zsh(N); do
+    [[ -r "$f" ]] && zcompile -U "$f"
   done
 }
 
