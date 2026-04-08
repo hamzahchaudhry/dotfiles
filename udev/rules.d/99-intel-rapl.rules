@@ -1,0 +1,2 @@
+ACTION=="add|change", SUBSYSTEM=="powercap", ATTR{name}=="package-0", RUN+="/usr/bin/chmod a+r /sys%p/energy_uj /sys%p/max_energy_range_uj"
+ACTION=="add|change", SUBSYSTEM=="powercap", ATTR{name}=="psys", RUN+="/usr/bin/chmod a+r /sys%p/energy_uj /sys%p/max_energy_range_uj"

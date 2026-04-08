@@ -7,6 +7,7 @@ my dotfiles for my arch linux + hyprland setup.
 ```text
 .
 ├── applications/   # desktop entries
+├── bat/            # bat config
 ├── bin/
 │   ├── launch/     # app launch wrappers
 │   └── systemd/    # scripts used by user services/timers
@@ -19,6 +20,7 @@ my dotfiles for my arch linux + hyprland setup.
 ├── npm/            # npm config
 ├── systemd/        # user units/timers
 ├── task/           # taskwarrior config
+├── udev/           # udev rules
 ├── vim/            # vim config
 ├── waybar/         # waybar config + scripts
 ├── zed/            # zed settings/themes
@@ -47,6 +49,7 @@ cd ~/.dotfiles
 config dirs:
 
 ```sh
+ln -s ~/.dotfiles/bat ~/.config/bat
 ln -s ~/.dotfiles/foot ~/.config/foot
 ln -s ~/.dotfiles/fuzzel ~/.config/fuzzel
 ln -s ~/.dotfiles/git ~/.config/git
@@ -110,6 +113,8 @@ the app launchers use wrappers from:
 
 that path is added in `zsh/.zshenv`.
 
+some vendor apps are wrapped with a fake app-specific `HOME` so they stop spilling state across the real xdg dirs. that mostly applies to quartus, modelsim, stm32cubemx, and orion jr.
+
 ## systemd jobs
 
 user units live in `systemd/user/`.
@@ -134,6 +139,34 @@ systemctl --user enable --now syncthing.timer
 systemctl --user enable --now task-notify-due.timer
 ```
 
+## bat
+
+bat uses its own config in `bat/config`.
+
+man pages still use a custom `MANPAGER` from `zsh/zshrc.d/10-env.zsh`:
+
+- `sed` strips the weird manpage artifacts
+- `bat` handles rendering
+- `less -R -i --incsearch` gives paging and vim-like search
+
+## udev
+
+udev rules live in `udev/rules.d/` in the repo, but should be installed into `/etc/udev/rules.d` instead of symlinked from home.
+
+current rules:
+
+- `51-usbblaster.rules`
+- `99-intel-rapl.rules`
+
+install or update them with:
+
+```sh
+sudo install -Dm644 ~/.dotfiles/udev/rules.d/51-usbblaster.rules /etc/udev/rules.d/51-usbblaster.rules
+sudo install -Dm644 ~/.dotfiles/udev/rules.d/99-intel-rapl.rules /etc/udev/rules.d/99-intel-rapl.rules
+sudo udevadm control --reload
+sudo udevadm trigger
+```
+
 ## networkmanager dispatcher
 
 `wireguard-toggle.sh` is a NetworkManager dispatcher script that toggles the `wg0` connection based on the active wifi ssid.
@@ -149,4 +182,3 @@ install it as a root-owned dispatcher script:
 ```sh
 sudo install -m 755 -o root -g root ~/.dotfiles/wireguard-toggle.sh /etc/NetworkManager/dispatcher.d/wireguard-toggle.sh
 ```
-
