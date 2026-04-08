@@ -2,15 +2,37 @@
 
 set -eu
 
+sink='@DEFAULT_AUDIO_SINK@'
+
+volume_state() {
+  wpctl get-volume "$sink"
+}
+
+volume_percent() {
+  volume_state | awk '{printf "%d\n", $2 * 100}'
+}
+
+is_muted() {
+  volume_state | grep -q 'MUTED'
+}
+
 case "${1:-}" in
   up)
-    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+    if is_muted; then
+      wpctl set-mute "$sink" 0
+    fi
+
+    wpctl set-volume -l 1.5 "$sink" 5%+
     ;;
   down)
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    wpctl set-volume "$sink" 5%-
+
+    if [ "$(volume_percent)" -eq 0 ]; then
+      wpctl set-mute "$sink" 1
+    fi
     ;;
   mute)
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    wpctl set-mute "$sink" toggle
     ;;
   *)
     printf 'usage: %s {up|down|mute}\n' "$0" >&2
@@ -18,4 +40,8 @@ case "${1:-}" in
     ;;
 esac
 
-wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '/MUTED/{print 0; exit}{printf "%d\n",$2*100}' > /tmp/wobpipe
+if is_muted; then
+  printf '0 muted\n' > /tmp/wobpipe
+else
+  volume_percent > /tmp/wobpipe
+fi
