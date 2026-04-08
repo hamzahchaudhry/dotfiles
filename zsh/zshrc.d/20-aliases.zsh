@@ -56,4 +56,3 @@ alias t320p='task add proj:"CPEN320 🌐"'
 alias tl='task add proj:"life 🏡"'
 alias tr='task add proj:"riipen 💼"'
 
-

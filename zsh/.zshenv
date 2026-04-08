@@ -19,13 +19,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 
 # ==========================================
-# editor / pager
+# editor
 # ==========================================
 
 export EDITOR="vim"
-export BAT_THEME="Monokai Extended Light"
-export MANPAGER="bat -plman"
-
-export EZA_ICONS_AUTO=1
-
-export QSYS_ROOTDIR="/home/hamzah/.cache/paru/clone/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/25.1/quartus/sopc_builder/bin"

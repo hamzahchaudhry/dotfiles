@@ -66,4 +66,3 @@ function s() {
   trap 'tput cnorm; stty sane' EXIT INT
   speedtest-go
 }
-
