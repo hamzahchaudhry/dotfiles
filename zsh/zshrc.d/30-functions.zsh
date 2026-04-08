@@ -11,6 +11,24 @@ zshrecompile() {
   done
 }
 
+
+# ================================
+# help
+# ================================
+
+bathelp() {
+  bat --plain --language=help --paging=always
+}
+
+help() {
+  "$@" --help 2>&1 | bathelp
+}
+
+
+# ================================
+# bluetooth
+# ================================
+
 bt() {
   local blocked service powered
 
@@ -50,6 +68,11 @@ bt() {
   esac
 }
 
+
+# ================================
+# pacman
+# ================================
+
 remove() {
   local orphans
   orphans=(${(f)"$(pacman -Qtdq 2>/dev/null)"})
@@ -61,6 +84,11 @@ remove() {
 
   sudo pacman -Rnsc "${orphans[@]}"
 }
+
+
+# ================================
+# speedtest
+# ================================
 
 function s() {
   trap 'tput cnorm; stty sane' EXIT INT
