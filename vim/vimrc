@@ -1,10 +1,30 @@
-syntax on
-set tabstop=2 softtabstop=2 shiftwidth=2
-set expandtab
-set number ruler
-set autoindent smartindent
-syntax enable
-filetype plugin indent on
+set viminfofile=$XDG_STATE_HOME/vim/viminfo
+
+set nomodeline
 set mouse=a
 set clipboard=unnamedplus
-set viminfofile=$XDG_STATE_HOME/vim/viminfo
+
+set history=500
+set autoread
+
+set wildmenu
+set number
+set scrolloff=8
+
+set lazyredraw
+set showmatch
+
+syntax enable
+colorscheme habamax
+
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set autoindent
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+filetype plugin indent on
