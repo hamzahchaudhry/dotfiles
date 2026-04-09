@@ -17,6 +17,7 @@ my dotfiles for my arch linux + hyprland setup.
 ├── git/            # git config
 ├── hypr/           # hyprland, hyprlock, hypridle
 ├── mako/           # notification daemon config
+├── nvim/           # neovim config
 ├── npm/            # npm config
 ├── systemd/        # user units/timers
 ├── task/           # taskwarrior config
@@ -55,6 +56,7 @@ ln -s ~/.dotfiles/fuzzel ~/.config/fuzzel
 ln -s ~/.dotfiles/git ~/.config/git
 ln -s ~/.dotfiles/hypr ~/.config/hypr
 ln -s ~/.dotfiles/mako ~/.config/mako
+ln -s ~/.dotfiles/nvim ~/.config/nvim
 ln -s ~/.dotfiles/npm ~/.config/npm
 ln -s ~/.dotfiles/task ~/.config/task
 ln -s ~/.dotfiles/waybar ~/.config/waybar
@@ -148,6 +150,12 @@ man pages still use a custom `MANPAGER` from `zsh/zshrc.d/10-env.zsh`:
 - `sed` strips the weird manpage artifacts
 - `bat` handles rendering
 - `less -R -i --incsearch` gives paging and vim-like search
+
+## neovim
+
+neovim config lives in `nvim/`.
+
+current setup is lua-based and starts from `init.lua`.
 
 ## udev
 
