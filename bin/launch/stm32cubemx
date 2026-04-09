@@ -1,18 +1,34 @@
 #!/bin/sh
-XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+set -eu
 
-MX_DATA="$XDG_DATA_HOME/stm32cubemx"
-MX_CACHE="$XDG_CACHE_HOME/stm32cubemx"
-MX_CONFIG="$XDG_CONFIG_HOME/stm32cubemx"
+REAL_HOME="${HOME}"
+REAL_XDG_DATA_HOME="${XDG_DATA_HOME:-$REAL_HOME/.local/share}"
 
-mkdir -p "$MX_DATA/home" "$MX_CACHE/tmp" "$MX_CONFIG/java-prefs"
+APP_ROOT="$REAL_XDG_DATA_HOME/stm32cubemx"
+FAKE_HOME="$APP_ROOT/home"
+APP_CACHE="$FAKE_HOME/.cache"
+APP_CONFIG="$FAKE_HOME/.config"
+APP_DATA="$FAKE_HOME/.local/share"
+APP_STATE="$FAKE_HOME/.local/state"
+
+mkdir -p \
+  "$APP_ROOT" \
+  "$APP_CACHE/tmp" \
+  "$APP_CONFIG/java-prefs" \
+  "$APP_DATA" \
+  "$APP_STATE"
+
+export HOME="$FAKE_HOME"
+export XDG_CONFIG_HOME="$APP_CONFIG"
+export XDG_CACHE_HOME="$APP_CACHE"
+export XDG_DATA_HOME="$APP_DATA"
+export XDG_STATE_HOME="$APP_STATE"
+export TMPDIR="$APP_CACHE/tmp"
 
 exec archlinux-java-run --min 21 -- \
-  -Duser.home="$MX_DATA/home" \
-  -Djava.io.tmpdir="$MX_CACHE/tmp" \
-  -Djava.util.prefs.userRoot="$MX_CONFIG/java-prefs" \
+  -Duser.home="$FAKE_HOME" \
+  -Djava.io.tmpdir="$APP_CACHE/tmp" \
+  -Djava.util.prefs.userRoot="$APP_CONFIG/java-prefs" \
   -Dawt.useSystemAAFontSettings=on \
   -Dswing.aatext=true \
   -jar /opt/stm32cubemx/STM32CubeMX "$@"
