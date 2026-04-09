@@ -1,4 +1,4 @@
-set viminfofile=$XDG_STATE_HOME/vim/viminfo
+set viminfofile=NONE
 
 set nomodeline
 set mouse=a
