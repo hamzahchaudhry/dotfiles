@@ -22,7 +22,6 @@ my dotfiles for my arch linux + hyprland setup.
 ├── systemd/        # user units/timers
 ├── task/           # taskwarrior config
 ├── udev/           # udev rules
-├── vim/            # vim config
 ├── waybar/         # waybar config + scripts
 ├── zed/            # zed settings/themes
 ├── zsh/            # zsh config
