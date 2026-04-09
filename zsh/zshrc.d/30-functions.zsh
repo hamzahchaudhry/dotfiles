@@ -76,7 +76,7 @@ bt() {
 pacclean() {
   local removable
   local download_dirs
-  removable="$(pacman -Qqd | pacman -Rsu --print-format '%n' --print - 2>/dev/null)"
+  removable="$(pacman -Qqd 2>/dev/null | pacman -Rsu --print-format '%n' --print - 2>/dev/null | sed '/^[[:space:]]*there is nothing to do$/d')"
   download_dirs=(/var/cache/pacman/pkg/download-*(N))
 
   if [[ -n "$removable" ]]; then
@@ -88,7 +88,7 @@ pacclean() {
   sudo paccache -rk0
   sudo paccache -ruk0
   (( ${#download_dirs[@]} )) && sudo rm -rf "${download_dirs[@]}"
-  paru -Scc
+  yes | paru -Scc
 }
 
 
