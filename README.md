@@ -167,6 +167,24 @@ sudo udevadm control --reload
 sudo udevadm trigger
 ```
 
+## pacman hooks
+
+pacman hooks live in `pacman/hooks/` in the repo, but should be installed into
+`/etc/pacman.d/hooks/`.
+
+current hooks:
+
+- `log-orphans.hook`
+
+install or update them with:
+
+```sh
+sudo install -Dm644 ~/.dotfiles/pacman/hooks/log-orphans.hook /etc/pacman.d/hooks/log-orphans.hook
+```
+
+`log-orphans.hook` checks for orphaned packages after installs, upgrades, and
+removals using `pacman -Qdtt`.
+
 ## networkmanager dispatcher
 
 `wireguard-toggle.sh` is a NetworkManager dispatcher script that toggles the `wg0` connection based on the active wifi ssid.

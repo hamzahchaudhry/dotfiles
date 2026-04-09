@@ -41,6 +41,7 @@ alias c='clear'
 alias z='zeditor .'
 alias zdot='zeditor ~/.dotfiles && exit'
 alias p='paru'
+alias pc='pacclean'
 
 
 # ================================
@@ -56,4 +57,3 @@ alias t320='task add proj:"CPSC320 🧮"'
 alias t320p='task add proj:"CPEN320 🌐"'
 alias tl='task add proj:"life 🏡"'
 alias tr='task add proj:"riipen 💼"'
-

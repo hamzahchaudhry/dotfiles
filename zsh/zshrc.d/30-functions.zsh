@@ -73,16 +73,22 @@ bt() {
 # pacman
 # ================================
 
-remove() {
-  local orphans
-  orphans=(${(f)"$(pacman -Qtdq 2>/dev/null)"})
+pacclean() {
+  local removable
+  local download_dirs
+  removable="$(pacman -Qqd | pacman -Rsu --print-format '%n' --print - 2>/dev/null)"
+  download_dirs=(/var/cache/pacman/pkg/download-*(N))
 
-  if (( ${#orphans[@]} == 0 )); then
-    echo "No orphaned packages found."
-    return 0
+  if [[ -n "$removable" ]]; then
+    sudo pacman -Rns ${(f)removable}
+  else
+    echo "No removable dependency packages found."
   fi
 
-  sudo pacman -Rnsc "${orphans[@]}"
+  sudo paccache -rk0
+  sudo paccache -ruk0
+  (( ${#download_dirs[@]} )) && sudo rm -rf "${download_dirs[@]}"
+  paru -Scc
 }
 
 
