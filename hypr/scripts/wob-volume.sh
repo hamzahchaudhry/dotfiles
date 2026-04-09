@@ -25,10 +25,18 @@ case "${1:-}" in
     wpctl set-volume -l 1.5 "$sink" 5%+
     ;;
   down)
-    wpctl set-volume "$sink" 5%-
+    current_volume="$(volume_percent)"
 
-    if [ "$(volume_percent)" -eq 0 ]; then
+    if [ "$current_volume" -le 5 ]; then
+      wpctl set-volume "$sink" 0
       wpctl set-mute "$sink" 1
+      :
+    else
+      if is_muted; then
+        wpctl set-mute "$sink" 0
+      fi
+
+      wpctl set-volume "$sink" 5%-
     fi
     ;;
   mute)
