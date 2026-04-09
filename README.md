@@ -86,10 +86,10 @@ systemctl --user daemon-reload
 
 `xdg.sh` is meant to be sourced globally so gui apps, shells, and user services all agree on the same xdg paths.
 
-example:
+install it as a normal profile script:
 
 ```sh
-sudo ln -s ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
+sudo install -Dm644 ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
 ```
 
 ## firefox
