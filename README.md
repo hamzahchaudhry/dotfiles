@@ -89,7 +89,7 @@ systemctl --user daemon-reload
 install it as a normal profile script:
 
 ```sh
-sudo install -Dm644 ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
+doas install -Dm644 ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
 ```
 
 ## firefox
@@ -168,10 +168,10 @@ current rules:
 install or update them with:
 
 ```sh
-sudo install -Dm644 ~/.dotfiles/udev/rules.d/51-usbblaster.rules /etc/udev/rules.d/51-usbblaster.rules
-sudo install -Dm644 ~/.dotfiles/udev/rules.d/99-intel-rapl.rules /etc/udev/rules.d/99-intel-rapl.rules
-sudo udevadm control --reload
-sudo udevadm trigger
+doas install -Dm644 ~/.dotfiles/udev/rules.d/51-usbblaster.rules /etc/udev/rules.d/51-usbblaster.rules
+doas install -Dm644 ~/.dotfiles/udev/rules.d/99-intel-rapl.rules /etc/udev/rules.d/99-intel-rapl.rules
+doas udevadm control --reload
+doas udevadm trigger
 ```
 
 ## pacman hooks
@@ -186,7 +186,7 @@ current hooks:
 install or update them with:
 
 ```sh
-sudo install -Dm644 ~/.dotfiles/pacman/hooks/log-orphans.hook /etc/pacman.d/hooks/log-orphans.hook
+doas install -Dm644 ~/.dotfiles/pacman/hooks/log-orphans.hook /etc/pacman.d/hooks/log-orphans.hook
 ```
 
 `log-orphans.hook` checks for orphaned packages after installs, upgrades, and
@@ -205,5 +205,5 @@ it expects:
 install it as a root-owned dispatcher script:
 
 ```sh
-sudo install -m 755 -o root -g root ~/.dotfiles/wireguard-toggle.sh /etc/NetworkManager/dispatcher.d/wireguard-toggle.sh
+doas install -m 755 -o root -g root ~/.dotfiles/wireguard-toggle.sh /etc/NetworkManager/dispatcher.d/wireguard-toggle.sh
 ```
