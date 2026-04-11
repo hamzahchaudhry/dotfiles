@@ -34,7 +34,6 @@ alias gl='git log'
 # quality of life
 # ================================
 
-alias sudo='sudo '
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias c='clear'
@@ -43,6 +42,9 @@ alias z='zeditor .'
 alias zdot='zeditor ~/.dotfiles && exit'
 alias p='paru'
 alias pc='pacclean'
+alias s='speedtest'
+alias reboot='systemctl reboot'
+alias poweroff='systemctl poweroff'
 
 
 # ================================

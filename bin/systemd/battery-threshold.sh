@@ -13,7 +13,7 @@ status=$(cat "$BAT_PATH/status")
 
 if [ "$status" = "Discharging" ] && [ "$capacity" -le "$THRESHOLD" ]; then
   if [ ! -e "$STATE_FILE" ]; then
-    sudo -n tlp power-saver >/dev/null 2>&1 || true
+    doas -n /usr/bin/tlp power-saver >/dev/null 2>&1 || true
     brightnessctl set "$BRIGHTNESS" >/dev/null 2>&1 || true
     notify-send \
       -u critical \

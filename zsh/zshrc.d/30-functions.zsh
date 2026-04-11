@@ -34,18 +34,18 @@ bt() {
 
   case "$1" in
     on)
-      sudo rfkill unblock bluetooth
-      sudo systemctl start bluetooth
+      doas rfkill unblock bluetooth
+      doas systemctl start bluetooth
       bluetoothctl power on
       ;;
     off)
       bluetoothctl power off
-      sudo systemctl stop bluetooth
-      sudo rfkill block bluetooth
+      doas systemctl stop bluetooth
+      doas rfkill block bluetooth
       ;;
     airpods)
-      sudo rfkill unblock bluetooth
-      sudo systemctl start bluetooth
+      doas rfkill unblock bluetooth
+      doas systemctl start bluetooth
       bluetoothctl power on
       bluetoothctl connect 38:C4:3A:E2:E2:D8
       ;;
@@ -80,23 +80,13 @@ pacclean() {
   download_dirs=(/var/cache/pacman/pkg/download-*(N))
 
   if [[ -n "$removable" ]]; then
-    sudo pacman -Rns ${(f)removable}
+    doas pacman -Rns ${(f)removable}
   else
     echo "No removable dependency packages found."
   fi
 
-  sudo paccache -rk0
-  sudo paccache -ruk0
-  (( ${#download_dirs[@]} )) && sudo rm -rf "${download_dirs[@]}"
+  doas paccache -rk0
+  doas paccache -ruk0
+  (( ${#download_dirs[@]} )) && doas rm -rf "${download_dirs[@]}"
   yes | paru -Scc
-}
-
-
-# ================================
-# speedtest
-# ================================
-
-function s() {
-  trap 'tput cnorm; stty sane' EXIT INT
-  speedtest-go
 }
