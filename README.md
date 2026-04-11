@@ -17,8 +17,10 @@ my dotfiles for my arch linux + hyprland setup.
 ├── git/            # git config
 ├── hypr/           # hyprland, hyprlock, hypridle
 ├── mako/           # notification daemon config
-├── nvim/           # neovim config
 ├── npm/            # npm config
+├── nvim/           # neovim config
+├── pacman/         # pacman hooks
+├── paru/           # paru config
 ├── systemd/        # user units/timers
 ├── task/           # taskwarrior config
 ├── udev/           # udev rules
@@ -149,6 +151,10 @@ man pages still use a custom `MANPAGER` from `zsh/zshrc.d/10-env.zsh`:
 - `sed` strips the weird manpage artifacts
 - `bat` handles rendering
 - `less -R -i --incsearch` gives paging and vim-like search
+
+## paru
+
+paru uses `~/.config/paru/paru.conf`.
 
 ## neovim
 
