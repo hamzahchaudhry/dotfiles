@@ -6,13 +6,13 @@ EZA_IGNORE=".git|node_modules|target|dist|build|__pycache__|.venv|coverage"
 
 alias ls='eza --group-directories-first'
 alias la='eza -a --group-directories-first'
-alias l='eza -lab --smart-group --time-style=relative --color-scale=size,age --group-directories-first'
-alias ll='eza -lab --smart-group --time-style=relative --color-scale=size,age --group-directories-first --total-size --git'
+alias l='eza -labo --smart-group --time-style=relative --color-scale=size,age --group-directories-first'
+alias ll='eza -labo --smart-group --time-style=relative --color-scale=size,age --group-directories-first --total-size --git'
 alias lt="eza -aTL2 --git-ignore --group-directories-first -I \"$EZA_IGNORE\""
 alias ltt="eza -aTL3 --git-ignore --group-directories-first -I \"$EZA_IGNORE\""
 alias lttt="eza -aTL4 --git-ignore --group-directories-first -I \"$EZA_IGNORE\""
 alias tree="eza -aT"
-alias lsize='eza -labr --sort=size --color-scale=size --group-directories-first --total-size'
+alias lsize='eza -labor --sort=size --color-scale=size --group-directories-first --total-size'
 
 
 # ================================
