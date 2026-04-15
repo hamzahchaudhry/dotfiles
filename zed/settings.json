@@ -130,7 +130,7 @@
     "trust_all_worktrees": true,
   },
   "icon_theme": "Material Icon Theme",
-  "ui_font_size": 14.0,
+  "ui_font_size": 18.0,
   "buffer_font_size": 12.0,
   "theme": "Zedokai Darker",
 }
