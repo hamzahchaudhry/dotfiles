@@ -22,6 +22,7 @@ my dotfiles for my arch linux + hyprland setup.
 ├── nvim/           # neovim config
 ├── pacman/         # pacman hooks
 ├── paru/           # paru config
+├── snapper/        # root-owned snapper configs
 ├── sysctl.d/       # root-owned sysctl overrides
 ├── systemd/        # user units/timers
 ├── task/           # taskwarrior config
@@ -199,6 +200,20 @@ install or update them with:
 doas install -Dm644 ~/.dotfiles/sysctl.d/50-disable-coredumps.conf /etc/sysctl.d/50-disable-coredumps.conf
 doas install -Dm644 ~/.dotfiles/sysctl.d/90-network-hardening.conf /etc/sysctl.d/90-network-hardening.conf
 doas sysctl --system
+```
+
+## snapper
+
+snapper configs live in `snapper/configs/` in the repo, but should be installed into `/etc/snapper/configs/` instead of symlinked from home.
+
+current configs:
+
+- `root`
+
+install or update them with:
+
+```sh
+doas install -Dm640 ~/.dotfiles/snapper/configs/root /etc/snapper/configs/root
 ```
 
 ## pacman hooks
