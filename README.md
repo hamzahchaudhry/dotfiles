@@ -173,13 +173,11 @@ udev rules live in `udev/rules.d/` in the repo, but should be installed into `/e
 
 current rules:
 
-- `51-usbblaster.rules`
 - `99-intel-rapl.rules`
 
 install or update them with:
 
 ```sh
-doas install -Dm644 ~/.dotfiles/udev/rules.d/51-usbblaster.rules /etc/udev/rules.d/51-usbblaster.rules
 doas install -Dm644 ~/.dotfiles/udev/rules.d/99-intel-rapl.rules /etc/udev/rules.d/99-intel-rapl.rules
 doas udevadm control --reload
 doas udevadm trigger
