@@ -37,7 +37,7 @@ my dotfiles for my arch linux + hyprland setup.
 
 - the repo lives at `~/.dotfiles`
 - `~/.local/bin` symlinks to `~/.dotfiles/bin`
-- zsh loads from `~/.config/zsh`
+- zsh loads from `~/.config/zsh` via `/etc/zsh/zshenv`
 - xdg base dirs are set globally through `xdg.sh`
 
 ## install
@@ -79,8 +79,10 @@ zsh:
 
 ```sh
 ln -s ~/.dotfiles/zsh ~/.config/zsh
-ln -s ~/.dotfiles/zsh/zshenv ~/.zshenv
+doas install -Dm644 ~/.dotfiles/zsh/zshenv /etc/zsh/zshenv
 ```
+
+`zsh/zshenv` is only the bootstrap. it sets `ZDOTDIR="$HOME/.config/zsh"` so the rest of the zsh config loads from the linked `zsh/` directory.
 
 reload user units after linking:
 

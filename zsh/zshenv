@@ -3,7 +3,7 @@
 # ==========================================
 # sets ZDOTDIR so zsh loads its config from
 # $HOME/.config/zsh instead of $HOME.
+# meant to be installed into /etc/zsh/zshenv so it
 # applies to all zsh invocations.
 
-export ZDOTDIR="${ZDOTDIR:-/home/hamzah/.config/zsh}"
-
+export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
