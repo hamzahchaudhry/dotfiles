@@ -15,6 +15,7 @@ my dotfiles for my arch linux + hyprland setup.
 ├── foot/           # foot config
 ├── fuzzel/         # fuzzel config
 ├── git/            # git config
+├── gtk-3.0/        # gtk settings
 ├── hypr/           # hyprland, hyprlock, hypridle
 ├── mako/           # notification daemon config
 ├── npm/            # npm config
@@ -55,6 +56,7 @@ ln -s ~/.dotfiles/bat ~/.config/bat
 ln -s ~/.dotfiles/foot ~/.config/foot
 ln -s ~/.dotfiles/fuzzel ~/.config/fuzzel
 ln -s ~/.dotfiles/git ~/.config/git
+ln -s ~/.dotfiles/gtk-3.0 ~/.config/gtk-3.0
 ln -s ~/.dotfiles/hypr ~/.config/hypr
 ln -s ~/.dotfiles/mako ~/.config/mako
 ln -s ~/.dotfiles/nvim ~/.config/nvim
@@ -88,7 +90,7 @@ systemctl --user daemon-reload
 
 `xdg.sh` is meant to be sourced globally so gui apps, shells, and user services all agree on the same xdg paths.
 
-install it as a normal profile script:
+install it as a profile script:
 
 ```sh
 doas install -Dm644 ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
@@ -98,17 +100,18 @@ doas install -Dm644 ~/.dotfiles/xdg.sh /etc/profile.d/xdg.sh
 
 firefox still needs manual profile wiring.
 
-copy `user.js` into the active profile:
+copy `user.js` and `chrome/` into the active profile:
 
 ```sh
 cp ~/.dotfiles/firefox/user.js ~/.config/mozilla/firefox/<profile>/user.js
+cp -r ~/.dotfiles/firefox/chrome ~/.config/mozilla/firefox/<profile>/chrome
 ```
 
 ## desktop entries
 
 desktop entries live in `applications/`.
 
-the app launchers use wrappers from:
+app launchers use wrappers from:
 
 ```text
 ~/.local/bin/launch
@@ -160,7 +163,7 @@ paru uses `~/.config/paru/paru.conf`.
 
 neovim config lives in `nvim/`.
 
-current setup is lua-based and starts from `init.lua`.
+the setup is lua-based and starts from `init.lua`.
 
 ## udev
 
