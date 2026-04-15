@@ -19,6 +19,13 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 
 
 # ==========================================
+# app-specific paths
+# ==========================================
+
+export FIREFOX_PROFILE="$XDG_CONFIG_HOME/mozilla/firefox/i4hwomfd.default-release"
+
+
+# ==========================================
 # editor
 # ==========================================
 
