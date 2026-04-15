@@ -44,5 +44,5 @@ if (( $+commands[zoxide] )); then
 fi
 
 [[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -r /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh ]] && source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh
+[[ -r /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh ]] && source /usr/share/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 [[ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # load last

@@ -32,7 +32,7 @@ zstyle ':completion:*' matcher-list \
 
 # preview directory contents with eza when completing `cd`
 zstyle ':fzf-tab:complete:cd:*' \
-  fzf-preview 'eza -1 --color=always --icons $realpath'
+  fzf-preview 'eza -1 --color=always $realpath'
 
 # reuse the cached dump most of the time and refresh it periodically
 if [[ ! -f "$zcompdump" || -n "$zcompdump"(N.mh+24) ]]; then
@@ -40,3 +40,5 @@ if [[ ! -f "$zcompdump" || -n "$zcompdump"(N.mh+24) ]]; then
 else
   compinit -C -d "$zcompdump"
 fi
+
+compdef _sudo doas
