@@ -22,6 +22,7 @@ my dotfiles for my arch linux + hyprland setup.
 ├── nvim/           # neovim config
 ├── pacman/         # pacman hooks
 ├── paru/           # paru config
+├── sysctl.d/       # root-owned sysctl overrides
 ├── systemd/        # user units/timers
 ├── task/           # taskwarrior config
 ├── udev/           # udev rules
@@ -181,6 +182,23 @@ doas install -Dm644 ~/.dotfiles/udev/rules.d/51-usbblaster.rules /etc/udev/rules
 doas install -Dm644 ~/.dotfiles/udev/rules.d/99-intel-rapl.rules /etc/udev/rules.d/99-intel-rapl.rules
 doas udevadm control --reload
 doas udevadm trigger
+```
+
+## sysctl
+
+`sysctl.d/` files in the repo should be installed into `/etc/sysctl.d/` instead of symlinked from home.
+
+current overrides:
+
+- `50-disable-coredumps.conf`
+- `90-network-hardening.conf`
+
+install or update them with:
+
+```sh
+doas install -Dm644 ~/.dotfiles/sysctl.d/50-disable-coredumps.conf /etc/sysctl.d/50-disable-coredumps.conf
+doas install -Dm644 ~/.dotfiles/sysctl.d/90-network-hardening.conf /etc/sysctl.d/90-network-hardening.conf
+doas sysctl --system
 ```
 
 ## pacman hooks
