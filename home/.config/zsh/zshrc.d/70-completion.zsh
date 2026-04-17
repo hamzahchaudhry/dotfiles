@@ -19,6 +19,8 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh"
 
 # disable native zsh menu so fzf-tab controls UI
 zstyle ':completion:*' menu no
+zstyle ':completion:*' menu select
+zstyle ':fzf-tab:*' fzf-flags --height=40%
 
 # show group descriptions (used by fzf-tab)
 zstyle ':completion:*:descriptions' format '[%d]'

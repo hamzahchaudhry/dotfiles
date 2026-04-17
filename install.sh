@@ -2,179 +2,93 @@
 
 set -eu
 
-HOME_ROOT="$(pwd)/home"
-ETC_ROOT="$(pwd)/etc"
-FIREFOX_PROFILE="${FIREFOX_PROFILE:-}"
+DOTFILES_DIR="$(pwd)"
+FIREFOX_PROFILE="$XDG_CONFIG_HOME/mozilla/firefox/i4hwomfd.default-release"
 
-DO_HOME=1
-DO_ETC=1
-DRY_RUN=0
-
-HOME_LINKS='
-.config/bat
-.config/foot
-.config/fuzzel
-.config/git
-.config/gtk-3.0
-.config/hypr
-.config/mako
-.config/npm
-.config/nvim
-.config/paru
-.config/systemd/user
-.config/task
-.config/waybar
-.config/zed
-.config/zsh
-.local/bin
-.local/share/applications
-'
-
-usage() {
-  printf 'usage: ./install.sh [--home-only] [--etc-only] [--dry-run]\n'
-  printf '  --home-only   only install the mirrored $HOME files\n'
-  printf '  --etc-only    only install the mirrored /etc files\n'
-  printf '  --dry-run     print actions without changing anything\n'
-  printf '  FIREFOX_PROFILE=~/.mozilla/firefox/<profile-dir>  optional firefox profile path\n'
-}
-
-run() {
-  if [ "$DRY_RUN" -eq 1 ]; then
-    return 0
-  else
-    "$@"
-  fi
-}
-
-symlink_path() {
-  rel="$1"
-  src="$2"
-  dst="$3"
-
-  if [ "$DRY_RUN" -eq 1 ]; then
-    printf 'would symlink %s\n' "$rel"
-  else
-    printf 'symlinking %s\n' "$rel"
-  fi
-
-  if [ -L "$dst" ]; then
-    current=$(readlink -- "$dst")
-    if [ "$current" = "$src" ]; then
-      return 0
-    fi
-    run rm -f -- "$dst"
-  elif [ -e "$dst" ]; then
-    printf 'error: %s exists and is not a symlink\n' "$dst" >&2
-    return 1
-  fi
-
-  run mkdir -p -- "$(dirname -- "$dst")"
-  run ln -s -- "$src" "$dst"
-  return 0
-}
-
-install_etc_file() {
-  src="$1"
-  rel=${src#"$ETC_ROOT"/}
-  dst="/etc/$rel"
-  mode=644
-
-  case "$rel" in
-    NetworkManager/dispatcher.d/*) mode=755 ;;
-    snapper/configs/*) mode=640 ;;
-  esac
-
-  if [ "$DRY_RUN" -eq 1 ]; then
-    printf 'would install %s (%s)\n' "$dst" "$mode"
-  else
-    printf 'installing %s (%s)\n' "$dst" "$mode"
-  fi
-
-  if [ -f "$dst" ] && cmp -s -- "$src" "$dst"; then
-    current_mode=$(stat -c '%a' -- "$dst")
-    if [ "$current_mode" = "$mode" ]; then
-      return 0
-    fi
-  fi
-  if [ "$DRY_RUN" -eq 1 ]; then
-    return 0
-  fi
-  doas install -Dm"$mode" -- "$src" "$dst"
-  return 0
-}
-
-for arg in "$@"; do
-  case "$arg" in
-    --home-only)
-      DO_ETC=0
-      ;;
-    --etc-only)
-      DO_HOME=0
-      ;;
-    --dry-run)
-      DRY_RUN=1
-      ;;
-    -h|--help)
-      usage
-      exit 0
-      ;;
-    *)
-      usage >&2
-      exit 1
-      ;;
-  esac
-done
-
-if [ "$DO_HOME" -eq 0 ] && [ "$DO_ETC" -eq 0 ]; then
-  printf 'error: nothing to do\n' >&2
-  exit 1
-fi
-
-if [ "$DO_HOME" -eq 1 ] && [ "$DO_ETC" -eq 1 ]; then
-  MODE_LABEL='home + etc'
-  printf 'installing home/ then etc/\n'
-elif [ "$DO_HOME" -eq 1 ]; then
-  MODE_LABEL='home'
-  printf 'installing home/ only\n'
-else
-  MODE_LABEL='etc'
-  printf 'installing etc/ only\n'
-fi
-
-if [ "$DO_HOME" -eq 1 ]; then
-  printf '\n'
-  printf 'home:\n'
-  for rel in $HOME_LINKS; do
-    symlink_path "$rel" "$HOME_ROOT/$rel" "$HOME/$rel"
-  done
-
-  if [ -n "$FIREFOX_PROFILE" ]; then
-    symlink_path "$FIREFOX_PROFILE/user.js" "$HOME_ROOT/.config/mozilla/firefox/profile/user.js" "$FIREFOX_PROFILE/user.js"
-    symlink_path "$FIREFOX_PROFILE/chrome" "$HOME_ROOT/.config/mozilla/firefox/profile/chrome" "$FIREFOX_PROFILE/chrome"
-  else
-    printf 'firefox: skipped, set FIREFOX_PROFILE to manage user.js and chrome\n'
-  fi
-fi
-
-if [ "$DO_ETC" -eq 1 ]; then
-  printf '\n'
-  printf 'etc:\n'
-  for file in $(find "$ETC_ROOT" -type f | sort); do
-    install_etc_file "$file"
-  done
-fi
-
-if [ "$DO_HOME" -eq 1 ]; then
-  if [ "$DRY_RUN" -eq 0 ]; then
-    printf '\n'
-    printf 'running systemctl --user daemon-reload...\n'
-    systemctl --user daemon-reload
-  fi
-fi
+printf 'installing...\n'
 
 printf '\n'
-if [ "$DRY_RUN" -eq 1 ]; then
-  printf 'done: %s dry-run completed\n' "$MODE_LABEL"
-else
-  printf 'done: %s install completed\n' "$MODE_LABEL"
-fi
+printf 'home:\n'
+
+printf 'symlinking home/.config/bat -> ~/.config/bat...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/bat" "$HOME/.config/bat"
+printf 'symlinking home/.config/foot -> ~/.config/foot...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/foot" "$HOME/.config/foot"
+printf 'symlinking home/.config/fuzzel -> ~/.config/fuzzel...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/fuzzel" "$HOME/.config/fuzzel"
+printf 'symlinking home/.config/git -> ~/.config/git...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/git" "$HOME/.config/git"
+printf 'symlinking home/.config/gtk-3.0 -> ~/.config/gtk-3.0...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/gtk-3.0" "$HOME/.config/gtk-3.0"
+printf 'symlinking home/.config/hypr -> ~/.config/hypr...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/hypr" "$HOME/.config/hypr"
+printf 'symlinking home/.config/mako -> ~/.config/mako...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/mako" "$HOME/.config/mako"
+printf 'symlinking home/.config/npm -> ~/.config/npm...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/npm" "$HOME/.config/npm"
+printf 'symlinking home/.config/nvim -> ~/.config/nvim...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/nvim" "$HOME/.config/nvim"
+printf 'symlinking home/.config/paru -> ~/.config/paru...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/paru" "$HOME/.config/paru"
+printf 'symlinking home/.config/systemd/user -> ~/.config/systemd/user...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/systemd/user" "$HOME/.config/systemd/user"
+printf 'symlinking home/.config/task -> ~/.config/task...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/task" "$HOME/.config/task"
+printf 'symlinking home/.config/waybar -> ~/.config/waybar...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/waybar" "$HOME/.config/waybar"
+printf 'symlinking home/.config/zed -> ~/.config/zed...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/zed" "$HOME/.config/zed"
+printf 'symlinking home/.config/zsh -> ~/.config/zsh...\n'
+ln -sfn "$DOTFILES_DIR/home/.config/zsh" "$HOME/.config/zsh"
+printf 'symlinking home/.local/bin -> ~/.local/bin...\n'
+ln -sfn "$DOTFILES_DIR/home/.local/bin" "$HOME/.local/bin"
+printf 'symlinking home/.local/share/applications -> ~/.local/share/applications...\n'
+ln -sfn "$DOTFILES_DIR/home/.local/share/applications" "$HOME/.local/share/applications"
+
+printf 'symlinking home/.config/mozilla/firefox/profile/user.js -> %s/user.js...\n' "$FIREFOX_PROFILE"
+ln -sfn "$DOTFILES_DIR/home/.config/mozilla/firefox/profile/user.js" "$FIREFOX_PROFILE/user.js"
+printf 'symlinking home/.config/mozilla/firefox/profile/chrome -> %s/chrome...\n' "$FIREFOX_PROFILE"
+ln -sfn "$DOTFILES_DIR/home/.config/mozilla/firefox/profile/chrome" "$FIREFOX_PROFILE/chrome"
+
+printf '\n'
+printf 'etc:\n'
+
+printf 'installing etc/NetworkManager/conf.d/50-dns.conf -> /etc/NetworkManager/conf.d/50-dns.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/NetworkManager/conf.d/50-dns.conf" /etc/NetworkManager/conf.d/50-dns.conf
+printf 'installing etc/NetworkManager/conf.d/60-mac-randomization.conf -> /etc/NetworkManager/conf.d/60-mac-randomization.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/NetworkManager/conf.d/60-mac-randomization.conf" /etc/NetworkManager/conf.d/60-mac-randomization.conf
+printf 'installing etc/NetworkManager/dispatcher.d/wireguard-toggle.sh -> /etc/NetworkManager/dispatcher.d/wireguard-toggle.sh (755)...\n'
+doas install -Dm755 "$DOTFILES_DIR/etc/NetworkManager/dispatcher.d/wireguard-toggle.sh" /etc/NetworkManager/dispatcher.d/wireguard-toggle.sh
+printf 'installing etc/kernel/cmdline -> /etc/kernel/cmdline (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/kernel/cmdline" /etc/kernel/cmdline
+printf 'installing etc/mkinitcpio.conf -> /etc/mkinitcpio.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/mkinitcpio.conf" /etc/mkinitcpio.conf
+printf 'installing etc/mkinitcpio.d/linux.preset -> /etc/mkinitcpio.d/linux.preset (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/mkinitcpio.d/linux.preset" /etc/mkinitcpio.d/linux.preset
+printf 'installing etc/modprobe.d/blacklist-watchdog.conf -> /etc/modprobe.d/blacklist-watchdog.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/modprobe.d/blacklist-watchdog.conf" /etc/modprobe.d/blacklist-watchdog.conf
+printf 'installing etc/modprobe.d/iwlwifi.conf -> /etc/modprobe.d/iwlwifi.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/modprobe.d/iwlwifi.conf" /etc/modprobe.d/iwlwifi.conf
+printf 'installing etc/pacman.d/hooks/log-orphans.hook -> /etc/pacman.d/hooks/log-orphans.hook (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/pacman.d/hooks/log-orphans.hook" /etc/pacman.d/hooks/log-orphans.hook
+printf 'installing etc/profile.d/xdg.sh -> /etc/profile.d/xdg.sh (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/profile.d/xdg.sh" /etc/profile.d/xdg.sh
+printf 'installing etc/snapper/configs/root -> /etc/snapper/configs/root (640)...\n'
+doas install -Dm640 "$DOTFILES_DIR/etc/snapper/configs/root" /etc/snapper/configs/root
+printf 'installing etc/sysctl.d/50-disable-coredumps.conf -> /etc/sysctl.d/50-disable-coredumps.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/sysctl.d/50-disable-coredumps.conf" /etc/sysctl.d/50-disable-coredumps.conf
+printf 'installing etc/sysctl.d/90-network-hardening.conf -> /etc/sysctl.d/90-network-hardening.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/sysctl.d/90-network-hardening.conf" /etc/sysctl.d/90-network-hardening.conf
+printf 'installing etc/sysctl.d/99-vm-zram-parameters.conf -> /etc/sysctl.d/99-vm-zram-parameters.conf (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/sysctl.d/99-vm-zram-parameters.conf" /etc/sysctl.d/99-vm-zram-parameters.conf
+printf 'installing etc/udev/rules.d/99-intel-rapl.rules -> /etc/udev/rules.d/99-intel-rapl.rules (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/udev/rules.d/99-intel-rapl.rules" /etc/udev/rules.d/99-intel-rapl.rules
+printf 'installing etc/zsh/zshenv -> /etc/zsh/zshenv (644)...\n'
+doas install -Dm644 "$DOTFILES_DIR/etc/zsh/zshenv" /etc/zsh/zshenv
+
+printf '\n'
+printf 'running systemctl --user daemon-reload...\n'
+systemctl --user daemon-reload
+
+printf '\n'
+printf 'done.\n'
