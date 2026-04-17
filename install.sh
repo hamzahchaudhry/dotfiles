@@ -44,6 +44,8 @@ printf 'symlinking home/.local/bin -> ~/.local/bin...\n'
 ln -sfn "$DOTFILES_DIR/home/.local/bin" "$HOME/.local/bin"
 printf 'symlinking home/.local/share/applications -> ~/.local/share/applications...\n'
 ln -sfn "$DOTFILES_DIR/home/.local/share/applications" "$HOME/.local/share/applications"
+printf 'installing home/.ssh/config -> ~/.ssh/config (600)...\n'
+install -Dm600 "$DOTFILES_DIR/home/.ssh/config" "$HOME/.ssh/config"
 
 printf 'symlinking home/.config/mozilla/firefox/profile/user.js -> %s/user.js...\n' "$FIREFOX_PROFILE"
 ln -sfn "$DOTFILES_DIR/home/.config/mozilla/firefox/profile/user.js" "$FIREFOX_PROFILE/user.js"

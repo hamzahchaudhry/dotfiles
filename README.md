@@ -34,6 +34,7 @@ cd ~/.dotfiles
 `install.sh`:
 
 - runs explicit `ln -sfn` commands for the managed `home/` paths
+- installs `home/.ssh/config` into `~/.ssh/config` with mode `600`
 - runs explicit `doas install -Dm...` commands for every tracked `etc/` file
 - reloads `systemctl --user daemon-reload` at the end
 
@@ -52,3 +53,4 @@ from `home/.config/mozilla/firefox/profile/` into the hardcoded profile path at 
 - app launch wrappers live in `home/.local/bin/launch/`
 - waybar scripts live in `home/.config/waybar/scripts/`
 - vendor app desktop files live in `home/.local/share/applications/`
+- `home/.ssh/config` is tracked; keys, `known_hosts`, `config.local`, and `sockets/` stay machine-local
