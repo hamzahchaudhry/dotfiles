@@ -1,4 +1,167 @@
-/* remove x at top right corner */
-.titlebar-buttonbox-container {
-    display: none;
+/* hide unused sidebar ui */
+.titlebar-buttonbox-container,
+#vertical-spacer,
+.tab-label-container,
+.tab-close-button,
+#tabbrowser-arrowscrollbox-periphery toolbartabstop,
+#tabbrowser-arrowscrollbox-periphery .closing-tabs-spacer,
+#tabs-newtab-button .toolbarbutton-text,
+#vertical-tabs-newtab-button .toolbarbutton-text,
+#tabbrowser-tabs[orient="vertical"][expanded] :is(.tab-audio-button, .tab-note-icon) {
+  display: none !important;
+}
+
+/* 48px rail with 36px centered pills */
+:root {
+  --rail: 48px;
+  --pill: 36px;
+}
+
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"],
+#sidebar-main,
+#sidebar-main[sidebar-launcher-expanded] {
+  width: var(--rail) !important;
+  min-width: var(--rail) !important;
+  max-width: var(--rail) !important;
+  flex-basis: var(--rail) !important;
+}
+
+/* remove the extra splitter and collapsed tab strip */
+:is(#sidebar-launcher-splitter, .sidebar-splitter, splitter.sidebar-splitter),
+#tabbrowser-tabs[orient="vertical"]:not([expanded]),
+#tabbrowser-tabs[orient="vertical"]:not([expanded]) :is(.tabbrowser-tab, .tab-stack, .tab-background) {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+:is(#sidebar-launcher-splitter, .sidebar-splitter, splitter.sidebar-splitter) {
+  flex-basis: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+/* flatten tab internals so the favicon pill can center in the rail */
+#tabbrowser-tabs[orient="vertical"][expanded] {
+  --tab-inline-padding: 0 !important;
+  --tab-icon-end-margin: 0 !important;
+  --tab-inner-inline-margin: 0 !important;
+  --tab-collapsed-width: var(--pill) !important;
+  --tab-collapsed-background-width: var(--pill) !important;
+  width: 100% !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] :is(.tabbrowser-tab, .tab-stack, .tab-content),
+#tabbrowser-arrowscrollbox-periphery,
+#sidebar-main sidebar-main :is(.wrapper, #vertical-tabs) {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] :is(.tabbrowser-tab, .tab-stack) {
+  flex: 0 0 auto !important;
+  margin-inline: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-content,
+:is(#tabs-newtab-button, #vertical-tabs-newtab-button, #tabbrowser-arrowscrollbox[orient="vertical"] > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button) {
+  padding: 0 !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tabbrowser-tab,
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-content,
+#tabbrowser-arrowscrollbox-periphery,
+:is(#tabs-newtab-button, #vertical-tabs-newtab-button, #tabbrowser-arrowscrollbox[orient="vertical"] > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button) {
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-content {
+  gap: 0 !important;
+  margin-inline: auto !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-icon-stack {
+  width: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  margin-inline: auto !important;
+}
+
+#tabbrowser-tabs[orient="vertical"][expanded] :is(.tab-throbber, .tab-icon-pending, .tab-icon-image, .tab-sharing-icon-overlay, .tab-icon-overlay) {
+  margin-inline-end: 0 !important;
+}
+
+/* center the 36px pills for tabs and new-tab buttons */
+#tabbrowser-tabs[orient="vertical"][expanded] .tab-background,
+#vertical-tabs > #tabbrowser-tabs[orient="vertical"][expanded] > .tabbrowser-tab > .tab-stack > .tab-background,
+:is(#tabs-newtab-button, #vertical-tabs-newtab-button, #tabbrowser-arrowscrollbox[orient="vertical"] > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button) {
+  width: var(--pill) !important;
+  min-width: var(--pill) !important;
+  max-width: var(--pill) !important;
+  margin-inline: auto !important;
+}
+
+:is(#tabs-newtab-button, #vertical-tabs-newtab-button, #tabbrowser-arrowscrollbox[orient="vertical"] > #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button) {
+  border-radius: var(--tab-border-radius) !important;
+}
+
+#tabs-newtab-button .toolbarbutton-icon,
+#vertical-tabs-newtab-button .toolbarbutton-icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin: auto !important;
+  flex: 0 0 16px !important;
+}
+
+#sidebar-main sidebar-main .wrapper {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* match the bottom tools button to the other pills */
+#sidebar-tools-and-extensions-splitter {
+  display: none !important;
+}
+
+#sidebar-main sidebar-main .buttons-wrapper,
+#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] {
+  width: 100% !important;
+  padding: 0 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] {
+  gap: 0 !important;
+}
+
+#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] > moz-button,
+#sidebar-main sidebar-main .tools-overflow {
+  width: var(--pill) !important;
+  min-width: var(--pill) !important;
+  max-width: var(--pill) !important;
+  margin-inline: auto !important;
+}
+
+#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] > moz-button::part(button),
+#sidebar-main sidebar-main .tools-overflow::part(button) {
+  width: var(--pill) !important;
+  height: var(--pill) !important;
+  min-height: var(--pill) !important;
+  padding: 0 !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-radius: var(--tab-border-radius) !important;
+}
+
+#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] img,
+#sidebar-main sidebar-main .tools-overflow img {
+  width: 16px !important;
+  height: 16px !important;
+  margin: auto !important;
 }
