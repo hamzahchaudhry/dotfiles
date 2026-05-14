@@ -27,7 +27,7 @@
     "custom/battery",
 
     "custom/sep",
-    "clock"
+    "custom/clock"
   ],
 
   // left
@@ -164,14 +164,9 @@
     "return-type": "json"
   },
 
-  "clock": {
-    "format": "{:%a, %m-%d %I:%M %p}",
-    "tooltip-format": "{calendar}",
-    "calendar": {
-      "format": {
-        "months": "<b>{}</b>",
-        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
-      }
-    }
+  "custom/clock": {
+    "interval": 30,
+    "exec": "date '+%a, %m-%d %I:%M %p'",
+    "tooltip": false
   }
 }

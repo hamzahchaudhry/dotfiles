@@ -36,6 +36,7 @@ bt() {
     on)
       doas rfkill unblock bluetooth
       doas systemctl start bluetooth
+      sleep 0.2
       bluetoothctl power on
       ;;
     off)
@@ -46,7 +47,7 @@ bt() {
     airpods)
       doas rfkill unblock bluetooth
       doas systemctl start bluetooth
-      bluetoothctl power on
+      sleep 0.2
       bluetoothctl connect 38:C4:3A:E2:E2:D8
       ;;
     status)
