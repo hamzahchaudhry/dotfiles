@@ -35,17 +35,19 @@ end
 if status is-interactive
     # abbreviations
     abbr --add gcl 'git clone'
-    abbr --add gs 'git status'
+    abbr --add gs 'git status -sb'
     abbr --add ga 'git add'
     abbr --add gc 'git commit'
     abbr --add gp 'git push'
     abbr --add gd 'git diff'
     abbr --add gr 'git restore'
     abbr --add gu 'git restore --staged'
-    abbr --add gl 'git log'
+    abbr --add gl 'git --no-pager log --oneline --decorate -10'
     abbr --add ip 'ip -c'
     abbr --add s 'ookla-speedtest'
     abbr --add c 'clear'
+
+    set --global fish_color_command brgreen
 
     zoxide init --cmd cd fish | source
 end
