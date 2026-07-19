@@ -161,7 +161,7 @@
   },
 
   "custom/battery": {
-    "interval": 15,
+    "interval": 60,
     "exec": "~/.config/waybar/scripts/battery.sh",
     "return-type": "json"
   },
