@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=STM32CubeMX
+Comment=STM32CubeMX Interpreter
+Terminal=false
+Type=Application
+Icon=/home/hamzah/.local/opt/STM32CubeMX/help/STM32CubeMX.png
+Exec=/home/hamzah/.local/bin/stm32cubemx
