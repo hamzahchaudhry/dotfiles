@@ -1,0 +1,22 @@
+#!/bin/sh
+set -eu
+
+REAL_HOME=$HOME
+APP_ROOT="${XDG_DATA_HOME:-$REAL_HOME/.local/share}/quartus"
+FAKE_HOME="$APP_ROOT/home"
+
+mkdir -p \
+  "$FAKE_HOME/.cache/tmp" \
+  "$FAKE_HOME/.config" \
+  "$FAKE_HOME/.local/share" \
+  "$FAKE_HOME/.local/state"
+
+export HOME="$FAKE_HOME"
+export XDG_CONFIG_HOME="$FAKE_HOME/.config"
+export XDG_CACHE_HOME="$FAKE_HOME/.cache"
+export XDG_DATA_HOME="$FAKE_HOME/.local/share"
+export XDG_STATE_HOME="$FAKE_HOME/.local/state"
+export TMPDIR="$FAKE_HOME/.cache/tmp"
+export SALT_LICENSE_SERVER="$REAL_HOME/.altera.quartus/questa_lic.dat"
+
+exec "$REAL_HOME/.local/opt/altera/25.1/quartus/bin/quartus" "$@"
