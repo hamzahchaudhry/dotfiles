@@ -1,7 +1,0 @@
-[Unit]
-Description=Syncthing
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/systemd/syncthing-on-demand.sh
-TimeoutStartSec=2h

@@ -1,6 +1,0 @@
-[Unit]
-Description=Apply low-battery actions
-
-[Service]
-Type=oneshot
-ExecStart=%h/.local/bin/systemd/battery-threshold.sh

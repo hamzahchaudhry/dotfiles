@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=ModelSim-Intel FPGA Starter Edition
-Comment=ModelSim simulation software for Intel FPGAs
-Exec=vsim -gui -l /dev/null
-Icon=modelsim-ase
-Terminal=false
-Type=Application
-Categories=Development
