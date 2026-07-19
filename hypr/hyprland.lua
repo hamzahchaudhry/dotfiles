@@ -1,0 +1,5 @@
+require("conf/session")
+require("conf/appearance")
+require("conf/input")
+require("conf/binds")
+require("conf/rules")

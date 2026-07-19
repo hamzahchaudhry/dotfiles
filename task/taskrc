@@ -1,0 +1,18 @@
+# [Created by task 3.4.2 5/24/2026 02:43:18]
+data.location=/home/hamzah/.task
+news.version=3.4.2
+
+data.location=~/.local/share/task
+hooks.location=~/.config/task/hooks
+
+include dark-256.theme
+
+report.next.columns=id,project,description,due,due.relative
+report.next.labels=id,project,task,due,countdown
+report.next.dateformat=a, M-D i:N p
+report.next.sort=due+
+
+report.notify.columns=project,description,due.relative
+report.notify.labels=project,task,remaining
+report.notify.sort=due+,urgency-
+report.notify.dateformat=a, M-D I:N p

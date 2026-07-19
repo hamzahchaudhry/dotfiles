@@ -1,0 +1,3 @@
+#env
+LESS = -R -M -I -S --incsearch
+LESSHISTFILE = -

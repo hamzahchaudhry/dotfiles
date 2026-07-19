@@ -1,0 +1,46 @@
+[user]
+	email = hamzah.chaudhry@proton.me
+	name = hamzah
+	signingkey = ~/.ssh/id_ed25519
+
+[core]
+	editor = nvim
+	pager = delta
+	untrackedCache = true
+
+[gpg]
+	format = ssh
+
+[commit]
+	gpgsign = true
+
+[column]
+	ui = auto
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[fetch]
+	prune = true
+
+[branch]
+	sort = -committerdate
+
+[status]
+	showUntrackedFiles = all
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+
+[delta]
+	navigate = true
+	pager = less --mouse
+	side-by-side = true

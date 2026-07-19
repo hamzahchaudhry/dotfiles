@@ -1,0 +1,174 @@
+// -*- mode: jsonc -*-
+{
+  "position": "bottom",
+
+  "modules-left": [
+    "group/traym",
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "idle_inhibitor",
+
+    "custom/sep",
+    "cpu",
+    "custom/gpu-frequency",
+    "custom/power",
+    "temperature",
+    "memory",
+    "custom/swap",
+
+    "custom/sep",
+    "privacy",
+    "wireplumber",
+
+    "custom/sep",
+    "backlight",
+    "custom/battery",
+
+    "custom/sep",
+    "custom/clock"
+  ],
+
+  // left
+  "group/traym": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 0,
+      "transition-left-to-right": true,
+      "children-class": "drawer-child"
+    },
+    "modules": [
+      "custom/trayicon",
+      "tray"
+    ]
+  },
+
+  "custom/trayicon": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8
+  },
+
+  // shared
+  "custom/sep": {
+    "format": "│",
+    "tooltip": false
+  },
+
+  // right: system
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
+  },
+
+  "cpu": {
+    "format": " {usage}%   {avg_frequency}GHz",
+    "states": {
+      "warning": 80,
+      "critical": 90
+    },
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  "custom/gpu-frequency": {
+    "interval": 10,
+    "exec": "~/.config/waybar/scripts/gpu-frequency.sh",
+    "return-type": "json",
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  "custom/power": {
+    "interval": 10,
+    "exec": "~/.config/waybar/scripts/power.sh",
+    "return-type": "json",
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  "temperature": {
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
+    "warning-threshold": 80,
+    "critical-threshold": 90,
+    "format": "{icon} {temperatureC}°",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "CPU package: {temperatureC}°C",
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  "memory": {
+    "interval": 10,
+    "format": " {used}GiB",
+    "tooltip": false,
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  "custom/swap": {
+    "interval": 30,
+    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u < 1024) exit; printf \"󰾵 %.1fGiB\\n\", u / 1024 / 1024}' /proc/meminfo",
+    "return-type": "text",
+    "tooltip": false,
+    "on-click": "footclient sh -c 'btop'"
+  },
+
+  // right: media and controls
+  "privacy": {
+    "icon-size": 14
+  },
+
+  "wireplumber": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-muted": "󰖁 {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": " ",
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "tooltip": false,
+    "max-volume": 150
+  },
+
+  "backlight": {
+    "interval": 300,
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󱩎",
+      "󱩑",
+      "󱩓",
+      "󱩕",
+      "󰛨"
+    ]
+  },
+
+  "custom/battery": {
+    "interval": 15,
+    "exec": "~/.config/waybar/scripts/battery.sh",
+    "return-type": "json"
+  },
+
+  "custom/clock": {
+    "interval": 60,
+    "exec": "/usr/bin/date '+%a, %m-%d %I:%M %p'",
+    "tooltip": false
+  }
+}
