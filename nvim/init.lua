@@ -34,11 +34,12 @@ vim.pack.add({
     'https://github.com/nvim-lualine/lualine.nvim',
     'https://github.com/neovim/nvim-lspconfig',
     'https://github.com/folke/lazydev.nvim',
+    'https://github.com/lewis6991/gitsigns.nvim',
 })
 
 require("gruvbox").setup()
 vim.cmd.colorscheme("gruvbox")
-
+require('gitsigns').setup()
 require("lualine").setup()
 
 require("lazydev").setup()
