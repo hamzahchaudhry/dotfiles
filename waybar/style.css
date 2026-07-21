@@ -41,7 +41,7 @@ window#waybar {
 #custom-trayicon {
   color: @muted;
   font-size: 18px;
-  padding: 0 4px;
+  padding: 0 8px;
 }
 
 #custom-trayicon:hover {
@@ -53,7 +53,12 @@ window#waybar {
 }
 
 #workspaces {
-  padding: 0 6px;
+  padding: 0;
+}
+
+#custom-tasks {
+  padding: 0 8px;
+  font-weight: 700;
 }
 
 #workspaces button {
@@ -61,7 +66,7 @@ window#waybar {
   background: transparent;
   border: 1px solid transparent;
   border-radius: 6px;
-  margin: 0 2px;
+  margin: 0 1px;
   padding: 2px 8px;
 }
 

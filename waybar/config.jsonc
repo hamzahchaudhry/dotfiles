@@ -4,6 +4,7 @@
 
   "modules-left": [
     "group/traym",
+    "custom/tasks",
     "hyprland/workspaces"
   ],
 
@@ -52,6 +53,13 @@
   "tray": {
     "icon-size": 16,
     "spacing": 8
+  },
+
+  "custom/tasks": {
+    "interval": 60,
+    "exec": "~/.config/waybar/scripts/tasks.sh",
+    "return-type": "json",
+    "on-click": "footclient --app-id taskterm sh -c 'task next; exec \"$SHELL\"'"
   },
 
   // shared
