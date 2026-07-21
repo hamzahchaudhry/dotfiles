@@ -28,7 +28,7 @@
     "custom/battery",
 
     "custom/sep",
-    "custom/clock"
+    "clock"
   ],
 
   // left
@@ -36,7 +36,6 @@
     "orientation": "horizontal",
     "drawer": {
       "transition-duration": 0,
-      "transition-left-to-right": true,
       "children-class": "drawer-child"
     },
     "modules": [
@@ -83,21 +82,21 @@
       "warning": 80,
       "critical": 90
     },
-    "on-click": "footclient sh -c 'btop'"
+    "on-click": "footclient btop"
   },
 
   "custom/gpu-frequency": {
     "interval": 10,
     "exec": "~/.config/waybar/scripts/gpu-frequency.sh",
     "return-type": "json",
-    "on-click": "footclient sh -c 'btop'"
+    "on-click": "footclient btop"
   },
 
   "custom/power": {
     "interval": 10,
     "exec": "~/.config/waybar/scripts/power.sh",
     "return-type": "json",
-    "on-click": "footclient sh -c 'btop'"
+    "on-click": "footclient btop"
   },
 
   "temperature": {
@@ -114,22 +113,21 @@
       ""
     ],
     "tooltip-format": "CPU package: {temperatureC}°C",
-    "on-click": "footclient sh -c 'btop'"
+    "on-click": "footclient btop"
   },
 
   "memory": {
     "interval": 10,
     "format": " {used}GiB",
     "tooltip": false,
-    "on-click": "footclient sh -c 'btop'"
+    "on-click": "footclient btop"
   },
 
   "custom/swap": {
     "interval": 30,
     "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u < 1024) exit; printf \"󰾵 %.1fGiB\\n\", u / 1024 / 1024}' /proc/meminfo",
-    "return-type": "text",
     "tooltip": false,
-    "on-click": "footclient sh -c 'btop'"
+    "on-click": "footclient btop"
   },
 
   // right: media and controls
@@ -174,9 +172,8 @@
     "return-type": "json"
   },
 
-  "custom/clock": {
-    "interval": 60,
-    "exec": "/usr/bin/date '+%a, %m-%d %I:%M %p'",
-    "tooltip": false
+  "clock": {
+    "format": "{:%a, %m-%d %I:%M %p}",
+    "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
   }
 }

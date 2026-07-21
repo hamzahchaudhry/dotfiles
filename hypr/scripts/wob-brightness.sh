@@ -2,6 +2,8 @@
 
 set -eu
 
+pipe="${XDG_RUNTIME_DIR:?}/wobpipe"
+
 case "${1:-}" in
   up)
     brightnessctl s 5%+
@@ -15,4 +17,4 @@ case "${1:-}" in
     ;;
 esac
 
-brightnessctl -m | cut -d, -f4 | tr -d '%' > /tmp/wobpipe
+brightnessctl -m | cut -d, -f4 | tr -d '%' > "$pipe"

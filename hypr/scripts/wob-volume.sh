@@ -3,6 +3,7 @@
 set -eu
 
 sink='@DEFAULT_AUDIO_SINK@'
+pipe="${XDG_RUNTIME_DIR:?}/wobpipe"
 
 volume_state() {
   wpctl get-volume "$sink"
@@ -49,7 +50,7 @@ case "${1:-}" in
 esac
 
 if is_muted; then
-  printf '0 muted\n' > /tmp/wobpipe
+  printf '0 muted\n' > "$pipe"
 else
-  volume_percent > /tmp/wobpipe
+  volume_percent > "$pipe"
 fi

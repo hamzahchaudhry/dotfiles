@@ -90,7 +90,6 @@ window#waybar {
 }
 
 /* right modules */
-#systemd-failed-units,
 #idle_inhibitor,
 #cpu,
 #custom-gpu-frequency,
@@ -103,7 +102,6 @@ window#waybar {
 #backlight,
 #custom-battery,
 #clock,
-#custom-clock,
 #custom-sep {
   padding: 0 8px;
   background: transparent;
@@ -131,7 +129,6 @@ window#waybar {
 #temperature.warning,
 #temperature.critical,
 #custom-battery.low,
-#systemd-failed-units,
 #privacy-item.audio-in,
 #privacy-item.screenshare {
   color: @warn;

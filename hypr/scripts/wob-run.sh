@@ -2,7 +2,7 @@
 
 set -eu
 
-pipe=/tmp/wobpipe
+pipe="${XDG_RUNTIME_DIR:?}/wobpipe"
 
 rm -f "$pipe"
 mkfifo "$pipe"
