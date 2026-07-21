@@ -6,6 +6,7 @@ function upgrade
     doas revdep-rebuild; or return $status
     doas eclean-dist -d; or return $status
     doas eclean-kernel -n 1; or return $status
+    doas mandb --quiet; or return $status
     uv tool upgrade --all; or return $status
     fisher update; or return $status
 end

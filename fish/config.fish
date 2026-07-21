@@ -46,8 +46,13 @@ if status is-interactive
     abbr --add ip 'ip -c'
     abbr --add s 'ookla-speedtest'
     abbr --add c 'clear'
+    abbr --add net 'doas iwctl station wlan0 get-networks'
+    abbr --add con 'doas iwctl station wlan0 connect'
+    abbr --add t320 'task add project:CPSC320'
 
     set --global fish_color_command brgreen
-
+    source /usr/share/fzf/key-bindings.fish
+    set --global -- FZF_ALT_C_OPTS '--preview "eza --tree --level=2 --icons --color=always -- {}" --preview-window=right:55%'
+    set -gx FZF_CTRL_R_OPTS "--with-nth 3.. --bind 'alt-t:change-with-nth(2..|1,3..|3..)'"
     zoxide init --cmd cd fish | source
 end
