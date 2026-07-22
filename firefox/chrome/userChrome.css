@@ -18,8 +18,10 @@
 }
 
 #sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"],
-#sidebar-main,
-#sidebar-main[sidebar-launcher-expanded] {
+#sidebar-container,
+#sidebar-container[sidebar-launcher-expanded],
+sidebar-main,
+sidebar-main[expanded] {
   width: var(--rail) !important;
   min-width: var(--rail) !important;
   max-width: var(--rail) !important;
@@ -56,7 +58,7 @@
 
 #tabbrowser-tabs[orient="vertical"][expanded] :is(.tabbrowser-tab, .tab-stack, .tab-content),
 #tabbrowser-arrowscrollbox-periphery,
-#sidebar-main sidebar-main :is(.wrapper, #vertical-tabs) {
+sidebar-main :is(.wrapper, #vertical-tabs) {
   width: 100% !important;
   min-width: 100% !important;
   max-width: 100% !important;
@@ -118,7 +120,7 @@
   flex: 0 0 16px !important;
 }
 
-#sidebar-main sidebar-main .wrapper {
+sidebar-main .wrapper {
   padding: 0 !important;
   overflow: hidden !important;
 }
@@ -128,28 +130,28 @@
   display: none !important;
 }
 
-#sidebar-main sidebar-main .buttons-wrapper,
-#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] {
+sidebar-main .buttons-wrapper,
+sidebar-main .tools-and-extensions[orientation="horizontal"] {
   width: 100% !important;
   padding: 0 !important;
   align-items: center !important;
   justify-content: center !important;
 }
 
-#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] {
+sidebar-main .tools-and-extensions[orientation="horizontal"] {
   gap: 0 !important;
 }
 
-#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] > moz-button,
-#sidebar-main sidebar-main .tools-overflow {
+sidebar-main .tools-and-extensions[orientation="horizontal"] > moz-button,
+sidebar-main .tools-overflow {
   width: var(--pill) !important;
   min-width: var(--pill) !important;
   max-width: var(--pill) !important;
   margin-inline: auto !important;
 }
 
-#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] > moz-button::part(button),
-#sidebar-main sidebar-main .tools-overflow::part(button) {
+sidebar-main .tools-and-extensions[orientation="horizontal"] > moz-button::part(button),
+sidebar-main .tools-overflow::part(button) {
   width: var(--pill) !important;
   height: var(--pill) !important;
   min-height: var(--pill) !important;
@@ -159,10 +161,9 @@
   border-radius: var(--tab-border-radius) !important;
 }
 
-#sidebar-main sidebar-main .tools-and-extensions[orientation="horizontal"] img,
-#sidebar-main sidebar-main .tools-overflow img {
+sidebar-main .tools-and-extensions[orientation="horizontal"] img,
+sidebar-main .tools-overflow img {
   width: 16px !important;
   height: 16px !important;
   margin: auto !important;
 }
-
