@@ -37,7 +37,7 @@ if status is-interactive
     abbr --add gcl 'git clone'
     abbr --add gs 'git status -sb'
     abbr --add ga 'git add'
-    abbr --add gc 'git commit'
+    abbr --add gc --set-cursor 'git commit -m "%"'
     abbr --add gp 'git push'
     abbr --add gd 'git diff'
     abbr --add gr 'git restore'
