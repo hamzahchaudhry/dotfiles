@@ -16,7 +16,7 @@ hl.config({
     xwayland = { enabled = false },
 })
 
-hl.animation({ leaf = "global", enabled = true, speed = 1.5, bezier = "default" })
+hl.config({ animations = { enabled = false } })
 
 -- environment
 hl.env("HYPRCURSOR_THEME", "macOS")
