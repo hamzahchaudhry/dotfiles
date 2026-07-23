@@ -173,6 +173,7 @@
   },
 
   "clock": {
+    "timezone": "Etc/GMT+7",
     "format": "{:%a, %m-%d %I:%M %p}",
     "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
   }

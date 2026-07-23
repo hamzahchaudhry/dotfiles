@@ -89,3 +89,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.keymap.set("i", "<C-Space>", vim.lsp.completion.get)
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.lua",
+  callback = function(args)
+      vim.cmd("silent keepjumps %!stylua --stdin-filepath " ..
+      vim.fn.shellescape(args.file) .. " -")
+  end,
+})
+
