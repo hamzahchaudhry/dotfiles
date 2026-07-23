@@ -14,10 +14,8 @@
     "custom/sep",
     "cpu",
     "custom/gpu-frequency",
-    "custom/power",
     "temperature",
     "memory",
-    "custom/swap",
 
     "custom/sep",
     "privacy",
@@ -25,7 +23,7 @@
 
     "custom/sep",
     "backlight",
-    "custom/battery",
+    "battery",
 
     "custom/sep",
     "clock"
@@ -92,13 +90,6 @@
     "on-click": "footclient btop"
   },
 
-  "custom/power": {
-    "interval": 10,
-    "exec": "~/.config/waybar/scripts/power.sh",
-    "return-type": "json",
-    "on-click": "footclient btop"
-  },
-
   "temperature": {
     "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
     "input-filename": "temp1_input",
@@ -117,15 +108,7 @@
   },
 
   "memory": {
-    "interval": 10,
-    "format": " {used}GiB",
-    "tooltip": false,
-    "on-click": "footclient btop"
-  },
-
-  "custom/swap": {
-    "interval": 30,
-    "exec": "awk '/^SwapTotal:/ {t=$2} /^SwapFree:/ {f=$2} END {u=t-f; if (u < 1024) exit; printf \"󰾵 %.1fGiB\\n\", u / 1024 / 1024}' /proc/meminfo",
+    "format": " {used:0.1f}GiB  󰾵 {swapUsed:0.1f}GiB",
     "tooltip": false,
     "on-click": "footclient btop"
   },
@@ -166,10 +149,24 @@
     ]
   },
 
-  "custom/battery": {
-    "interval": 60,
-    "exec": "~/.config/waybar/scripts/battery.sh",
-    "return-type": "json"
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "ADP1",
+    "states": {
+      "low": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-full": " {capacity}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "Power: {power} W\nTime: {time}\nHealth: {health}%\nCycles: {cycles}"
   },
 
   "clock": {

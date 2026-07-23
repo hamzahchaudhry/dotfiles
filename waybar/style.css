@@ -93,14 +93,12 @@ window#waybar {
 #idle_inhibitor,
 #cpu,
 #custom-gpu-frequency,
-#custom-power,
 #temperature,
 #memory,
-#custom-swap,
 #privacy,
 #wireplumber,
 #backlight,
-#custom-battery,
+#battery,
 #clock,
 #custom-sep {
   padding: 0 8px;
@@ -117,10 +115,8 @@ window#waybar {
 #idle_inhibitor,
 #cpu,
 #custom-gpu-frequency,
-#custom-power,
 #temperature,
 #memory,
-#custom-swap,
 #privacy {
   color: @muted;
 }
@@ -128,7 +124,7 @@ window#waybar {
 /* state styling */
 #temperature.warning,
 #temperature.critical,
-#custom-battery.low,
+#battery.low,
 #privacy-item.audio-in,
 #privacy-item.screenshare {
   color: @warn;
@@ -136,7 +132,9 @@ window#waybar {
 }
 
 #wireplumber.muted,
-#custom-battery.plugged {
+#battery.charging,
+#battery.plugged,
+#battery.full {
   color: @muted;
 }
 

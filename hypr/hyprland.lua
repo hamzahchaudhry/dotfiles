@@ -11,7 +11,7 @@ hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 
 -- settings
 hl.config({
-    general = { gaps_in = 0, gaps_out = 0, col = { active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 } } },
+    general = { gaps_in = 0, gaps_out = 0, col = { active_border = "rgba(00ff99ee)" } },
     decoration = { shadow = { enabled = false }, blur = { enabled = false } },
     xwayland = { enabled = false },
 })

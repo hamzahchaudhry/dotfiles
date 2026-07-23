@@ -1,23 +1,15 @@
 #!/bin/sh
+
 set -eu
 
-tw() {
-    task rc.verbose=nothing rc.context=none "$@"
-}
-
-pending=$(tw status:pending -WAITING count)
-upcoming=$(tw status:pending -WAITING due.after:now due.before:now+24hours count)
-overdue=$(tw status:pending -WAITING due.before:now count)
-
-text=$(printf \
-    '<span foreground="#ffffff" weight="bold">%s</span>  <span foreground="#ffb000" weight="bold">%s</span>  <span foreground="#ff4040" weight="bold">%s</span>' \
-    "$pending" "$upcoming" "$overdue")
-
-tooltip=$(printf \
-    'Tasks to do: %s\nDue within 24 hours: %s\nOverdue: %s' \
-    "$pending" "$upcoming" "$overdue")
-
-jq -cn \
-    --arg text "$text" \
-    --arg tooltip "$tooltip" \
-    '{text: $text, tooltip: $tooltip}'
+task rc.verbose=nothing rc.context=none status:pending -WAITING export |
+  jq -c '
+    def epoch: strptime("%Y%m%dT%H%M%SZ") | mktime;
+    now as $now |
+    length as $pending |
+    ([.[] | select(.due? and (.due | epoch) < $now)] | length) as $overdue |
+    ([.[] | select(.due? and (.due | epoch) >= $now and (.due | epoch) < ($now + 86400))] | length) as $upcoming |
+    {
+      text: "<span foreground=\"#ffffff\" weight=\"bold\">\($pending)</span>  <span foreground=\"#ffb000\" weight=\"bold\">\($upcoming)</span>  <span foreground=\"#ff4040\" weight=\"bold\">\($overdue)</span>",
+      tooltip: "Tasks to do: \($pending)\nDue within 24 hours: \($upcoming)\nOverdue: \($overdue)"
+    }'
