@@ -27,9 +27,10 @@ if status is-login
     fish_add_path --path --move "$QUARTUS_ROOTDIR/bin" "$ALTERA_ROOT/questa_fse/bin" "$HOME/.local/bin"
 end
 
-# enter hyprland on tty1 login
+# enter window manager on tty1 login
 if status is-login && test (tty) = /dev/tty1
-    exec dbus-run-session start-hyprland
+    set -gx NO_AT_BRIDGE 1
+    exec dbus-run-session mango
 end
 
 if status is-interactive
@@ -47,6 +48,7 @@ if status is-interactive
     abbr --add s 'ookla-speedtest'
     abbr --add c 'clear'
     abbr --add net 'doas iwctl station wlan0 get-networks'
+    abbr --add iwdr 'doas rc-service iwd restart'
     abbr --add con 'doas iwctl station wlan0 connect'
     abbr --add t320 'task add project:CPSC320'
 

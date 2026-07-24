@@ -5,7 +5,7 @@
   "modules-left": [
     "group/traym",
     "custom/tasks",
-    "hyprland/workspaces"
+    "mango/workspaces"
   ],
 
   "modules-right": [
@@ -13,7 +13,6 @@
 
     "custom/sep",
     "cpu",
-    "custom/gpu-frequency",
     "temperature",
     "memory",
 
@@ -53,10 +52,17 @@
   },
 
   "custom/tasks": {
-    "interval": 60,
+    "interval": 300,
     "exec": "~/.config/waybar/scripts/tasks.sh",
     "return-type": "json",
     "on-click": "footclient --app-id taskterm sh -c 'task next; exec \"$SHELL\"'"
+  },
+
+  "mango/workspaces": {
+    "format": "{icon}",
+    "hide-empty": true,
+    "on-click": "activate",
+    "on-click-right": "toggle"
   },
 
   // shared
@@ -80,13 +86,6 @@
       "warning": 80,
       "critical": 90
     },
-    "on-click": "footclient btop"
-  },
-
-  "custom/gpu-frequency": {
-    "interval": 10,
-    "exec": "~/.config/waybar/scripts/gpu-frequency.sh",
-    "return-type": "json",
     "on-click": "footclient btop"
   },
 

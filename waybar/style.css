@@ -65,7 +65,7 @@ window#waybar {
   color: @muted;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 6px;
+  border-radius: 0;
   margin: 0 1px;
   padding: 2px 8px;
 }
@@ -84,7 +84,7 @@ window#waybar {
 .modules-right {
   background: @bg_pill;
   border: 1px solid @sep;
-  border-radius: 10px;
+  border-radius: 0;
   padding: 0 6px;
   margin: 2px 0;
 }
@@ -92,7 +92,6 @@ window#waybar {
 /* right modules */
 #idle_inhibitor,
 #cpu,
-#custom-gpu-frequency,
 #temperature,
 #memory,
 #privacy,
@@ -114,7 +113,6 @@ window#waybar {
 /* quiet modules */
 #idle_inhibitor,
 #cpu,
-#custom-gpu-frequency,
 #temperature,
 #memory,
 #privacy {

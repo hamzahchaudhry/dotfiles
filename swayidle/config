@@ -1,0 +1,2 @@
+timeout 300 'pidof waylock || waylock -init-color 0x181818 -input-color 0x000000 -fail-color 0x300000'
+timeout 600 'doas -n sh -c "echo mem > /sys/power/state"'

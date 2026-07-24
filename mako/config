@@ -6,7 +6,7 @@ font=JetBrainsMono Nerd Font 12
 format=<span size="large"><b>%s</b></span>\n<span foreground="#bac2de">%b</span>
 
 icons=1
-icon-path=/usr/share/icons/Papirus-Dark:/usr/share/icons/Papirus:/usr/share/pixmaps
+icon-path=/usr/share/icons/Adwaita:/usr/share/pixmaps
 
 history=1
 default-timeout=5000
