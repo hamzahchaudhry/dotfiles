@@ -2,43 +2,17 @@
 {
   "position": "bottom",
 
-  "modules-left": [
-    "group/traym",
-    "custom/tasks",
-    "mango/workspaces"
-  ],
+  "modules-left": ["group/traym", "custom/tasks", "mango/workspaces"],
 
-  "modules-right": [
-    "idle_inhibitor",
-
-    "custom/sep",
-    "cpu",
-    "temperature",
-    "memory",
-
-    "custom/sep",
-    "privacy",
-    "wireplumber",
-
-    "custom/sep",
-    "backlight",
-    "battery",
-
-    "custom/sep",
-    "clock"
-  ],
+  "modules-right": ["idle_inhibitor", "cpu", "temperature", "memory", "privacy", "wireplumber", "backlight", "battery", "clock"],
 
   // left
   "group/traym": {
     "orientation": "horizontal",
     "drawer": {
-      "transition-duration": 0,
-      "children-class": "drawer-child"
+      "transition-duration": 0
     },
-    "modules": [
-      "custom/trayicon",
-      "tray"
-    ]
+    "modules": ["custom/trayicon", "tray"]
   },
 
   "custom/trayicon": {
@@ -65,12 +39,6 @@
     "on-click-right": "toggle"
   },
 
-  // shared
-  "custom/sep": {
-    "format": "│",
-    "tooltip": false
-  },
-
   // right: system
   "idle_inhibitor": {
     "format": "{icon}",
@@ -82,10 +50,7 @@
 
   "cpu": {
     "format": " {usage}%   {avg_frequency}GHz",
-    "states": {
-      "warning": 80,
-      "critical": 90
-    },
+    "states": { "warning": 80, "critical": 90 },
     "on-click": "footclient btop"
   },
 
@@ -95,13 +60,7 @@
     "warning-threshold": 80,
     "critical-threshold": 90,
     "format": "{icon} {temperatureC}°",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    "format-icons": ["", "", "", "", ""],
     "tooltip-format": "CPU package: {temperatureC}°C",
     "on-click": "footclient btop"
   },
@@ -125,11 +84,7 @@
     "format-source-muted": " ",
     "format-icons": {
       "headphone": " ",
-      "default": [
-        " ",
-        " ",
-        " "
-      ]
+      "default": [" ", " ", " "]
     },
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
     "tooltip": false,
@@ -139,32 +94,16 @@
   "backlight": {
     "interval": 300,
     "format": "{icon} {percent}%",
-    "format-icons": [
-      "󱩎",
-      "󱩑",
-      "󱩓",
-      "󱩕",
-      "󰛨"
-    ]
+    "format-icons": ["󱩎", "󱩑", "󱩓", "󱩕", "󰛨"]
   },
 
   "battery": {
-    "bat": "BAT0",
-    "adapter": "ADP1",
-    "states": {
-      "low": 20
-    },
+    "states": { "low": 20 },
     "format": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",
     "format-full": " {capacity}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    "format-icons": ["", "", "", "", ""],
     "tooltip-format": "Power: {power} W\nTime: {time}\nHealth: {health}%\nCycles: {cycles}"
   },
 
