@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -eu
-
 task rc.verbose=nothing rc.context=none status:pending -WAITING export |
   jq -c '
     def epoch: strptime("%Y%m%dT%H%M%SZ") | mktime;

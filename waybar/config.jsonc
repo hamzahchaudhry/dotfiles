@@ -1,29 +1,19 @@
-// -*- mode: jsonc -*-
 {
   "position": "bottom",
 
   "modules-left": ["group/traym", "custom/tasks", "mango/workspaces"],
 
-  "modules-right": ["idle_inhibitor", "cpu", "temperature", "memory", "privacy", "wireplumber", "backlight", "battery", "clock"],
+  "modules-right": ["idle_inhibitor", "cpu", "temperature", "battery#power", "memory", "privacy", "wireplumber", "backlight", "battery", "clock"],
 
-  // left
   "group/traym": {
     "orientation": "horizontal",
-    "drawer": {
-      "transition-duration": 0
-    },
+    "drawer": { "transition-duration": 0 },
     "modules": ["custom/trayicon", "tray"]
   },
 
-  "custom/trayicon": {
-    "format": "",
-    "tooltip": false
-  },
+  "custom/trayicon": { "format": "", "tooltip": false },
 
-  "tray": {
-    "icon-size": 16,
-    "spacing": 8
-  },
+  "tray": { "spacing": 8 },
 
   "custom/tasks": {
     "interval": 300,
@@ -32,14 +22,8 @@
     "on-click": "footclient --app-id taskterm sh -c 'task next; exec \"$SHELL\"'"
   },
 
-  "mango/workspaces": {
-    "format": "{icon}",
-    "hide-empty": true,
-    "on-click": "activate",
-    "on-click-right": "toggle"
-  },
+  "mango/workspaces": { "hide-empty": true, "on-click": "activate" },
 
-  // right: system
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
@@ -50,7 +34,6 @@
 
   "cpu": {
     "format": " {usage}%   {avg_frequency}GHz",
-    "states": { "warning": 80, "critical": 90 },
     "on-click": "footclient btop"
   },
 
@@ -71,10 +54,13 @@
     "on-click": "footclient btop"
   },
 
-  // right: media and controls
-  "privacy": {
-    "icon-size": 14
+  "battery#power": {
+    "format": " {power:.1f}W",
+    "tooltip": false,
+    "on-click": "footclient btop"
   },
+
+  "privacy": { "icon-size": 14 },
 
   "wireplumber": {
     "format": "{volume}% {icon} {format_source}",
@@ -100,11 +86,9 @@
   "battery": {
     "states": { "low": 20 },
     "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
     "format-full": " {capacity}%",
     "format-icons": ["", "", "", "", ""],
-    "tooltip-format": "Power: {power} W\nTime: {time}\nHealth: {health}%\nCycles: {cycles}"
+    "tooltip-format": "Time: {time}\nHealth: {health}%\nCycles: {cycles}"
   },
 
   "clock": {

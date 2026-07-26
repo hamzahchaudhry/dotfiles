@@ -1,51 +1,27 @@
-@define-color bg     rgba(21, 21, 32, 0.55);
 @define-color text   #cdd6f4;
 @define-color muted  #7f849c;
-@define-color warn   #ff7b72;
 @define-color accent #b4befe;
 
 * {
-  min-height: 0;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
   font-weight: 200;
-  transition: none;
-  animation: none;
 }
 
 window#waybar {
-  background: @bg;
+  background: rgba(21, 21, 32, 0.55);
   color: @text;
   padding: 0 6px;
 }
 
-#group-traym, #group-traym .drawer-child, #workspaces {
-  padding: 0;
-  background: transparent;
-}
-
-#tray, #custom-trayicon, #custom-tasks,
+#custom-trayicon, #custom-tasks,
 #idle_inhibitor, #cpu, #temperature, #memory, #privacy,
-#wireplumber, #backlight, #battery, #clock {
-  padding: 0 8px;
-  background: transparent;
-}
+#wireplumber, #backlight, #battery, #clock { padding: 0 8px; }
 
-#custom-trayicon {
-  color: @muted;
-  font-size: 18px;
-}
-
-#custom-tasks {
-  font-weight: 700;
-}
+#custom-trayicon { font-size: 18px; }
 
 #workspaces button {
   padding: 2px 8px;
-  background: transparent;
   color: @muted;
 }
 
@@ -55,27 +31,23 @@ window#waybar {
   font-weight: 600;
 }
 
-#custom-trayicon:hover, #workspaces button:hover {
-  color: @accent;
-}
+#custom-trayicon:hover, #workspaces button:hover { color: @accent; }
 
 #clock {
   color: #e3b341;
   font-weight: 600;
 }
 
-#idle_inhibitor, #cpu, #temperature, #memory, #privacy,
-#wireplumber.muted, #battery.charging, #battery.plugged, #battery.full {
-  color: @muted;
-}
+#custom-trayicon, #idle_inhibitor, #cpu, #temperature, #memory, #privacy,
+#wireplumber.muted, #battery.power { color: @muted; }
 
 #temperature.warning, #temperature.critical, #battery.low,
 #privacy-item.audio-in, #privacy-item.screenshare {
-  color: @warn;
+  color: #ff7b72;
   font-weight: 600;
 }
 
-#idle_inhibitor.activated, #privacy-item.audio-out {
+#idle_inhibitor.activated {
   color: @accent;
   font-weight: 600;
 }
