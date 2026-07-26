@@ -3,6 +3,7 @@
 @define-color accent #b4befe;
 
 * {
+  min-height: 0;
   font-family: "JetBrainsMono Nerd Font";
   font-size: 14px;
   font-weight: 200;
