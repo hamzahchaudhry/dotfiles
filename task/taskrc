@@ -2,7 +2,7 @@
 news.version=3.4.2
 
 data.location=~/.local/share/task
-hooks.location=~/.config/task/hooks
+hooks=0
 
 include dark-256.theme
 
