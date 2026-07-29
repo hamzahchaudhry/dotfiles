@@ -1,10 +1,8 @@
 [Desktop Entry]
-Version=1.0
 Type=Application
 Name=Quartus Prime Lite
 Comment=FPGA design and development environment
-Exec=/home/hamzah/.local/bin/quartus
+Exec=quartus
 Icon=/home/hamzah/.local/opt/altera/25.1/quartus/adm/quartusii.png
-Terminal=false
 Categories=Development;Electronics;
 StartupNotify=true

@@ -3,7 +3,7 @@ set -eu
 
 root="${XDG_DATA_HOME:-$HOME/.local/share}/stm32cubemx"
 home="$root/home"
-mx="${STM32CUBEMX_HOME:-$HOME/.local/opt/STM32CubeMX}"
+mx="${STM32CubeMX_PATH:-$HOME/.local/opt/STM32CubeMX}"
 mkdir -p "$home/.cache/tmp" "$home/.config/java-prefs"
 export HOME="$home" XDG_CONFIG_HOME="$home/.config" XDG_CACHE_HOME="$home/.cache"
 export XDG_DATA_HOME="$home/.local/share" XDG_STATE_HOME="$home/.local/state" TMPDIR="$home/.cache/tmp"
