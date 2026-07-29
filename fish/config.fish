@@ -24,7 +24,7 @@ if status is-login
     set -gx QSYS_ROOTDIR "$QUARTUS_ROOTDIR/sopc_builder/bin"
     set -gx SALT_LICENSE_SERVER "$HOME/.altera.quartus/questa_lic.dat"
 
-    fish_add_path --path --move "$QUARTUS_ROOTDIR/bin" "$ALTERA_ROOT/questa_fse/bin" "$HOME/.local/bin"
+    fish_add_path --path --move "$HOME/.local/bin" "$QUARTUS_ROOTDIR/bin" "$ALTERA_ROOT/questa_fse/bin"
 end
 
 # enter window manager on tty1 login
