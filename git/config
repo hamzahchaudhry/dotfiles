@@ -32,9 +32,6 @@
 [branch]
 	sort = -committerdate
 
-[status]
-	showUntrackedFiles = all
-
 [diff]
 	algorithm = histogram
 	colorMoved = plain

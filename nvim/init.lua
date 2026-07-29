@@ -37,7 +37,6 @@ vim.pack.add({
     'https://github.com/lewis6991/gitsigns.nvim',
 })
 
-require("gruvbox").setup()
 vim.cmd.colorscheme("gruvbox")
 require('gitsigns').setup()
 require("lualine").setup()
@@ -56,11 +55,8 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.INFO] = "i",
         },
     },
-    update_in_insert = true,
     severity_sort = true,
     float = {
-        focusable = true,
-        style = "minimal",
         border = "rounded",
         source = "always",
         header = "",
@@ -97,4 +93,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       vim.fn.shellescape(args.file) .. " -")
   end,
 })
-
