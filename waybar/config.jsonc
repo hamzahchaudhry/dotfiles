@@ -26,10 +26,7 @@
 
   "idle_inhibitor": {
     "format": "{icon}",
-    "format-icons": {
-      "activated": " ",
-      "deactivated": " "
-    }
+    "format-icons": { "activated": " ", "deactivated": " " }
   },
 
   "cpu": {
@@ -68,10 +65,7 @@
     "format-muted": "󰖁 {format_source}",
     "format-source": " {volume}%",
     "format-source-muted": " ",
-    "format-icons": {
-      "headphone": " ",
-      "default": [" ", " ", " "]
-    },
+    "format-icons": { "headphone": " ", "default": [" ", " ", " "] },
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
     "tooltip": false,
     "max-volume": 150
@@ -85,9 +79,14 @@
 
   "battery": {
     "states": { "low": 20 },
+    "events": { "on-discharging-low": "~/.config/waybar/scripts/low-battery.sh" },
     "format": "{icon} {capacity}%",
-    "format-full": " {capacity}%",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": {
+      "charging": "",
+      "plugged": "",
+      "full": "",
+      "default": ["", "", "", "", ""]
+    },
     "tooltip-format": "Time: {time}\nHealth: {health}%\nCycles: {cycles}"
   },
 

@@ -1,2 +1,1 @@
-* * * * * "$HOME/.local/bin/battery-threshold.sh"
 0 * * * * "$HOME/.local/bin/task-notify-due.sh"

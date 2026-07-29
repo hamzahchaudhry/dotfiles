@@ -39,14 +39,15 @@ window#waybar {
   font-weight: 600;
 }
 
-#custom-trayicon, #idle_inhibitor, #cpu, #temperature, #memory, #privacy,
-#wireplumber.muted, #battery.power { color: @muted; }
-
 #temperature.warning, #temperature.critical, #battery.low,
 #privacy-item.audio-in, #privacy-item.screenshare {
   color: #ff7b72;
   font-weight: 600;
 }
+
+#custom-trayicon, #idle_inhibitor, #cpu, #temperature, #memory, #privacy,
+#wireplumber.muted, #battery.power, #battery.charging,
+#battery.plugged, #battery.full { color: @muted; }
 
 #idle_inhibitor.activated {
   color: @accent;
