@@ -23,13 +23,17 @@ window#waybar {
 
 #workspaces button {
   padding: 2px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   color: @muted;
+  transition: none;
 }
 
 #workspaces button.active {
   color: @text;
   box-shadow: inset 0 -2px @accent;
-  font-weight: 600;
 }
 
 #custom-trayicon:hover, #workspaces button:hover { color: @accent; }
