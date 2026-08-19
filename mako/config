@@ -1,7 +1,7 @@
 width=500
 border-radius=12
 background-color=#000000
-font=JetBrainsMono Nerd Font 12
+font=JetBrainsMonoNL Nerd Font 12
 format=<span size="large"><b>%s</b></span>\n<span foreground="#bac2de">%b</span>
 icon-path=/usr/share/icons/AdwaitaLegacy
 default-timeout=5000
