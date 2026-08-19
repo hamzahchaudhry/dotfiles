@@ -1,2 +1,3 @@
+timeout 270 'brightnessctl -q -s set 1%' resume 'brightnessctl -q -r'
 timeout 300 'pidof -q waylock || exec waylock -init-color 0x000000 -input-color 0x202020 -fail-color 0x300000'
 timeout 600 'exec doas -n sh -c "echo mem > /sys/power/state"'
