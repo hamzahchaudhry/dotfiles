@@ -1,3 +1,5 @@
+set -g fish_greeting
+
 if status is-login
     if not set -q XDG_RUNTIME_DIR
         set -gx XDG_RUNTIME_DIR "/tmp/xdg-runtime-$USER"
@@ -34,6 +36,9 @@ if status is-login && test (tty) = /dev/tty1
 end
 
 if status is-interactive
+    fish_vi_key_bindings
+    bind -M insert ctrl-backspace backward-kill-word
+
     # abbreviations
     abbr --add gcl 'git clone'
     abbr --add gs 'git status -sb'
@@ -50,7 +55,10 @@ if status is-interactive
     abbr --add net 'doas iwctl station wlan0 get-networks'
     abbr --add iwdr 'doas rc-service iwd restart'
     abbr --add con 'doas iwctl station wlan0 connect'
-    abbr --add t320 'task add project:CPSC320'
+    abbr --add t 'task'
+    abbr --add td 'task done'
+    abbr --add tsm 'task add project:supermileage'
+    abbr --add tper 'task add project:personal'
 
     set --global fish_color_command brgreen
     source /usr/share/fzf/key-bindings.fish
