@@ -1,27 +1,5 @@
 @-moz-document domain("chatgpt.com") {
-
-  :is(main, section, article, div, nav)[class*="max-w"],
-  :is(main, section, article, div, nav)[class~="container"],
-  :is(main, section, article, div, nav)[class*="container"],
-  :is(main, section, article, div, nav)[style*="max-width"] {
-    max-width: none !important;
-  }
-
-  :is(main, section, article, div)[class*="mx-auto"] {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
-  }
-
-  body, #__next, main {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  :is(div, article, section)[class*="prose"],
-  :is(div, article, section)[class*="markdown"],
-  :is(div, article, section)[class*="text-base"] {
+  :is([class*="max-w"], [class*="container"], [style*="max-width"]) {
     max-width: none !important;
   }
 }
-
