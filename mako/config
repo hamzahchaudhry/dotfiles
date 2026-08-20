@@ -20,6 +20,8 @@ default-timeout=1200
 
 [category=tasks]
 border-color=#91ddf2
+height=500
+default-timeout=15000
 
 [urgency=critical]
 border-color=#ff0000

@@ -66,10 +66,10 @@
   "rounded_selection": false,
   "unnecessary_code_fade": 0.5,
   "buffer_line_height": "standard",
-  "buffer_font_family": "JetBrainsMonoNL Nerd Font Mono",
+  "buffer_font_family": "JetBrainsMonoNL Nerd Font",
   "terminal": {
     "button": false,
-    "font_family": "JetBrainsMonoNL Nerd Font Mono",
+    "font_family": "JetBrainsMonoNL Nerd Font",
   },
   "telemetry": {
     "diagnostics": false,
