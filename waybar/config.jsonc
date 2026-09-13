@@ -67,6 +67,7 @@
     "format-source-muted": " ",
     "format-icons": { "headphone": " ", "default": [" ", " ", " "] },
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "easyeffects",
     "tooltip": false,
     "max-volume": 150
   },
