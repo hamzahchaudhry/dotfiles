@@ -6,6 +6,9 @@ hooks=0
 
 include dark-256.theme
 
+color.project.supermileage=cyan
+color.project.personal=yellow
+
 report.next.columns=id,project,description,due,due.relative
 report.next.labels=id,project,task,due,countdown
 report.next.dateformat=a, M-D H:N
