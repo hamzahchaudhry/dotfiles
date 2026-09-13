@@ -8,7 +8,7 @@ function airpods
     else
         doas rfkill unblock bluetooth
         doas rc-service bluetooth start
-        sleep 0.5
+        sleep 0.3
         bluetoothctl connect $mac
     end
 end

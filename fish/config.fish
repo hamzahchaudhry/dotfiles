@@ -57,8 +57,11 @@ if status is-interactive
     abbr --add con 'doas iwctl station wlan0 connect'
     abbr --add t 'task'
     abbr --add td 'task done'
+    abbr --add tm 'task modify'
     abbr --add tsm 'task add project:supermileage'
     abbr --add tper 'task add project:personal'
+    abbr --add cr 'codex resume'
+    abbr --add ep 'doas emlop p'
 
     set --global fish_color_command brgreen
     source /usr/share/fzf/key-bindings.fish
