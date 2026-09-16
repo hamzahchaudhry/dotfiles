@@ -1,25 +1,11 @@
 set -g fish_greeting
 
 if status is-login
-    if not set -q XDG_RUNTIME_DIR
-        set -gx XDG_RUNTIME_DIR "/tmp/xdg-runtime-$USER"
-        mkdir -p "$XDG_RUNTIME_DIR"
-        chmod 700 "$XDG_RUNTIME_DIR"
-    end
-
-    # xdg env vars
-    set -gx XDG_CONFIG_HOME "$HOME/.config"
-    set -gx XDG_DATA_HOME "$HOME/.local/share"
-    set -gx XDG_CACHE_HOME "$HOME/.cache"
-    set -gx XDG_STATE_HOME "$HOME/.local/state"
-
     # user env vars
-    set -gx CODEX_HOME "$XDG_CONFIG_HOME/codex"
-    set -gx PLATFORMIO_CORE_DIR "$XDG_DATA_HOME/platformio"
-    set -gx GOPATH "$XDG_DATA_HOME/go"
-    set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
-
-    set -gx STM32CubeMX_PATH "$HOME/.local/opt/STM32CubeMX"
+    set -gx CODEX_HOME "$HOME/.config/codex"
+    set -gx PLATFORMIO_CORE_DIR "$HOME/.local/share/platformio"
+    set -gx GOPATH "$HOME/.local/share/go"
+    set -gx CARGO_HOME "$HOME/.local/share/cargo"
 
     set -gx ALTERA_ROOT "$HOME/.local/opt/altera/25.1"
     set -gx QUARTUS_ROOTDIR "$ALTERA_ROOT/quartus"
