@@ -26,7 +26,8 @@
 
   "idle_inhibitor": {
     "format": "{icon}",
-    "format-icons": { "activated": " ", "deactivated": " " }
+    "format-icons": { "activated": " ", "deactivated": " " },
+    "tooltip": false
   },
 
   "cpu": {
@@ -79,7 +80,8 @@
   "backlight": {
     "interval": 300,
     "format": "{icon} {percent}%",
-    "format-icons": ["󱩎", "󱩑", "󱩓", "󱩕", "󰛨"]
+    "format-icons": ["󱩎", "󱩑", "󱩓", "󱩕", "󰛨"],
+    "tooltip": false
   },
 
   "battery": {
