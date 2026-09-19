@@ -55,7 +55,7 @@ vim.lsp.config("neocmake", {
   }
 })
 
-vim.lsp.enable({ "clangd", "lua_ls", "neocmake" })
+vim.lsp.enable({ "clangd", "lua_ls", "neocmake", "bashls" })
 
 vim.diagnostic.config({ virtual_text = true })
 
