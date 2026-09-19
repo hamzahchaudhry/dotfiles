@@ -1,1 +1,1 @@
-0 * * * * "$HOME/.local/bin/task-notify-due.sh"
+0 * * * * "$HOME/.local/bin/task-notify-due"

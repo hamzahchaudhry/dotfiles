@@ -50,7 +50,7 @@ window#waybar {
 }
 
 #custom-trayicon, #idle_inhibitor, #cpu, #temperature, #memory, #privacy,
-#wireplumber.muted, #battery.power, #battery.charging,
+#wireplumber.muted, #wireplumber.source.source-muted, #battery.power, #battery.charging,
 #battery.plugged, #battery.full { color: @muted; }
 
 #idle_inhibitor.activated {

@@ -3,7 +3,7 @@
 
   "modules-left": ["group/traym", "custom/tasks", "mango/workspaces"],
 
-  "modules-right": ["idle_inhibitor", "cpu", "temperature", "battery#power", "memory", "privacy", "wireplumber", "backlight", "battery", "clock"],
+  "modules-right": ["idle_inhibitor", "cpu", "temperature", "battery#power", "memory", "privacy", "wireplumber", "wireplumber#source", "backlight", "battery", "clock"],
 
   "group/traym": {
     "orientation": "horizontal",
@@ -17,7 +17,7 @@
 
   "custom/tasks": {
     "interval": 300,
-    "exec": "~/.config/waybar/scripts/tasks.sh",
+    "exec": "~/.config/waybar/scripts/tasks",
     "return-type": "json",
     "on-click": "footclient --app-id taskterm sh -c 'task next; exec \"$SHELL\"'"
   },
@@ -60,16 +60,20 @@
   "privacy": { "icon-size": 14 },
 
   "wireplumber": {
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-muted": "󰖁 {format_source}",
-    "format-source": " {volume}%",
-    "format-source-muted": " ",
-    "format-icons": { "headphone": " ", "default": [" ", " ", " "] },
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
-    "on-click-right": "easyeffects",
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "󰖁",
+    "format-icons": { "headphone": "", "default": ["", "", ""] },
     "tooltip": false,
     "max-volume": 150
+  },
+
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "format": " {volume}%",
+    "format-muted": "",
+    "on-click": "~/.local/bin/audio-control mic-toggle",
+    "tooltip": false
   },
 
   "backlight": {
@@ -80,7 +84,7 @@
 
   "battery": {
     "states": { "low": 20 },
-    "events": { "on-discharging-low": "~/.config/waybar/scripts/low-battery.sh" },
+    "events": { "on-discharging-low": "~/.config/waybar/scripts/low-battery" },
     "format": "{icon} {capacity}%",
     "format-icons": {
       "charging": "",

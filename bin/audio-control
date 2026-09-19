@@ -1,0 +1,69 @@
+#!/bin/bash
+
+if (( $# != 1 )); then
+  exit 1
+fi
+
+
+ensure_running () {
+  if ! pgrep -x --quiet easyeffects; then
+    easyeffects --service-mode --hide-window >/dev/null 2>&1 &
+  fi
+}
+
+stop_if_idle () {
+  sink=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+  mic=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)
+  read -r _ level _ <<< "$sink"
+  if pgrep -x --quiet easyeffects && [[ $mic == *MUTED* ]] && { [[ $sink == *MUTED* ]] || (( 10#${level/./} == 0 )); }; then
+    pkill -x easyeffects
+  fi
+}
+
+case "$1" in
+  up)
+    ensure_running
+    read -r _ level _ <<< "$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+    percent=$((10#${level/./}))
+    target=$(((percent / 5 + 1) * 5))
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ -l 1.5 $target%
+    ;;
+
+  down)
+    read -r _ level _ <<< "$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+    percent=$((10#${level/./}))
+    target=$(((percent - 1) / 5 * 5))
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ -l 1.5 $target%
+
+    if (( target == 0 )); then
+      wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
+      stop_if_idle
+    fi
+    ;;
+
+  mic-toggle)
+    mic=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)
+    if [[ $mic == *MUTED* ]]; then
+      ensure_running
+      wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 0
+    else
+      wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+      stop_if_idle
+    fi
+    ;;
+
+  mute)
+    sink=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+    if [[ $sink == *MUTED* ]]; then
+      read -r _ level _ <<< "$sink"
+      if (( 10#${level/./} > 0 )); then
+        ensure_running
+      fi
+      wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
+    else
+      wpctl set-mute @DEFAULT_AUDIO_SINK@ 1
+      stop_if_idle
+    fi
+    ;;
+esac
