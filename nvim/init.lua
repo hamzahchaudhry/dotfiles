@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
 -- options
+vim.o.modeline = false
 vim.o.clipboard = "unnamedplus"
 vim.o.confirm = true
 
@@ -48,6 +49,13 @@ local fzf = require("fzf-lua")
 fzf.setup()
 
 -- lsp
+vim.lsp.config("clangd", {
+  cmd = {
+    "clangd",
+    "--query-driver=/usr/bin/arm-none-eabi-*",
+  },
+})
+
 vim.lsp.config("neocmake", {
   init_options = {
     format = { enable = true },
@@ -55,7 +63,7 @@ vim.lsp.config("neocmake", {
   }
 })
 
-vim.lsp.enable({ "clangd", "lua_ls", "neocmake", "bashls" })
+-- vim.lsp.enable({ "clangd", "lua_ls", "neocmake", "bashls", "pyrefly" })
 
 vim.diagnostic.config({ virtual_text = true })
 
