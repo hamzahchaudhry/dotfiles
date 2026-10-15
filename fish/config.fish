@@ -10,7 +10,6 @@ if status is-login
     set -gx ALTERA_ROOT "$HOME/.local/opt/altera/25.1"
     set -gx QUARTUS_ROOTDIR "$ALTERA_ROOT/quartus"
     set -gx QSYS_ROOTDIR "$QUARTUS_ROOTDIR/sopc_builder/bin"
-    set -gx SALT_LICENSE_SERVER "$HOME/.altera.quartus/questa_lic.dat"
 
     fish_add_path --path --move "$HOME/.local/bin" "$QUARTUS_ROOTDIR/bin" "$ALTERA_ROOT/questa_fse/bin"
 end
@@ -18,7 +17,7 @@ end
 # enter window manager on tty1 login
 if status is-login && test (tty) = /dev/tty1
     set -gx NO_AT_BRIDGE 1
-    exec dbus-run-session mango
+    exec dbus-run-session mango >~/.local/state/mango.log 2>&1
 end
 
 if status is-interactive
