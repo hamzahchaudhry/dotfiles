@@ -1,5 +1,0 @@
-@-moz-document domain("chatgpt.com") {
-  :is([class*="max-w"], [class*="container"], [style*="max-width"]) {
-    max-width: none !important;
-  }
-}
