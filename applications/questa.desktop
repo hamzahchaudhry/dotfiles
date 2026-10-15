@@ -2,7 +2,7 @@
 Type=Application
 Name=Questa Altera FPGA Starter Edition
 Comment=HDL simulation and debugging environment
-Exec=vsim
+Exec=sh -c "exec \\"\\$HOME/.local/bin/vsim\\" -gui"
 Icon=questa
 Categories=Development;Electronics;
 StartupNotify=true
