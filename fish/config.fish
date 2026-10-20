@@ -2,6 +2,7 @@ set -g fish_greeting
 
 if status is-login
     # user env vars
+    set -gx TERMINAL foot
     set -gx CODEX_HOME "$HOME/.config/codex"
     set -gx PLATFORMIO_CORE_DIR "$HOME/.local/share/platformio"
     set -gx GOPATH "$HOME/.local/share/go"
@@ -25,32 +26,33 @@ if status is-interactive
     bind -M insert ctrl-backspace backward-kill-word
 
     # abbreviations
-    abbr --add gcl 'git clone'
-    abbr --add gs 'git status -sb'
-    abbr --add ga 'git add'
-    abbr --add gc --set-cursor 'git commit -m "%"'
-    abbr --add gp 'git push'
-    abbr --add gd 'git diff'
-    abbr --add gr 'git restore'
-    abbr --add gu 'git restore --staged'
-    abbr --add gl 'git --no-pager log --oneline --decorate -10'
-    abbr --add ip 'ip -c'
-    abbr --add s 'ookla-speedtest'
-    abbr --add c 'clear'
-    abbr --add net 'doas iwctl station wlan0 get-networks'
-    abbr --add iwdr 'doas rc-service iwd restart'
-    abbr --add con 'doas iwctl station wlan0 connect'
-    abbr --add t 'task'
-    abbr --add td 'task done'
-    abbr --add tm 'task modify'
-    abbr --add tsm 'task add project:supermileage'
-    abbr --add tper 'task add project:personal'
-    abbr --add cr 'codex resume'
-    abbr --add ep 'doas emlop p'
+    abbr -a gcl 'git clone'
+    abbr -a gs 'git status -sb'
+    abbr -a ga 'git add'
+    abbr -a gc --set-cursor 'git commit -m "%"'
+    abbr -a gp 'git push'
+    abbr -a gd 'git diff'
+    abbr -a gr 'git restore'
+    abbr -a gu 'git restore --staged'
+    abbr -a gl 'git --no-pager log --oneline --decorate -10'
+    abbr -a ip 'ip -c'
+    abbr -a s 'ookla-speedtest'
+    abbr -a c 'clear'
+    abbr -a net 'doas iwctl station wlan0 get-networks'
+    abbr -a iwdr 'doas rc-service iwd restart'
+    abbr -a con 'doas iwctl station wlan0 connect'
+    abbr -a t 'task'
+    abbr -a td 'task done'
+    abbr -a tm 'task modify'
+    abbr -a tsm 'task add project:supermileage'
+    abbr -a tper 'task add project:personal'
+    abbr -a cr 'codex resume'
+    abbr -a ep 'doas emlop p'
+    abbr -a z 'zathura --fork'
 
-    set --global fish_color_command brgreen
+    set -g fish_color_command brgreen
     source /usr/share/fzf/key-bindings.fish
-    set --global -- FZF_ALT_C_OPTS '--preview "eza --tree --level=2 --icons --color=always -- {}" --preview-window=right:55%'
+    set -g -- FZF_ALT_C_OPTS '--preview "eza --tree --level=2 --icons --color=always -- {}" --preview-window=right:55%'
     set -gx FZF_CTRL_R_OPTS "--with-nth 3.. --bind 'alt-t:change-with-nth(2..|1,3..|3..)'"
     zoxide init --cmd cd fish | source
 end
