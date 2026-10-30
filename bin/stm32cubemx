@@ -8,6 +8,8 @@ mkdir -p "$home/.cache/tmp" "$home/.config/java-prefs"
 export HOME="$home" XDG_CONFIG_HOME="$home/.config" XDG_CACHE_HOME="$home/.cache"
 export XDG_DATA_HOME="$home/.local/share" XDG_STATE_HOME="$home/.local/state" TMPDIR="$home/.cache/tmp"
 
-exec "$mx/jre/bin/java" -Duser.home="$home" -Djava.io.tmpdir="$TMPDIR" \
+"$mx/jre/bin/java" -Duser.home="$home" -Djava.io.tmpdir="$TMPDIR" \
   -Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java-prefs" \
   -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -jar "$mx/STM32CubeMX" "$@"
+
+fd -d 1 '^stm32cube_fw_.*\.zip$' "$HOME/STM32Cube/Repository" -x rm
