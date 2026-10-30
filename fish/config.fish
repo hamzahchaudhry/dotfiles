@@ -7,6 +7,7 @@ if status is-login
     set -gx PLATFORMIO_CORE_DIR "$HOME/.local/share/platformio"
     set -gx GOPATH "$HOME/.local/share/go"
     set -gx CARGO_HOME "$HOME/.local/share/cargo"
+    set -gx NUGET_PACKAGES "$HOME/.cache/NuGetPackages"
 
     set -gx ALTERA_ROOT "$HOME/.local/opt/altera/25.1"
     set -gx QUARTUS_ROOTDIR "$ALTERA_ROOT/quartus"
@@ -53,6 +54,6 @@ if status is-interactive
     set -g fish_color_command brgreen
     source /usr/share/fzf/key-bindings.fish
     set -g -- FZF_ALT_C_OPTS '--preview "eza --tree --level=2 --icons --color=always -- {}" --preview-window=right:55%'
-    set -gx FZF_CTRL_R_OPTS "--with-nth 3.. --bind 'alt-t:change-with-nth(2..|1,3..|3..)'"
+    set -g FZF_CTRL_R_OPTS "--with-nth 3.. --bind 'alt-t:change-with-nth(2..|1,3..|3..)'"
     zoxide init --cmd cd fish | source
 end
