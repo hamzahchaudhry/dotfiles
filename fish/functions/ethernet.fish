@@ -1,11 +1,13 @@
 function ethernet
+    set -l interface enp0s13f0u1
+
     if test "$argv[1]" = off
-        doas dhcpcd --exit enp0s13f0u1
-        doas ip link set enp0s13f0u1 down
-        doas rfkill unblock wifi
+        doas rfkill unblock wifi; or return
+        doas dhcpcd --exit $interface; or return
+        doas ip link set $interface down
     else
-        doas ip link set enp0s13f0u1 up
-        doas dhcpcd enp0s13f0u1
+        doas ip link set $interface up; or return
+        doas dhcpcd $interface; or return
         doas rfkill block wifi
     end
 end

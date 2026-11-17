@@ -9,11 +9,11 @@ function upgrade
       eclean-dist -d
       # backups can share a kernel version; kernel-install remove deletes their shared module indexes
       eclean-kernel --no-kernel-install -n 1
-    '
-    fisher update
-    uv tool upgrade --all
-    mkdir -p ~/.local/share/emoji-picker
-    sed 's#</\?small>##g' ~/.local/share/uv/tools/rofimoji/lib/python*/site-packages/picker/data/emojis_*.csv > ~/.local/share/emoji-picker/emojis
-    flatpak update -y
+    '; or return
+    fisher update; or return
+    uv tool upgrade --all; or return
+    mkdir -p ~/.local/share/emoji-picker; or return
+    sed 's#</\?small>##g' ~/.local/share/uv/tools/rofimoji/lib/python*/site-packages/picker/data/emojis_*.csv >~/.local/share/emoji-picker/emojis; or return
+    flatpak update -y; or return
     flatpak uninstall --unused
 end
