@@ -1,9 +1,10 @@
 # environment
 set -gx TERMINAL foot
-set -gx CODEX_HOME "$HOME/.config/codex"
-set -gx PLATFORMIO_CORE_DIR "$HOME/.local/share/platformio"
-set -gx GOPATH "$HOME/.local/share/go"
-set -gx CARGO_HOME "$HOME/.local/share/cargo"
+set -gx CODEX_HOME "$XDG_CONFIG_HOME/codex"
+set -gx PLATFORMIO_CORE_DIR "$XDG_DATA_HOME/platformio"
+set -gx GOPATH "$XDG_DATA_HOME/go"
+set -gx CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -gx OLLAMA_MODELS "$XDG_DATA_HOME/ollama/models"
 
 set -gx ALTERA_ROOT "$HOME/.local/opt/altera/25.1"
 set -gx QUARTUS_ROOTDIR "$ALTERA_ROOT/quartus"
@@ -18,7 +19,8 @@ fish_add_path -P "$GOPATH/bin" \
 # enter window manager on tty1 login
 if status is-login && test (tty) = /dev/tty1
     set -gx NO_AT_BRIDGE 1
-    exec dbus-run-session mango >~/.local/state/mango.log 2>&1
+    mkdir -p "$XDG_STATE_HOME"; or return
+    exec dbus-run-session mango >"$XDG_STATE_HOME/mango.log" 2>&1
 end
 
 # interactive shell setup
