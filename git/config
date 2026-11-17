@@ -38,6 +38,5 @@
 	mnemonicPrefix = true
 
 [delta]
-	navigate = true
 	pager = less --mouse
 	side-by-side = true
