@@ -11,5 +11,5 @@ function lt --wraps eza
         set --erase argv[1]
     end
 
-    command eza --icons -a --tree $level_args --git-ignore --group-directories-first -I '.git|node_modules|target|dist|build|__pycache__|.venv|coverage' $argv
+    command eza --icons -a --tree $level_args --git-ignore --group-directories-first $argv
 end
