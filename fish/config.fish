@@ -19,8 +19,8 @@ fish_add_path -P "$GOPATH/bin" \
 # enter window manager on tty1 login
 if status is-login && test (tty) = /dev/tty1
     set -gx NO_AT_BRIDGE 1
-    mkdir -p "$XDG_STATE_HOME"; or return
-    exec dbus-run-session mango >"$XDG_STATE_HOME/mango.log" 2>&1
+    mkdir -p "$XDG_STATE_HOME/log"; or return
+    exec dbus-run-session mango >"$XDG_STATE_HOME/log/mango.log" 2>&1
 end
 
 # interactive shell setup
