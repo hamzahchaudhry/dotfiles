@@ -8,7 +8,7 @@ function upgrade
       emerge -c
       eclean-dist -d
       # backups can share a kernel version; kernel-install remove deletes their shared module indexes
-      eclean-kernel --no-kernel-install -n 1
+      eclean-kernel --no-kernel-install -n 2
     '; or return
     fisher update; or return
     uv tool upgrade --all; or return

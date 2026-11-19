@@ -66,12 +66,15 @@ if status is-interactive
     abbr -a ep 'doas emlop p'
     abbr -a bl "doas sh -c 'tail -fn 50 /var/tmp/portage/*/*/temp/build.log'"
     abbr -a rc 'doas rc-service'
+    abbr -a ug 'upgrade'
 
     # utils
     abbr -a c clear
     abbr -a cr 'codex resume'
     abbr -a z 'zathura --fork'
     abbr -a ap airpods
+    abbr -a dp 'doas poweroff'
+    abbr -a dr 'doas reboot'
 
     # fzf
     source /usr/share/fzf/key-bindings.fish
