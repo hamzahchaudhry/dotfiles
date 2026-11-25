@@ -11,10 +11,8 @@ set -gx QUARTUS_ROOTDIR "$ALTERA_ROOT/quartus"
 set -gx QSYS_ROOTDIR "$QUARTUS_ROOTDIR/sopc_builder/bin"
 
 # path
-fish_add_path -P "$GOPATH/bin" \
-    "$ALTERA_ROOT/questa_fse/bin" \
-    "$QUARTUS_ROOTDIR/bin" \
-    "$HOME/.local/bin"
+fish_add_path -P "$GOPATH/bin" "$HOME/.local/bin"
+fish_add_path --path --append --move "$QUARTUS_ROOTDIR/bin"
 
 # enter window manager on tty1 login
 if status is-login && test (tty) = /dev/tty1
@@ -75,6 +73,7 @@ if status is-interactive
     abbr -a ap airpods
     abbr -a dp 'doas poweroff'
     abbr -a dr 'doas reboot'
+    abbr -a vpn 'doas openconnect --user='hchaudhr@app' myvpn.ubc.ca'
 
     # fzf
     source /usr/share/fzf/key-bindings.fish
