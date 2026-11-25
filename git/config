@@ -40,3 +40,6 @@
 [delta]
 	pager = less --mouse
 	side-by-side = true
+[pager]
+	branch = false
+	tag = false
